@@ -1,7 +1,7 @@
 @extends('admin.master.master')
 
 @section('title')
-পদবী তালিকা | {{ $ins_name }}
+Designation List | {{ $ins_name }}
 @endsection
 
 
@@ -10,120 +10,62 @@
 @endsection
 
 @section('body')
+<div class="content-body">
 <div class="container-fluid">
-    <div class="page-header">
+
+    <div class="row page-titles">
         <div class="row">
-            <div class="col-sm-6">
-                <h3>পদবী</h3>
+            <div class="col-lg-6 col-md-6 col-sm-12">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">হোম</a></li>
-                    <li class="breadcrumb-item">পদবী তালিকা</li>
+                    <li class="breadcrumb-item active">HRM</li>
+                    <li class="breadcrumb-item">Designation Information </li>
                 </ol>
             </div>
-            <div class="col-sm-6">
-                <div class="text-end">
-                <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg">পদবী যোগ করুন</button>
+            @if (Auth::guard('admin')->user()->can('designationAdd'))
+            <div class="col-lg-6 col-md-6 col-sm-12">
+                <div style="text-align: right;">
+                    <button type="button" data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg"class="btn btn-primary btn-sm">Add New Designation<span class="btn-icon-end"><i class="fa fa-plus"></i></span></button>
                 </div>
             </div>
+            @endif
         </div>
     </div>
-</div>
 
-<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="myLargeModalLabel">পদবী তথ্য</h4>
-                <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form class="custom-validation"  action="{{ route('designationList.store') }}" method="post" enctype="multipart/form-data" id="form" data-parsley-validate="">
-                    @csrf
-                    <div class="mb-3">
-                        <label class="form-label" for="">শাখার নাম <span style="color:red;">*</span></label>
-
-                        <select class="form-control" name="branch_id" id="branch_id0" type="text" placeholder="" required>
-                            <option value="">--অনুগ্রহ করে নির্বাচন করুন--</option>
-                            @foreach($branchLists as $AllBranchLists)
-                            <option value="{{ $AllBranchLists->id }}">{{ $AllBranchLists->branch_name }}</option>
-                            @endforeach
-                        </select>
-                        <input class="form-control" name="serial_part_one"  id="hidden_value0" type="hidden" step="0.01"  placeholder="" required readonly>
-                    </div>
-                <div class="mb-3">
-                    <label class="form-label" for="">পদবী নাম <span style="color:red;">*</span></label>
-                    <input class="form-control" name="designation_name" id="designation_name0" type="text" placeholder="" required>
-                </div>
-
-
-
-
-                <div class="mb-3">
-                    <label class="form-label" for="">পদবীর ক্রম <span style="color:red;">*</span></label>
-
-                    <div class="row">
-                        <div class="col-md-2">
-                            <input class="form-control" name="serial_part_one1"  id="serial_part_one0" type="number" step="0.01"  placeholder="" required readonly>
-                        </div>
-
-                        <div class="col-md-10">
-                            <input class="form-control" name="serial_pert_two"  id="designation_serial0" type="number"  placeholder="" required>
-                        </div>
-                    </div>
-
-
-                </div>
-                <small class="text-danger" id="result0"></small>
-                <div class="card-footer text-end">
-                    <button class="btn btn-primary" id="finalButton0" type="submit">জমা দিন</button>
-                </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Container-fluid starts-->
-<div class="container-fluid list-products">
     <div class="row">
         <!-- Individual column searching (text inputs) Starts-->
         <div class="col-sm-12">
             <div class="card">
 
                 <div class="card-body">
-                    <div class="table-responsive product-table">
-                        <table class="display" id="basic-1">
+
+                    @include('flash_message')
+                    <div class="table-responsive">
+
+                            <table id="example3" class="display">
                             <thead>
                             <tr>
-                                <th>ক্র: নং:</th>
-                                <th>শাখার নাম</th>
-                                <th>পদবী নাম</th>
+                                <th>Sl</th>
+                                <th>Designation Name</th>
 
-                                <th>পদবীর ক্রম</th>
-                                <th>কার্যকলাপ</th>
+                                <th>Designation Detail</th>
+                                <th>Designation Status</th>
+                                <th>Action</th>
                             </tr>
                             </thead>
                             <tbody>
                                 @foreach($designationLists as $key=>$AllDesignationLists)
                             <tr>
                                 <td>{{ $key+1 }}</td>
-                                <td>
-                                    <?php
 
-                                    $branchName = DB::table('branches')->where('id',$AllDesignationLists->branch_id)->value('branch_name');
-
-
-                                        ?>
-                                        {{ $branchName }}
-
-
-                                                                    </td>
                                 <td>{{ $AllDesignationLists->designation_name }}</td>
 
-                                <td>{{ App\Http\Controllers\Admin\CommonController::englishToBangla($AllDesignationLists->designation_serial) }}</td>
+                                <td>{{ $AllDesignationLists->designation_detail }}</td>
+
+                                <td>{{ $AllDesignationLists->status }}</td>
                                 <td>
                                     @if (Auth::guard('admin')->user()->can('designationUpdate'))
                                     <button type="button" data-bs-toggle="modal" data-bs-target=".bs-example-modal-lg{{ $AllDesignationLists->id }}"
-                                    class="btn btn-primary waves-light waves-effect  btn-sm" >
+                                    class="btn btn-primary shadow btn-xs sharp" >
                                     <i class="fa fa-pencil"></i></button>
 
                                       <!--  Large modal example -->
@@ -131,7 +73,7 @@
                                           <div class="modal-dialog modal-lg">
                                               <div class="modal-content">
                                                   <div class="modal-header">
-                                                      <h5 class="modal-title" id="myLargeModalLabel">আপডেট করুন</h5>
+                                                      <h5 class="modal-title" id="myLargeModalLabel">Update Information</h5>
                                                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                                                       </button>
                                                   </div>
@@ -139,36 +81,41 @@
                                                       <form  action="{{ route('designationList.update',$AllDesignationLists->id ) }}" method="post" enctype="multipart/form-data" id="form" data-parsley-validate="">
                                                           @method('PUT')
                                                           @csrf
+
+
+
                                                           <div class="mb-3">
-                                                            <label class="form-label" for="">শাখার নাম <span style="color:red;">*</span></label>
-
-                                                            <select class="form-control" name="branch_id" id="branch_id{{ $AllDesignationLists->id }}" type="text" placeholder="" required>
-                                                                <option value="">--অনুগ্রহ করে নির্বাচন করুন--</option>
-                                                                @foreach($branchLists as $AllBranchLists)
-                                                                <option value="{{ $AllBranchLists->id }}"  {{ $AllDesignationLists->branch_id == $AllBranchLists->id ? 'selected':''  }}>{{ $AllBranchLists->branch_name }}</option>
-                                                                @endforeach
-                                                            </select>
-
-                                                            <input class="form-control" name="serial_part_one"  id="hidden_value{{ $AllDesignationLists->id }}" type="hidden" step="0.01"  placeholder="" required readonly>
-
-                                                        </div>
-                                                          <div class="mb-3">
-                                                            <label class="form-label" for="">পদবী নাম <span style="color:red;">*</span></label>
+                                                            <label class="form-label" for="">Designation Name<span style="color:red;">*</span></label>
                                                             <input class="form-control" name="designation_name" value="{{ $AllDesignationLists->designation_name  }}"  type="text" placeholder="" required>
                                                         </div>
 
 
 
                                                         <div class="mb-3">
-                                                            <label class="form-label" for="">পদবীর ক্রম <span style="color:red;">*</span></label>
-                                                            <input class="form-control" name="designation_serial" value="{{ $AllDesignationLists->designation_serial }}"  type="number" step="0.01" placeholder="" required>
+                                                            <label class="form-label" for="">Designation Detail <span style="color:red;">*</span></label>
+                                                            <input class="form-control" name="designation_detail" value="{{ $AllDesignationLists->designation_detail }}"  type="text"  placeholder="" required>
 
                                                         </div>
 
 
-                                                        <small class="text-danger" id="result{{ $AllDesignationLists->id  }}"></small>
 
-                                                          <button type="submit" id="finalButton{{ $AllDesignationLists->id  }}" class="btn btn-primary mt-4 pr-4 pl-4">আপডেট করুন</button>
+                                                        <div class="mb-3 col-md-12">
+                                                            <label class="form-label">Status</label>
+                                                            <select id="inputState" name="status" class="form-control ms-0 wide">
+                                                                <option>Choose...</option>
+                                                                <option value="Active" {{ 'Active' == $AllDesignationLists->status ? 'selected':'' }}>Active</option>
+                                                                <option value="Inactive" {{ 'Inactive' == $AllDesignationLists->status ? 'selected':'' }}>Inactive</option>
+                                                            </select>
+                                                        </div>
+
+
+
+
+
+
+
+
+                                                          <button type="submit" id="finalButton{{ $AllDesignationLists->id  }}" class="btn btn-primary mt-4 pr-4 pl-4">Update </button>
                                                       </form>
                                                   </div>
                                               </div><!-- /.modal-content -->
@@ -179,18 +126,18 @@
 @endif
 
 {{-- <button type="button" class="btn btn-primary waves-light waves-effect  btn-sm" onclick="window.location.href='{{ route('admin.users.view',$AllDesignationLists->id) }}'"><i class="fa fa-eye"></i></button> --}}
-
-@if($AllDesignationLists->id == 2)
+@if($AllDesignationLists->id <= 3)
 
 @else
                             @if (Auth::guard('admin')->user()->can('designationDelete'))
 
-<button   type="button" class="btn btn-danger waves-light waves-effect  btn-sm" onclick="deleteTag({{ $AllDesignationLists->id}})" data-toggle="tooltip" title="Delete"><i class="fa fa-trash-o"></i></button>
+<button   type="button" class="btn btn-danger shadow btn-xs sharp" onclick="deleteTag({{ $AllDesignationLists->id}})" data-toggle="tooltip" title="Delete"><i class="fas fa-trash"></i></button>
               <form id="delete-form-{{ $AllDesignationLists->id }}" action="{{ route('designationList.destroy',$AllDesignationLists->id) }}" method="POST" style="display: none;">
                 @method('DELETE')
                                               @csrf
 
                                           </form>
+
                                           @endif
                                           @endif
                                 </td>
@@ -206,6 +153,59 @@
     </div>
 </div>
 <!-- Container-fluid Ends-->
+</div>
+
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myLargeModalLabel">Add New Designation</h4>
+                <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form class="custom-validation"  action="{{ route('designationList.store') }}" method="post" enctype="multipart/form-data" id="form" data-parsley-validate="">
+                    @csrf
+
+
+                    <div class="mb-3">
+                        <label class="form-label" for="">Designation Name<span style="color:red;">*</span></label>
+                        <input class="form-control" required name="designation_name" id="designation_name0" type="text" placeholder="" required>
+                    </div>
+
+
+                    <div class="mb-3">
+                        <label class="form-label" for="">Designation Detail <span style="color:red;">*</span></label>
+
+                        <div class="row">
+
+
+                            <div class="col-md-12">
+                                <input class="form-control" name="designation_detail"  id="designation_detail0" type="text"  placeholder="" required>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+
+
+                    <div class="mb-3 col-md-12">
+                        <label class="form-label">Status</label>
+                        <select required id="inputState" name="status" class="default-select form-control ms-0 wide">
+                            <option value="">Choose...</option>
+                            <option value="Active">Active</option>
+                            <option value="Inactive">Inactive</option>
+                        </select>
+                    </div>
+
+                <div class="card-footer text-end ">
+                    <button class="btn btn-primary mt-3" id="finalButton0" type="submit">Submit</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
 
 @section('script')
@@ -221,7 +221,7 @@
         //part one id
 
         var firstValue = $('#hidden_value'+id_for_pass).val();
-        var secondValue = $('#designation_serial'+id_for_pass).val();
+        var secondValue = $('#designation_detail'+id_for_pass).val();
 
         //end part one if
 
@@ -290,7 +290,7 @@
         var branchId = $('#branch_id'+id_for_pass).val();
         var designationName = $('#designation_name'+id_for_pass).val();
 
-        var designationSerial = $('#designation_serial'+id_for_pass).val();
+        var designationSerial = $('#designation_detail'+id_for_pass).val();
         //alert(branchId);
 
 
@@ -325,7 +325,7 @@
 
 <!--step-->
 <script>
-    $("[id^=designation_serial]").keyup(function(){
+    $("[id^=designation_detail]").keyup(function(){
         var main_id = $(this).attr('id');
         var id_for_pass = main_id.slice(18);
 
@@ -333,7 +333,7 @@
         //part one id
 
         var firstValue = $('#hidden_value'+id_for_pass).val();
-        var secondValue = $('#designation_serial'+id_for_pass).val();
+        var secondValue = $('#designation_detail'+id_for_pass).val();
 
         //end part one if
 

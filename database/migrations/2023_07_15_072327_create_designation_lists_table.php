@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('designation_lists', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('branch_id')->unsigned();
-            $table->foreign('branch_id')->references('id')->on('branches')->onDelete('cascade');
+            $table->bigInteger('branch_id')->unsigned()->nullable();
             $table->string('designation_name');
-            $table->string('designation_serial');
-            $table->timestamps();
+            $table->string('designation_serial')->nullable();
+            $table->string('designation_detail')->nullable();
+            $table->string('status')->nullable();
         });
     }
 

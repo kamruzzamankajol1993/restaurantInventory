@@ -8,6 +8,7 @@ use App\Models\Admin;
 use Image;
 use Auth;
 use Hash;
+use DB;
 class SettingController extends Controller
 {
 

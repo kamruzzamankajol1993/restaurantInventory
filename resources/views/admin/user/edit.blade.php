@@ -1,7 +1,7 @@
 @extends('admin.master.master')
 
 @section('title')
-কর্মকর্তার তথ্য আপডেট করুন
+Update Employee
 @endsection
 
 
@@ -10,29 +10,15 @@
 @endsection
 
 @section('body')
+
+<div class="content-body">
 <div class="container-fluid">
-    <div class="page-header">
-      <div class="row">
-        <div class="col-sm-6">
-          <h3>কর্মকর্তার তথ্য</h3>
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">হোম</a></li>
-            <li class="breadcrumb-item">কর্মকর্তার তথ্য আপডেট করুন</li>
-
-          </ol>
-        </div>
-        <div class="col-sm-6">
-
-        </div>
-        <div class="col-sm-6 mt-3">
-
-        </div>
-      </div>
+    <div class="row page-titles">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item active">HRM</li>
+            <li class="breadcrumb-item">Update Employee</li>
+        </ol>
     </div>
-  </div>
-        <!-- end page title -->
-
-        <div class="container-fluid">
 
             <div class="row">
                 <div class="col-lg-12">
@@ -44,111 +30,109 @@
                                 <div class="bar"></div >
                                 <div class="percent">0%</div >
                             </div>
-                            
+
                             <form action="{{ route('user.update',$user->id) }}" method="POST" enctype="multipart/form-data" id="form" data-parsley-validate="">
 
                                 @csrf
                                 @method('PUT')
-                                  <div class="row">
 
-                                      <div class="col-lg-12">
-                                          <div class="card">
-                                              <div class="card-body">
+  <!--new code for restuadent --->
 
 
-                                                  <div class="row">
-                              <div class="form-group col-md-6 col-sm-12">
-                                  <label for="name">নাম (ইংরেজি) <span class="text-danger">*</span></label>
-                                  <input type="text" class="form-control" id="name" name="name" data-parsley-maxlength="150" value="{{ $user->admin_name }}" placeholder="নাম (ইংরেজি)" required>
+  <div class="row">
+    <div class="mb-3 col-md-6">
+        <label class="form-label">Employee Image</label>
+        <input type="file" class="form-control" id="" name="image" accept="image/png, image/jpg, image/jpeg" placeholder="Enter Image" >
 
-                                  @if ($errors->has('name'))
-                                  <span class="text-danger">{{ $errors->first('name') }}</span>
-                              @endif
+        <img src="{{ asset('/') }}{{ $user->admin_image }}" style="height:30px;margin-top:10px;"/>
+        @if ($errors->has('image'))
+        <span class="text-danger">{{ $errors->first('image') }}</span>
+    @endif
+    </div>
+    <div class="mb-3 col-md-6">
+        <label class="form-label">Employee Name</label>
+        <input type="text" class="form-control" id="name" value="{{ $user->admin_name }}" name="name" data-parsley-maxlength="150" placeholder="Name" required>
 
+        @if ($errors->has('name'))
+        <span class="text-danger">{{ $errors->first('name') }}</span>
+    @endif
+    </div>
+    <div class="mb-3 col-md-6">
+        <label class="form-label">Email Address</label>
+        <input type="text" class="form-control form-control-sm" value="{{ $user->email }}" data-parsley-maxlength="100" id="email" name="email" placeholder="Email" required>
 
-                              </div>
+        @if ($errors->has('email'))
+      <span class="text-danger">{{ $errors->first('email') }}</span>
+  @endif
+    </div>
+    <div class="mb-3 col-md-6">
+        <label class="form-label">Phone Number</label>
+        <input  oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+        type = "number"
+        maxlength = "11" class="form-control form-control-sm" value="{{ $user->admin_mobile }}" id="text" data-parsley-length="[11, 11]" name="phone" placeholder="Phone Number" required>
 
+        @if ($errors->has('phone'))
+      <span class="text-danger">{{ $errors->first('phone') }}</span>
+  @endif
+    </div>
+    <div class="mb-3 col-md-6">
+        <label class="form-label">Address</label>
+        <input type="text" name="address" class="form-control" value="{{ $user->address }}" placeholder="Address" required>
+    </div>
+    <div class="mb-3 col-md-6">
+        <label class="form-label">NID Number</label>
+        <input type="text" name="nid_number" class="form-control" value="{{ $user->nid_number }}" placeholder="Nid Number" required>
+    </div>
+    <div class="mb-3 col-md-6">
+        <label class="form-label">Designation</label>
+        <select name="designation_list_id" required class="js-example-basic-single form-control ms-0 wide">
+            <option value="">Choose...</option>
+            @foreach($designationLists as $designationListsAll)
+            <option value="{{ $designationListsAll->id }}" {{ $designationListsAll->id == $user->designation_list_id ? 'selected':'' }}>{{ $designationListsAll->designation_name }}</option>
+            @endforeach
+        </select>
+    </div>
+    <div class="mb-3 col-md-6">
+        <label class="form-label"> Hire Date</label>
+        <input type="text" name="hire_date" value="{{ $user->hire_date }}" required class="form-control datepicker23" placeholder="Hire Date">
+    </div>
+    <div class="mb-3 col-md-6">
+        <label class="form-label">Salary</label>
+        <input type="nummber" name="salary" value="{{ $user->salary }}" required class="form-control" placeholder="Salary">
+    </div>
+    <div class="mb-3 col-md-6">
+        <label class="form-label">Is Supervisor</label>
+        <select name="is_supervisor" id="is_supervisor" required  class="js-example-basic-single form-control ms-0 wide">
+            <option value="">Choose...</option>
+            <option value="Yes" {{ 'Yes' == $user->is_supervisor ? 'selected':'' }}>Yes</option>
+            <option value="No" {{ 'No' == $user->is_supervisor ? 'selected':'' }}>No</option>
+        </select>
+    </div>
+    <div class="mb-3 col-md-6">
+        <label class="form-label">Supervisor Name</label>
+        <select id="supervisor_name" name="supervisor_name" class="js-example-basic-single form-control ms-0 wide">
+            <option value="" >Choose...</option>
 
-                              <div class="form-group col-md-6 col-sm-12">
-                                <label for="name">নাম <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="name_ban" name="name_ban" data-parsley-maxlength="150" value="{{ $user->admin_name_ban }}" placeholder="নাম" required>
+            @foreach($superViserList as $superViserLists)
+            <option value="{{ $superViserLists->id }}" {{ $superViserLists->id == $user->supervisor_name ? 'selected':'' }}>{{ $superViserLists->admin_name }}</option>
+            @endforeach
 
-                                @if ($errors->has('name_ban'))
-                                <span class="text-danger">{{ $errors->first('name_ban') }}</span>
-                            @endif
-
-
-                            </div>
-                            <div class="form-group col-md-6 col-sm-12">
-                                <label for="email">ইমেইল <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control form-control-sm" data-parsley-maxlength="100" id="email" value="{{ $user->email }}" name="email" placeholder="ইমেইল" required>
-
-                                @if ($errors->has('email'))
-                              <span class="text-danger">{{ $errors->first('email') }}</span>
-                          @endif
-                            </div>
-                            <div class="form-group col-md-6 col-sm-12">
-                                <label for="text">মোবাইল নম্বর <span class="text-danger">*</span></label>
-                                <input oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-                                type = "number"
-                                maxlength = "11" class="form-control form-control-sm" class="form-control form-control-sm" id="text" data-parsley-length="[11, 11]" name="phone" value="{{ $user->admin_mobile }}" placeholder="মোবাইল নম্বর" required>
-
-                                @if ($errors->has('phone'))
-                              <span class="text-danger">{{ $errors->first('phone') }}</span>
-                          @endif
-                            </div>
-
-                            {{-- <div class="card">
-                                <div class="card-body">
-                                    <div class="mb-3">
-                                        <label class="form-label" for="">Appoint Date</label>
-                                        <input type="text" class="form-control" id="datepicker"  name="admin_job_start_date" value="{{ $user->admin_job_start_date }}" placeholder="Enter Date" required>
-
-                                        @if ($errors->has('admin_job_start_date'))
-                                        <span class="text-danger">{{ $errors->first('admin_job_start_date') }}</span>
-                                    @endif
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label" for="">Branch</label>
-                                        <select class="form-control" required name="branch_id" id="branch_id" type="text" placeholder="">
-                                            <option value="">--Please Select--</option>
-                                            @foreach($branchLists as $AllBranchLists)
-                                            <option value="{{ $AllBranchLists->id }}"  {{ $user->branch_id == $AllBranchLists->id ? 'selected':''  }} >{{ $AllBranchLists->branch_name }}</option>
-                                            @endforeach
-                                        </select>
-                                        @if ($errors->has('branch_id'))
-                                        <span class="text-danger">{{ $errors->first('branch_id') }}</span>
-                                    @endif
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label" for="">Designation</label>
-                                        <select class="form-control" required name="designation_list_id" id="designation_list_id" type="text" placeholder="">
-                                            <option value="">--Please Select--</option>
-
-                                            @foreach($designationLists as $AllDesignationLists)
-                                            <option value="{{ $AllDesignationLists->id }}" {{ $AllDesignationLists->id == $user->designation_list_id ? 'selected':''  }}>{{ $AllDesignationLists->designation_name }}</option>
-                                            @endforeach
-
-                                        </select>
-                                        @if ($errors->has('designation_list_id'))
-                                        <span class="text-danger">{{ $errors->first('designation_list_id') }}</span>
-                                    @endif
-                                    </div>
-
-                                    {{-- <div class="mb-3">
-                                        <label class="form-label" for="">End Date</label>
-                                        <input type="text" class="form-control" id="datepicker1"  name="admin_job_end_date" value="{{ $user->admin_job_end_date }}" placeholder="Enter Date" required>
-
-                                        @if ($errors->has('admin_job_end_date'))
-                                        <span class="text-danger">{{ $errors->first('admin_job_end_date') }}</span>
-                                    @endif
-                                    </div> </div>
-                                </div>--}}
+        </select>
+    </div>
+    <div class="mb-3 col-md-6">
+        <label class="form-label">Emergency Contact Number</label>
+        <input type="number" required value="{{ $user->emergency_contact_number }}" name="emergency_contact_number" class="form-control" placeholder="Emergency Contact Number<">
+    </div>
 
 
-
-
-
+    <div class="mb-3 col-md-6">
+        <label class="form-label">Role</label>
+        <select name="roles[]" id="roles" multiple="multiple"  class="form-control form-control-sm js-example-basic-multiple" required>
+            @foreach ($roles as $role)
+            <option value="{{ $role->name }}" {{ $user->hasRole($role->name) ? 'selected' : '' }}>{{ $role->name }}</option>
+                                @endforeach
+        </select>
+    </div>
 
 
 
@@ -158,84 +142,19 @@
 
 
 
+    <div class="mb-3 col-md-6">
+        <label class="form-label">Status</label>
+        <select required id="inputState" name="status" class="js-example-basic-single form-control ms-0 wide">
+            <option  value="">Choose...</option>
+            <option value="Active"  {{ 'Active' == $user->status ? 'selected':'' }}>Active</option>
+            <option value="Inactive" {{ 'Inactive' == $user->status ? 'selected':'' }}>Inactive</option>
+        </select>
+    </div>
+</div>
+<button type="submit" class="btn btn-primary">Update</button>
 
 
-                          </div>
-
-                          {{-- <div class="row">
-                              <div class="form-group col-md-6 col-sm-12">
-                                  <label for="password">Password</label>
-                                  <input type="password" class="form-control form-control-sm" id="password"  parsley-minlength="8"
-                                  parsley-required="true" name="password" placeholder="Enter Password">
-
-                                  @if ($errors->has('password'))
-                                <span class="text-danger">{{ $errors->first('password') }}</span>
-                            @endif
-
-                              </div>
-                              <div class="form-group col-md-6 col-sm-12">
-                                  <label for="password_confirmation">Confirm Password</label>
-                                  <input type="password" class="form-control form-control-sm" data-parsley-equalto="#password"
-                                  parsley-required="true" id="password_confirmation" name="password_confirmation" placeholder="Enter Password">
-
-
-                              </div>
-                          </div> --}}
-
-                          <div class="row">
-                              <div class="form-group col-md-6 col-sm-12">
-                                  <label for="password">রোল বরাদ্দ করুন <span class="text-danger">*</span></label>
-                                  <select name="roles[]" id="roles" multiple="multiple"  class="form-control form-control-sm js-example-basic-multiple" required>
-                                      @foreach ($roles as $role)
-                  <option value="{{ $role->name }}" {{ $user->hasRole($role->name) ? 'selected' : '' }}>{{ $role->name }}</option>
-                                      @endforeach
-                                  </select>
-                              </div>
-                               <div class="form-group col-md-6 col-sm-12">
-                                  <label for="password_confirmation">প্রোফাইল ছবি</label>
-                                  <input type="file" class="form-control form-control-sm" id="" name="image" accept="image/png, image/jpg, image/jpeg" placeholder="Enter Image" >
-                                  <img src="{{ asset('/') }}{{ $user->admin_image }}" style="height:30px;margin-top:10px;"/>
-                                  @if ($errors->has('image'))
-                                  <span class="text-danger">{{ $errors->first('image') }}</span>
-                              @endif
-
-                              <small class="form-text text-muted" id="emailHelp">Image Size: 100px * 100px</small>
-                              </div>
-
-                              <div class="form-group col-md-12 col-sm-12">
-                                <label for="password_confirmation">স্বাক্ষর</label>
-                                <input type="file" class="form-control form-control-sm" id="" name="sign" accept="image/png, image/jpg, image/jpeg" placeholder="Enter Image" >
-                                <img src="{{ asset('/') }}{{ $user->admin_sign }}" style="height:30px;margin-top:10px;"/>
-                                @if ($errors->has('sign'))
-                                <span class="text-danger">{{ $errors->first('sign') }}</span>
-                            @endif
-                            <small class="form-text text-muted" id="emailHelp">Image Size: 300px * 80px</small
-
-                            </div>
-
-
-                          </div>
-
-
-                                              </div>
-
-                                          </div>
-                                      </div>
-
-
-
-                                      <div class="col-lg-12">
-                                          <div class="float-right d-none d-md-block">
-                                              <div class="form-group mb-4">
-                                                  <div>
-                                                      <button type="submit" class="btn btn-primary btn-lg  waves-effect  btn-sm waves-light mr-1">
-                                                        আপডেট করুন
-                                                      </button>
-                                                  </div>
-                                              </div>
-                                          </div>
-                                      </div>
-                                  </div> <!-- end col -->
+<!-- new code form restuadent --->
                               </form>
                         </div>
                     </div>
@@ -243,38 +162,9 @@
             </div>
         </div>
     </div>
+</div>
 @endsection
 
 @section('Script')
-<script type="text/javascript">
-    $(function() {
-        $(document).ready(function()
-        {
-            var SITEURL = "{{route('user.index')}}";
-            var bar = $('.bar');
-            var percent = $('.percent');
-              $('form').ajaxForm({
-                beforeSend: function() {
-                    //$("#div1").hide();
-                  $(".progress").show();
 
-                    var percentVal = '0%';
-                    bar.width(percentVal)
-                    percent.html(percentVal);
-                },
-                uploadProgress: function(event, position, total, percentComplete) {
-                    var percentVal = percentComplete + '%';
-                    bar.width(percentVal)
-                    percent.html(percentVal);
-                },
-                complete: function(xhr) {
-                    //alert('File Has Been Uploaded Successfully');
-                    alertify.set('notifier','position','top-center');
-                   alertify.success('Uploaded Successfully');
-                    window.location.href = SITEURL;
-                }
-              });
-        });
-     });
-    </script>
 @endsection

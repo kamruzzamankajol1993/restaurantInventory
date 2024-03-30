@@ -1,33 +1,20 @@
 @extends('admin.master.master')
 
 @section('title')
-রোল যোগ করুন
+Add Role
 @endsection
 
 
 @section('body')
 
-
+<div class="content-body">
 <div class="container-fluid">
-    <div class="page-header">
-      <div class="row">
-        <div class="col-sm-6">
-          <h3>রোল</h3>
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">হোম</a></li>
-            <li class="breadcrumb-item">রোল যোগ করুন </li>
-
-          </ol>
-        </div>
-        <div class="col-sm-6">
-
-        </div>
-
-        </div>
-      </div>
+    <div class="row page-titles">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item active">Setting</li>
+            <li class="breadcrumb-item">Add Role</li>
+        </ol>
     </div>
-        <!-- end page title -->
-        <div class="container-fluid">
 
                     <form class="custom-validation" action="{{ route('role.store') }}" method="post" enctype="multipart/form-data" id="form">
                         @csrf
@@ -38,8 +25,8 @@
                                     <div class="card-body">
 
                                       <div class="form-group">
-                            <label for="name">রোল এর নাম </label>
-                            <input type="text" class="form-control form-control-sm" id="name" name="name" placeholder="রোল এর নাম">
+                            <label for="name">Role Name</label>
+                            <input type="text" class="form-control form-control-sm" id="name" name="name" placeholder="Role Name">
                         </div>
 
                         <div class="form-group mt-3">
@@ -96,7 +83,7 @@
                                     <div class="form-group mb-4">
                                         <div>
                                             <button type="submit" class="btn btn-primary btn-lg  waves-effect  btn-sm waves-light mr-1">
-                                                জমা দিন
+                                               Submit
                                             </button>
                                         </div>
                                     </div>
@@ -109,6 +96,7 @@
 
 
     </div>
+</div>
 </div>
 @endsection
 @section('script')

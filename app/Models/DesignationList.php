@@ -11,9 +11,6 @@ class DesignationList extends Model
 
     protected $table = "designation_lists";
 
-    protected $fillable = ['branch_id','designation_name','designation_serial'];
-
-
-
+    protected $fillable = ['status','designation_detail','branch_id','designation_name','designation_serial'];
 
 }

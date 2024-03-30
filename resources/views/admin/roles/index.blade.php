@@ -1,50 +1,57 @@
 @extends('admin.master.master')
 
 @section('title')
-রোল তালিকা
+Role List
 @endsection
 
 
 @section('body')
-
+<div class="content-body">
 <div class="container-fluid">
-    <div class="page-header">
-      <div class="row">
-        <div class="col-sm-6">
-          <h3>রোল</h3>
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">হোম</a></li>
-            <li class="breadcrumb-item">রোল তালিকা </li>
 
-          </ol>
-        </div>
-        <div class="col-sm-6">
 
-        </div>
-        <div class="col-sm-6">
+    <div class="row page-titles">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item active">Setting</li>
+                    <li class="breadcrumb-item">Role Information </li>
+                </ol>
+            </div>
             @if (Auth::guard('admin')->user()->can('roleAdd'))
-            <a href="{{ route('role.create') }}" type="button"  class="btn btn-raised btn-primary waves-effect  btn-sm  mt-5" >রোল যোগ করুন </a>
-             @endif
-         </div>
+            <div class="col-lg-6 col-md-6 col-sm-12">
+                <div style="text-align: right;">
+                    <a href="{{ route('role.create') }}" type="button" class="btn btn-primary btn-sm">Add New Role<span class="btn-icon-end"><i class="fa fa-plus"></i></span></a>
+                </div>
+            </div>
+            @endif
+
+
+
+
+
+
+
         </div>
-      </div>
     </div>
+
         <!-- end page title -->
-        <div class="container-fluid">
+
 
         <div class="row">
             <div class="col-lg-12">
                 <div class="card">
                   <div class="card-body">
                         @include('flash_message')
-                        <table id="basic-1" class="display table table-bordered" style="width:100%">
+                        <div class="table-responsive">
+                            <table id="example3" class="display">
                             <thead>
                                 <tr>
 
-                                        <th>ক্র: নং:</th>
-                                        <th>রোল এর নাম </th>
-                                        <th >পারমিশন তালিকা </th>
-                                        <th>কার্যকলাপ</th>
+                                        <th>Sl</th>
+                                        <th>Role Name</th>
+                                        <th >Permission List</th>
+                                        <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -104,14 +111,14 @@
 
 
                                                     <button type="button"  onclick="location.href = '{{ route('role.edit',$role->id) }}';"
-                                                        class="btn btn-primary waves-light waves-effect  btn-sm mt-2" >
-                                                        <i class="fa fa-pencil"></i></button>
+                                                        class="btn btn-primary shadow btn-xs sharp me-1" >
+                                                        <i class="fa fa-edit"></i></button>
 
 
 
 
 
-                                                        <button type="button" class="btn-sm btn btn-danger waves-light waves-effect mt-2" onclick="deleteTag({{ $role->id }})"><i class="fa fa-trash-o"></i></button>
+                                                        <button type="button" class="btn btn-danger shadow btn-xs sharp" onclick="deleteTag({{ $role->id }})"><i class="fa fa-trash"></i></button>
 
  <form id="delete-form-{{ $role->id }}" action="{{ route('role.destroy',$role->id) }}" method="POST" style="display: none;">
   @method('DELETE')
@@ -125,11 +132,13 @@
                                           @endforeach
 
                         </table>
+                        </div>
                     </div>
                 </div>
             </div>
         </div><!--end row-->
     </div>
+</div>
 </div>
 @endsection
 

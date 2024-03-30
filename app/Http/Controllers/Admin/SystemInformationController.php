@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\SystemInformation;
 use Image;
 use Auth;
+use DB;
 class SystemInformationController extends Controller
 {
 
@@ -85,7 +86,7 @@ class SystemInformationController extends Controller
             $directory = 'public/uploads/';
             $imageUrl = $directory.$imageName;
 
-            $img=Image::make($productImage)->resize(187,32);
+            $img=Image::make($productImage)->resize(204,45);
             $img->save($imageUrl);
 
              $systemInformation->system_logo =  'public/uploads/'.$imageName;
@@ -148,7 +149,7 @@ class SystemInformationController extends Controller
             $directory = 'public/uploads/';
             $imageUrl = $directory.$imageName;
 
-            $img=Image::make($productImage)->resize(187,32);
+            $img=Image::make($productImage)->resize(204,45);
             $img->save($imageUrl);
 
              $systemInformation->system_logo =  'public/uploads/'.$imageName;

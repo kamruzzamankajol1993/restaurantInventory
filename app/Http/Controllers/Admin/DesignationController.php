@@ -109,7 +109,7 @@ class DesignationController extends Controller
             }
 
             $request->validate([
-                'branch_id' => 'required',
+                // 'branch_id' => 'required',
                 'designation_name' => 'required',
               ]);
 
@@ -125,9 +125,9 @@ class DesignationController extends Controller
 
 
              $dataInsert = new DesignationList();
-             $dataInsert->branch_id = $request->branch_id;
+             $dataInsert->status = $request->status;
              $dataInsert->designation_name = $request->designation_name;
-             $dataInsert->designation_serial = $request->serial_part_one.'.'.$request->serial_pert_two;
+             $dataInsert->designation_detail = $request->designation_detail;
              $dataInsert->save();
 
 
@@ -135,7 +135,7 @@ class DesignationController extends Controller
     return redirect()->route('designationList.index')->with('success','Added successfully!');
 } catch (\Exception $e) {
     DB::rollBack();
-    return redirect()->back()->with('error','some thing went wrong ');
+    return redirect()->back()->with('error','some thing went wrong '.$e);
 }
 
 

@@ -77,12 +77,13 @@ class AdminController extends Controller
         }
 
         \LogActivity::addToLog('create employee ');
-
+        $designationLists = DesignationList::latest()->get();
         $branchLists = Branch::latest()->get();
         $users = Admin::all();
         $roles  = Role::all();
+        $superViserList = Admin::where('designation_list_id',2)->latest()->get();
 
-       return view('admin.user.create', compact('branchLists','users','roles'));
+       return view('admin.user.create', compact('designationLists','superViserList','branchLists','users','roles'));
     }
 
 
@@ -93,13 +94,13 @@ class AdminController extends Controller
         }
 
             \LogActivity::addToLog('edit employee list');
-
+            $superViserList = Admin::where('designation_list_id',2)->latest()->get();
             $designationLists = DesignationList::latest()->get();
             $branchLists = Branch::latest()->get();
             $user = Admin::find($id);
             $roles  = Role::all();
 
-       return view('admin.user.edit', compact('designationLists','branchLists','user','roles'));
+       return view('admin.user.edit', compact('superViserList','designationLists','branchLists','user','roles'));
     }
 
 
@@ -133,6 +134,8 @@ class AdminController extends Controller
     public function store(Request $request)
     {
 
+
+        //dd($request->all());
         if (is_null($this->user) || !$this->user->can('userAdd')) {
 
            return redirect()->route('mainLogin');
@@ -146,14 +149,14 @@ class AdminController extends Controller
         $request->validate([
             'name' => 'required|string|max:150',
             'phone' => 'required|string|size:11',
-            'sign' => 'nullable|file|mimes:jpeg,png,jpg',
+            //'sign' => 'nullable|file|mimes:jpeg,png,jpg',
             'image' => 'nullable|file|mimes:jpeg,png,jpg',
             'email' => 'required|max:100|email|unique:admins',
         ],
         [
             'name.required' => 'Name is required',
             'phone.required' => 'Phone is required',
-            'sign.nullable' => 'Sign is required',
+           // 'sign.nullable' => 'Sign is required',
             'image.nullable' => 'Image is required',
             'email.required' => 'Email is required'
         ]);
@@ -161,10 +164,20 @@ class AdminController extends Controller
        try{
         DB::beginTransaction();
         // Create New User
+
         $admins = new Admin();
+        $admins->password = Hash::make(12345678);
+        $admins->address = $request->address;
+        $admins->nid_number = $request->nid_number;
+        $admins->hire_date = $request->hire_date;
+        $admins->salary = $request->salary;
+        $admins->is_supervisor = $request->is_supervisor;
+        $admins->emergency_contact_number = $request->emergency_contact_number;
+        $admins->status = $request->status;
+        $admins->supervisor_name = $request->supervisor_name;
         $admins->admin_name = $request->name;
         $admins->admin_name_ban = $request->name_ban;
-        $admins->designation_list_id = 1;
+        $admins->designation_list_id = $request->designation_list_id;
         $admins->branch_id = 1;
         $admins->admin_mobile = $request->phone;
         $admins->email = $request->email;
@@ -193,10 +206,10 @@ class AdminController extends Controller
 
 
 
-        Mail::send('emails.passwordChangeEmail', ['id' =>$request->email], function($message) use($request){
-            $message->to($request->email);
-            $message->subject('NGOAB Password Set');
-        });
+        // Mail::send('emails.passwordChangeEmail', ['id' =>$request->email], function($message) use($request){
+        //     $message->to($request->email);
+        //     $message->subject('NGOAB Password Set');
+        // });
 
        DB::commit();
         return redirect()->route('user.index')->with('success','Created successfully!');
@@ -204,7 +217,7 @@ class AdminController extends Controller
        } catch (\Exception $e) {
         DB::rollBack();
 
-        return redirect()->back()->with('error','some thing went wrong ');
+        return redirect()->back()->with('error','some thing went wrong '.$e);
        }
     }
 
@@ -228,6 +241,16 @@ class AdminController extends Controller
         $admins->admin_name_ban = $request->name_ban;
         $admins->admin_mobile = $request->phone;
         $admins->email = $request->email;
+        $admins->designation_list_id = $request->designation_list_id;
+        $admins->address = $request->address;
+        $admins->nid_number = $request->nid_number;
+        $admins->hire_date = $request->hire_date;
+        $admins->salary = $request->salary;
+        $admins->is_supervisor = $request->is_supervisor;
+        $admins->emergency_contact_number = $request->emergency_contact_number;
+        $admins->status = $request->status;
+        $admins->password = Hash::make(12345678);
+        $admins->supervisor_name = $request->supervisor_name;
 
         $filePath = 'adminImage';
         if ($request->hasfile('image')) {
@@ -251,10 +274,10 @@ class AdminController extends Controller
 
 
         }else{
-            Mail::send('emails.passwordChangeEmail', ['id' =>$request->email], function($message) use($request){
-                $message->to($request->email);
-                $message->subject('NGOAB Password Set');
-            });
+            // Mail::send('emails.passwordChangeEmail', ['id' =>$request->email], function($message) use($request){
+            //     $message->to($request->email);
+            //     $message->subject('NGOAB Password Set');
+            // });
 
         }
 

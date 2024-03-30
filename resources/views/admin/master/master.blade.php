@@ -25,7 +25,7 @@
     <link href="{{ asset('/')}}public/admin/assets/css/style.css" rel="stylesheet">
     <!-- CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
-
+    <link href="{{ asset('/')}}public/admin/assets/vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="https://parsleyjs.org/src/parsley.css">
     <link href='https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/ui-lightness/jquery-ui.css'rel='stylesheet'>
@@ -250,14 +250,14 @@
 <script type="text/javascript">
     function deleteTag(id) {
         swal({
-            title: 'আপনি কি এ ব্যাপারে নিশ্চিত?',
-            text: "আপনি এটি ফিরিয়ে আনতে পারবেন না!",
+            title: 'Are You Sure',
+            text: "You can't bring it back",
             type: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'হ্যাঁ, এটি মুছুন!',
-            cancelButtonText: 'না, বাতিল করুন!',
+            confirmButtonText: 'Yes, delete it!',
+            cancelButtonText: 'No, cancel!',
             confirmButtonClass: 'btn btn-success',
             cancelButtonClass: 'btn btn-danger',
             buttonsStyling: false,
@@ -297,6 +297,18 @@
 });
 </script>
 <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    jQuery.browser = {};
+    (function () {
+        jQuery.browser.msie = false;
+        jQuery.browser.version = 0;
+        if (navigator.userAgent.match(/MSIE ([0-9]+)\./)) {
+            jQuery.browser.msie = true;
+            jQuery.browser.version = RegExp.$1;
+        }
+    })();
+</script>
+
   <script>
  $(function(){
     $("#datepicker").datepicker({

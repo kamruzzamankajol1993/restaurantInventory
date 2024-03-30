@@ -1,7 +1,7 @@
 @extends('admin.master.master')
 
 @section('title')
-কর্মকর্তাদের তালিকা  | {{ $ins_name }}
+User List  | {{ $ins_name }}
 @endsection
 
 
@@ -10,33 +10,36 @@
 @endsection
 
 @section('body')
+<div class="content-body">
 <div class="container-fluid">
-    <div class="page-header">
-      <div class="row">
-        <div class="col-sm-6">
-          <h3>কর্মকর্তাদের তালিকা </h3>
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">হোম</a></li>
-            <li class="breadcrumb-item">কর্মকর্তাদের তালিকা </li>
 
-          </ol>
-        </div>
-
-        <div class="col-sm-6 ">
-            @if (Auth::guard('admin')->user()->can('userAdd'))
-            <div class="text-end">
-            <a  href="{{ route('user.create') }}" class="btn btn-primary add-btn" type="button">
-                <i class="ri-add-line align-bottom me-1"></i> কর্মকর্তার তথ্য যোগ করুন
-            </a>
+    <div class="row page-titles">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item active">HRM</li>
+                    <li class="breadcrumb-item">User Information </li>
+                </ol>
             </div>
-                                                @endif
-        </div>
-      </div>
-    </div>
-  </div>
-        <!-- end page title -->
+            @if (Auth::guard('admin')->user()->can('userAdd'))
+            <div class="col-lg-6 col-md-6 col-sm-12">
+                <div style="text-align: right;">
+                    <a href="{{ route('user.create') }}" type="button" class="btn btn-primary btn-sm">Add New User<span class="btn-icon-end"><i class="fa fa-plus"></i></span></a>
+                </div>
+            </div>
+            @endif
 
-        <div class="container-fluid">
+
+
+
+
+
+
+        </div>
+    </div>
+
+
+
 
         <div class="row">
             <div class="col-lg-12">
@@ -45,22 +48,22 @@
                     <div class="card-body">
                         @include('flash_message')
                         <div class="table-responsive">
-                        <table id="basic-1" class="display table table-bordered" style="width:100%">
+                            <table id="example3" class="display">
                             <thead>
                                 <tr>
 
-                                    <th>ক্র: নং:</th>
-                                    <th>ছবি</th>
-                                    {{-- <th>স্বাক্ষর</th> --}}
-                                    <th>নাম</th>
-                                    <th>পদবী</th>
-                                    <th>শাখা</th>
-                                   <th>মোবাইল নম্বর</th>
-                                    <th>ইমেইল</th>
-                                    <th>রোল</th>
-                                    <th>শুরুর তারিখ</th>
-                                    {{-- <th>End Date</th> --}}
-                                    <th>কার্যকলাপ</th>
+                                    <th>SL</th>
+                                    <th>Photo</th>
+                                    <th>Name</th>
+                                    <th>Designation</th>
+                                    <th>Address</th>
+                                    <th>Phone</th>
+                                    <th>Email</th>
+                                    <th>Salary</th>
+                                    <th>Nid</th>
+                                    <th>Superviser Name</th>
+                                    <th>Role</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -68,84 +71,46 @@
 
 
                                 <tr>
-                                   <td>
-
-
-                                    {{ $loop->index+1 }}
-
-
-
-
-                                </td>
+                                   <td>{{ $loop->index+1 }} </td>
 
                                 <td>
-
                                     @if(empty($user->admin_image))
                                     @else
 <img src="{{ asset('/') }}{{ $user->admin_image }}" style="height:60px" />
 @endif
                                 </td>
 
-                                {{-- <td>
-                                    @if(empty($user->admin_sign))
-                                    @else
-                                    <img src="{{ asset('/') }}{{ $user->admin_sign }}" style="height:40px" />
-                                    @endif
-
-                                                                    </td> --}}
+                                    <td>{{ $user->admin_name }}</td>
 
                                     <td>
-
-
-                                        <?php
-
-$mac = exec('getmac');
-
-
-?>
-
-
-
-                                        <br>{{ $user->admin_name_ban }}
-
-
-                                    </td>
-
-                                    <td>
-@if($user->designation_list_id == 1)
-
-@else
-
-                                        <?php
-
-                                        $desiName = DB::table('designation_lists')
+                                        <?php $desiName = DB::table('designation_lists')
                                         ->where('id',$user->designation_list_id)
                                         ->value('designation_name');
 
 
                                             ?>
-                                            {{ $desiName }}
-@endif
-
-                                        </td>
+                                            {{ $desiName }}</td>
+                                    <td>{{ $user->address }}</td>
+                                    <td>{{ $user->admin_mobile }}</td>
+                                    <td>{{ $user->email }}</td>
+                                    <td>{{ $user->salary }}</td>
+                                    <td>{{ $user->nid_number }}</td>
                                     <td>
-                                        @if($user->branch_id == 1)
 
-                                        @else
 
-                                        <?php
-
-                                        $branchName = DB::table('branches')->where('id',$user->branch_id)->value('branch_name');
+                                        <?php $supervisor_name = DB::table('admins')
+                                        ->where('id',$user->supervisor_name)
+                                        ->value('admin_name');
 
 
                                             ?>
-                                            {{ $branchName }}
-@endif
+                                            {{ $supervisor_name }}
 
-                                        </td>
-                                    <td>{{ App\Http\Controllers\Admin\CommonController::englishToBangla($user->admin_mobile) }}</td>
 
-                                    <td>{{ $user->email }}</td>
+
+
+
+                                    </td>
                                     <td>
                                         @foreach ($user->roles as $role)
                                         <span class="badge bg-success mt-1">
@@ -153,28 +118,19 @@ $mac = exec('getmac');
                                         </span>
                                         @endforeach
                                     </td>
-                                    <td>{{ App\Http\Controllers\Admin\CommonController::englishToBangla($user->admin_job_start_date) }}</td>
-
-                                    {{-- <td>{{ $user->admin_job_end_date }}</td> --}}
-
-
-
                                     <td>
 
+                                        <button type="button"  onclick="location.href = '{{ route('user.show',$user->id) }}';"
+                                            class="btn btn-info shadow btn-xs sharp me-1" >
+                                            <i class="fa fa-eye"></i></button>
+
+
+
                                           <button type="button"  onclick="location.href = '{{ route('user.edit',$user->id) }}';"
-                                          class="btn btn-primary waves-light waves-effect  btn-sm mt-2" >
+                                          class="btn btn-primary shadow btn-xs sharp " >
                                           <i class="fa fa-pencil"></i></button>
 
-
-
-
-
-
-
-
-
-
-<button   type="button" class="btn btn-danger waves-light waves-effect  btn-sm mt-2" onclick="deleteTag({{ $user->id}})" data-toggle="tooltip" title="Delete"><i class="fa fa-trash-o"></i></button>
+<button   type="button" class="btn btn-danger shadow btn-xs sharp onclick="deleteTag({{ $user->id}})" data-toggle="tooltip" title="Delete"><i class="fas fa-trash"></i></button>
                     <form id="delete-form-{{ $user->id }}" action="{{ route('user.destroy',$user->id) }}" method="POST" style="display: none;">
                       @method('DELETE')
                                                     @csrf
@@ -197,7 +153,7 @@ $mac = exec('getmac');
     </div>
     <!-- container-fluid -->
 </div>
-
+</div>
 
 
 

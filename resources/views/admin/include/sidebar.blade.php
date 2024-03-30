@@ -89,9 +89,30 @@
                     <span class="nav-text">HRM</span>
                 </a>
                 <ul aria-expanded="false">
-                    <li><a href="add_designation.php">Designation</a></li>
-                    <li><a href="add_employee.php">Add Employee</a></li>
-                    <li><a href="employee_list.php">Employee List</a></li>
+                    @if ($usr->can('designationAdd') || $usr->can('designationView') ||  $usr->can('designationDelete') ||  $usr->can('designationUpdate'))
+    <li >
+    <a href="{{ route('designationList.index') }}" class="{{ Route::is('designationList.index')  ? 'active' : '' }}"><span>Designation</span> </a>
+    </li>
+    @endif
+                   
+
+
+
+                    @if ($usr->can('userAdd'))
+                    <li class="">
+                        <a href="{{ route('user.create') }}" class="{{ Route::is('user.create') ? 'active' : '' }}" data-key="t-one-page">Add Employee</a>
+                    </li>
+                    @endif
+
+
+
+                    @if ($usr->can('userView') || $usr->can('userDelete') || $usr->can('userUpdate'))
+                    <li class="">
+                        <a href="{{ route('user.index') }}" class="{{ Route::is('user.index') || Route::is('user.edit') ? 'active' : '' }}" data-key="t-one-page">Employee List</a>
+                    </li>
+                    @endif
+
+
                     <li><a href="employee_salary.php">Manage Employee Salary</a></li>
                 </ul>
             </li>
@@ -128,6 +149,39 @@
                 <ul aria-expanded="false">
                     <li><a href="expense_category.php">Expense Category</a></li>
                     <li><a href="expense_manage.php">Expense Manage</a></li>
+                </ul>
+            </li>
+            <p class="menu-title style-1">Setting</p>
+            <li>
+                <a class="has-arrow " href="javascript:void(0);" aria-expanded="false">
+
+                    <i class="bi bi-person"></i>
+                    <span class="nav-text">General Setting</span>
+                </a>
+                <ul aria-expanded="false">
+
+
+
+
+
+
+               @if ($usr->can('systemInformationAdd') || $usr->can('systemInformationView') || $usr->can('systemInformationDelete') || $usr->can('systemInformationUpdate'))
+               <li class="">
+                   <a href="{{ route('systemInformation.index') }}" class="{{ Route::is('systemInformation.index') ? 'active' : '' }}" data-key="t-calendar">System</a>
+               </li>
+               @endif
+
+               @if ($usr->can('roleAdd') || $usr->can('roleView') || $usr->can('roleDelete') || $usr->can('roleUpdate'))
+               <li class="">
+                   <a href="{{ route('role.index') }}" class="{{ Route::is('role.index') || Route::is('role.edit') || Route::is('role.create') ? 'active' : '' }}" data-key="t-nft-landing">Role</a>
+               </li>
+               @endif
+               @if ($usr->can('permissionAdd') || $usr->can('permissionView') || $usr->can('permissionDelete') || $usr->can('permissionUpdate'))
+               <li class="">
+                   <a href="{{ route('permission.index') }}" class="{{ Route::is('permission.index') ? 'active' : '' }}"><span data-key="t-job">Permission</span>
+               </a>
+               </li>
+               @endif
                 </ul>
             </li>
         </ul>

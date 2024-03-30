@@ -2,32 +2,19 @@
 @extends('admin.master.master')
 
 @section('title')
-রোল আপডেট করুন
+Update Role
 @endsection
 
 
 @section('body')
-
+<div class="content-body">
 <div class="container-fluid">
-    <div class="page-header">
-      <div class="row">
-        <div class="col-sm-6">
-          <h3>রোল</h3>
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">হোম</a></li>
-            <li class="breadcrumb-item">রোল আপডেট করুন </li>
-
-          </ol>
-        </div>
-        <div class="col-sm-6">
-
-        </div>
-
-        </div>
-      </div>
+    <div class="row page-titles">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item active">Setting</li>
+            <li class="breadcrumb-item">Update Role </li>
+        </ol>
     </div>
-        <!-- end page title -->
-        <div class="container-fluid">
                         <div class="row">
 
                             <div class="col-lg-12">
@@ -38,8 +25,8 @@
                         @csrf
                         @method('PUT')
                         <div class="form-group">
-                            <label for="name">রোল এর নাম </label>
-        <input type="text" class="form-control form-control-sm" id="name" value="{{ $role->name }}" name="name" placeholder="রোল এর নাম">
+                            <label for="name">Role Name</label>
+        <input type="text" class="form-control form-control-sm" id="name" value="{{ $role->name }}" name="name" placeholder="Role Name">
 
                         </div>
 
@@ -83,7 +70,7 @@
                             @endforeach
 
 
-                        <button type="submit" class="btn btn-primary mt-4 pr-4 pl-4">আপডেট করুন </button>
+                        <button type="submit" class="btn btn-primary mt-4 pr-4 pl-4">Update</button>
                     </form>
 
                                     </div>
@@ -103,7 +90,7 @@
 
                     </div>
 </div>
-
+</div>
 @endsection
 @section('script')
 

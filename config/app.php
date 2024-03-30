@@ -163,6 +163,7 @@ return [
         Intervention\Image\ImageServiceProvider::class,
         niklasravnsborg\LaravelPdf\PdfServiceProvider::class,
         S1K3\Bangla\Date\BanglaDateServiceProvider::class,
+        Milon\Barcode\BarcodeServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -188,6 +189,8 @@ return [
         'Image' => Intervention\Image\Facades\Image::class,
         'PDF' => niklasravnsborg\LaravelPdf\Facades\Pdf::class,
         'LogActivity' => App\Helpers\LogActivity::class,
+        'DNS1D' => Milon\Barcode\Facades\DNS1DFacade::class,
+        'DNS2D' => Milon\Barcode\Facades\DNS2DFacade::class,
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
 
