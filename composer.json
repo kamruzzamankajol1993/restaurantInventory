@@ -16,6 +16,7 @@
         "mpdf/mpdf": "v8.1.6",
         "niklasravnsborg/laravel-pdf": "^4.1",
         "s1k3/bangla-date": "^1.07",
+        "simplesoftwareio/simple-qrcode": "^4.2",
         "spatie/laravel-permission": "^5.10"
     },
     "require-dev": {

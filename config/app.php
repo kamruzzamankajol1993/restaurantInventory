@@ -164,6 +164,7 @@ return [
         niklasravnsborg\LaravelPdf\PdfServiceProvider::class,
         S1K3\Bangla\Date\BanglaDateServiceProvider::class,
         Milon\Barcode\BarcodeServiceProvider::class,
+        SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -191,6 +192,7 @@ return [
         'LogActivity' => App\Helpers\LogActivity::class,
         'DNS1D' => Milon\Barcode\Facades\DNS1DFacade::class,
         'DNS2D' => Milon\Barcode\Facades\DNS2DFacade::class,
+        'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
 

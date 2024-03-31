@@ -38,22 +38,40 @@
                     <span class="nav-text">Food Manage</span>
                 </a>
                 <ul aria-expanded="false">
-                    <li><a href="add_new_food_category.php">Add Category</a></li>
-                    <li><a href="manage_food_category.php">Category List</a></li>
-                    <li><a href="add_food_item.php">Add Food</a></li>
-                    <li><a href="food_item_list.php">Food List</a></li>
+                    @if ($usr->can('menuAdd'))
+                    <li class="{{ Route::is('menuList.create') ? 'mm-active' : '' }}"><a href="{{ route('menuList.create') }}" class="{{ Route::is('menuList.create') ? 'mm-active' : '' }}">Add Menu </a></li>
+                    @endif
+
+
+                    @if ($usr->can('menuAdd') || $usr->can('menuView') ||  $usr->can('menuDelete') ||  $usr->can('menuUpdate'))
+                    <li class="{{ Route::is('menuList.index') || Route::is('menuList.edit') || Route::is('menuList.create') ? 'mm-active' : '' }}"><a href="{{ route('menuList.index') }}" class="{{ Route::is('menuList.index') || Route::is('menuList.edit') || Route::is('menuList.create') ? 'mm-active' : '' }}">Menu List</a></li>
+                    @endif
+
+
+                    @if ($usr->can('foodAdd'))
+                    <li class="{{ Route::is('foodList.create') ? 'mm-active' : '' }}"><a href="{{ route('foodList.create') }}" class="{{ Route::is('foodList.create') ? 'mm-active' : '' }}">Add Food </a></li>
+                    @endif
+
+
+                    @if ($usr->can('foodAdd') || $usr->can('foodView') ||  $usr->can('foodDelete') ||  $usr->can('foodUpdate'))
+                    <li class="{{ Route::is('foodList.index') || Route::is('foodList.edit') || Route::is('foodList.create') ? 'mm-active' : '' }}"><a href="{{ route('foodList.index') }}" class="{{ Route::is('foodList.index') || Route::is('foodList.edit') || Route::is('foodList.create') ? 'mm-active' : '' }}">Food List</a></li>
+                    @endif
                 </ul>
 
             </li>
             <li>
                 <a class="has-arrow " href="javascript:void(0);" aria-expanded="false">
 
-                    <i class="bi bi-shop-window"></i>
-                    <span class="nav-text">Table & Waiter</span>
+                    <i class="fas fa-qrcode"></i>
+                    <span class="nav-text">Table & QR CODE</span>
                 </a>
                 <ul aria-expanded="false">
-                    <li><a href="table_list.php">Table List</a></li>
-                    <li><a href="waiter_list.php">Waiter List</a></li>
+                    @if ($usr->can('tableAdd') || $usr->can('tableView') ||  $usr->can('tableDelete') ||  $usr->can('tableUpdate'))
+                    <li class="{{ Route::is('tableList.index') || Route::is('tableList.edit') || Route::is('tableList.create') ? 'mm-active' : '' }}"><a href="{{ route('tableList.index') }}" class="{{ Route::is('tableList.index') || Route::is('tableList.edit') || Route::is('tableList.create') ? 'mm-active' : '' }}">Table List</a></li>
+                    @endif
+                    @if ($usr->can('qrAdd') || $usr->can('qrView') ||  $usr->can('qrDelete') ||  $usr->can('qrUpdate'))
+                    <li class="{{ Route::is('qrCodeList.index') || Route::is('qrCodeList.edit') || Route::is('qrCodeList.create') ? 'mm-active' : '' }}"><a href="{{ route('qrCodeList.index') }}" class="{{ Route::is('qrCodeList.index') || Route::is('qrCodeList.edit') || Route::is('qrCodeList.create') ? 'mm-active' : '' }}">QR CODE List</a></li>
+                    @endif
                 </ul>
             </li>
             <li>
@@ -90,25 +108,25 @@
                 </a>
                 <ul aria-expanded="false">
                     @if ($usr->can('designationAdd') || $usr->can('designationView') ||  $usr->can('designationDelete') ||  $usr->can('designationUpdate'))
-    <li >
-    <a href="{{ route('designationList.index') }}" class="{{ Route::is('designationList.index')  ? 'active' : '' }}"><span>Designation</span> </a>
+    <li class="{{ Route::is('designationList.index')  ? 'mm-active' : '' }}">
+    <a href="{{ route('designationList.index') }}" class="{{ Route::is('designationList.index')  ? 'mm-active' : '' }}"><span>Designation</span> </a>
     </li>
     @endif
-                   
+
 
 
 
                     @if ($usr->can('userAdd'))
-                    <li class="">
-                        <a href="{{ route('user.create') }}" class="{{ Route::is('user.create') ? 'active' : '' }}" data-key="t-one-page">Add Employee</a>
+                    <li class="{{ Route::is('user.create') ? 'mm-active' : '' }}">
+                        <a href="{{ route('user.create') }}" class="{{ Route::is('user.create') ? 'mm-active' : '' }}" data-key="t-one-page">Add Employee</a>
                     </li>
                     @endif
 
 
 
                     @if ($usr->can('userView') || $usr->can('userDelete') || $usr->can('userUpdate'))
-                    <li class="">
-                        <a href="{{ route('user.index') }}" class="{{ Route::is('user.index') || Route::is('user.edit') ? 'active' : '' }}" data-key="t-one-page">Employee List</a>
+                    <li class="{{ Route::is('user.index') || Route::is('user.edit') ? 'mm-active' : '' }}">
+                        <a href="{{ route('user.index') }}" class="{{ Route::is('user.index') || Route::is('user.edit') ? 'mm-active' : '' }}" data-key="t-one-page">Employee List</a>
                     </li>
                     @endif
 
@@ -163,22 +181,24 @@
 
 
 
-
+                    @if ($usr->can('unitAdd') || $usr->can('unitView') ||  $usr->can('unitDelete') ||  $usr->can('unitUpdate'))
+                    <li class="{{ Route::is('unitList.index') || Route::is('unitList.edit') || Route::is('unitList.create') ? 'mm-active' : '' }}"><a href="{{ route('unitList.index') }}" class="{{ Route::is('unitList.index') || Route::is('unitList.edit') || Route::is('unitList.create') ? 'mm-active' : '' }}">Unit List</a></li>
+                    @endif
 
                @if ($usr->can('systemInformationAdd') || $usr->can('systemInformationView') || $usr->can('systemInformationDelete') || $usr->can('systemInformationUpdate'))
-               <li class="">
-                   <a href="{{ route('systemInformation.index') }}" class="{{ Route::is('systemInformation.index') ? 'active' : '' }}" data-key="t-calendar">System</a>
+               <li class="{{ Route::is('systemInformation.index') ? 'mm-active' : '' }}">
+                   <a href="{{ route('systemInformation.index') }}" class="{{ Route::is('systemInformation.index') ? 'mm-active' : '' }}" data-key="t-calendar">System</a>
                </li>
                @endif
 
                @if ($usr->can('roleAdd') || $usr->can('roleView') || $usr->can('roleDelete') || $usr->can('roleUpdate'))
-               <li class="">
-                   <a href="{{ route('role.index') }}" class="{{ Route::is('role.index') || Route::is('role.edit') || Route::is('role.create') ? 'active' : '' }}" data-key="t-nft-landing">Role</a>
+               <li class="{{ Route::is('role.index') || Route::is('role.edit') || Route::is('role.create') ? 'mm-active' : '' }}">
+                   <a href="{{ route('role.index') }}" class="{{ Route::is('role.index') || Route::is('role.edit') || Route::is('role.create') ? 'mm-active' : '' }}" data-key="t-nft-landing">Role</a>
                </li>
                @endif
                @if ($usr->can('permissionAdd') || $usr->can('permissionView') || $usr->can('permissionDelete') || $usr->can('permissionUpdate'))
-               <li class="">
-                   <a href="{{ route('permission.index') }}" class="{{ Route::is('permission.index') ? 'active' : '' }}"><span data-key="t-job">Permission</span>
+               <li class="{{ Route::is('permission.index') ? 'mm-active' : '' }}">
+                   <a href="{{ route('permission.index') }}" class="{{ Route::is('permission.index') ? 'mm-active' : '' }}"><span data-key="t-job">Permission</span>
                </a>
                </li>
                @endif

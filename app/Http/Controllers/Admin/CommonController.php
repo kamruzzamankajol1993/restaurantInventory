@@ -11,6 +11,38 @@ use Session;
 class CommonController extends Controller
 {
 
+
+
+    public static  function compressImage($request,$file,$filePath){
+
+
+        $path = public_path('uploads/'.$filePath);
+
+        if(!File::isDirectory($path)){
+            File::makeDirectory($path, 0777, true, true);
+        }
+
+
+        $x=0;
+        $imageName = date('Y-d-m').time().mt_rand(1000000000, 9999999999).".".$file->getClientOriginalExtension();
+        $directory = 'public/uploads/'.$filePath.'/';
+        $imageUrl = $directory.$imageName;
+        //dd($imageUrl = $directory.'/'.$imageName);
+        $img=Image::make($file);
+        //$img=Image::make($imageName);
+        $img->save($imageUrl,$x);
+
+
+        //dd($imageUrl);
+
+        return $imageUrl;
+
+
+
+
+    }
+
+
     public static  function profileImageUpload($request,$file,$filePath){
 
 
