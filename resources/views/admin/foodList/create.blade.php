@@ -1,7 +1,7 @@
 @extends('admin.master.master')
 
 @section('title')
-Add Menu
+Add Food
 @endsection
 
 
@@ -17,7 +17,7 @@ Add Menu
     <div class="row page-titles">
         <ol class="breadcrumb">
             <li class="breadcrumb-item active">Food & Table Management</li>
-            <li class="breadcrumb-item">Add Menu</li>
+            <li class="breadcrumb-item">Add Food</li>
         </ol>
     </div>
 
@@ -31,7 +31,7 @@ Add Menu
 
 
 
-                            <form class="custom-validation" action="{{ route('menuList.store') }}" method="post" enctype="multipart/form-data" id="form" data-parsley-validate="">
+                            <form class="custom-validation" action="{{ route('foodList.store') }}" method="post" enctype="multipart/form-data" id="form" data-parsley-validate="">
                                 @csrf
 
 
@@ -41,7 +41,7 @@ Add Menu
 
                                 <div class="row">
                                     <div class="mb-3 col-md-12">
-                                        <label class="form-label">Menu Image</label>
+                                        <label class="form-label">Food Image</label>
                                         <input type="file" id="menuImage"  accept="image/*" name="image" class="form-control menuImage" required>
 
 
@@ -50,10 +50,43 @@ Add Menu
 
 
                                     </div>
-                                    <div class="mb-3 col-md-12">
-                                        <label class="form-label">Menu Name</label>
-                                        <input type="text" name="category_name" class="form-control" placeholder="Name" required>
+                                    <div class="mb-3 col-md-6">
+                                        <label class="form-label">Food Name</label>
+                                        <input type="text" class="form-control" placeholder="Name">
                                     </div>
+                                    <div class="mb-3 col-md-6">
+                                        <label class="form-label">Food Category</label>
+                                        <select id="inputState" class="default-select form-control ms-0 wide">
+                                            <option selected>Choose...</option>
+                                            <option>Option 1</option>
+                                            <option>Option 2</option>
+                                            <option>Option 3</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="mb-3 col-md-6">
+                                        <label class="form-label">Notes</label>
+                                        <input type="text" class="form-control" placeholder="Notes">
+                                    </div>
+                                    <div class="mb-3 col-md-6">
+                                        <label class="form-label">Description</label>
+                                        <input type="text" class="form-control" placeholder="Description">
+                                    </div>
+                                    <div class="mb-3 col-md-6">
+                                        <label class="form-label">Vat</label>
+                                        <input type="text" class="form-control" placeholder="Vat">
+                                    </div>
+
+
+                                    <div class="mb-3 col-md-6">
+                                        <label class="form-label"> Offer Start Date</label>
+                                        <input type="date" class="form-control" placeholder="Name">
+                                    </div>
+                                    <div class="mb-3 col-md-6">
+                                        <label class="form-label">Offer End Date</label>
+                                        <input type="date" class="form-control" placeholder="Name">
+                                    </div>
+
 
                                     <div class="mb-3 col-md-12">
                                         <label class="form-label">Status</label>
@@ -64,6 +97,50 @@ Add Menu
                                         </select>
                                     </div>
                                 </div>
+
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="table-responsive">
+                                                    <table class="table align-middle table-nowrap table-check" id="dynamicAddRemove">
+                                                        <thead class="table-light">
+                                                        <tr>
+
+
+                                                            <th>Ingredient Name</th>
+
+                                                            <th>Action</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        <tr>
+
+
+
+                                                            <td><input type="text"  class="form-control p_quantity" name="ing_name[]" id="p_quantity0" required placeholder="Ingredient Name"></td>
+
+                                                            <td>
+                                                                {{-- <div class="d-flex gap-3">
+                                                                    <a href="javascript:void(0);" class="text-danger"><i
+                                                                                class="mdi mdi-delete-forever font-size-22"></i></a>
+                                                                </div> --}}
+                                                            </td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+
+                                                    <button id="main_add_new_product" type="button" class="btn btn-dark waves-effect btn-label waves-light"><i
+                                                                class="bx bx-plus-medical label-icon "></i> Add New
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
                                 <button type="submit" class="btn btn-primary">Submit</button>
 
                                 <!-- new code form restuadent --->
@@ -107,7 +184,29 @@ Add Menu
 @endsection
 
 @section('script')
+<script type="text/javascript">
+    var i = 0;
+    var j= 0;
+    $("#main_add_new_product").click(function () {
+        ++i;
+        var total_pp_quantity = $('#total_product').val();
+        $("#dynamicAddRemove").append('<tr><td><input type="text" class="form-control p_quantity"  name="ing_name[]"  id="p_quantity'+i+'" required placeholder="Ingredient Name"></td><td><button type="button" class="btn btn-sm btn-outline-danger remove-input-field"><i class="mdi mdi-delete-forever font-size-22"></i></button></td></tr>');
+            $('.select2').select2();
 
+    });
+    // $(document).on('click', '.remove-input-field', function () {
+    //     $(this).parents('tr').remove();
+    // });
+</script>
+
+<script type="text/javascript">
+
+$(document).on('click', '.remove-input-field', function () {
+        $(this).parents('tr').remove();
+
+
+});
+</script>
 <script>
     $("body").on("click", "#cancelButton", function(e){
 

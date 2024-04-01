@@ -271,8 +271,8 @@
                 result.dismiss === swal.DismissReason.cancel
             ) {
                 swal(
-                    'বাতিল করা হয়েছে',
-                    'আপনার ডেটা নিরাপদ :)',
+                    'Cancelled',
+                    'Your data is safe :)',
                     'error'
                 )
             }

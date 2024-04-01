@@ -70,7 +70,7 @@ class CategoryController extends Controller
 
     public function store(Request $request){
 
-        if (is_null($this->user) || !$this->user->can('tableAdd')) {
+        if (is_null($this->user) || !$this->user->can('menuAdd')) {
 
             return redirect()->route('mainLogin');
         }
@@ -98,7 +98,7 @@ class CategoryController extends Controller
            }
 
            Category::create([
-            'image'=>CommonController::compressImage($request,$file,$filePath),
+            'image'=>CommonController::storeBase64($filePath,$request->image_base64),
             'category_name'=>$request->category_name,
             'category_slug'=>Str::slug($request->category_name),
             'status'=>$request->status
@@ -116,5 +116,113 @@ class CategoryController extends Controller
         }
 
 
+    }
+
+    public function edit($id){
+
+
+        if (is_null($this->user) || !$this->user->can('menuUpdate')) {
+
+            return redirect()->route('mainLogin');
+        }
+
+        try{
+
+            \LogActivity::addToLog('Menu Edit ');
+
+            $menuLists = Category::find($id);
+
+            return view('admin.menuList.edit',compact('menuLists'));
+
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error','some thing went wrong ');
+        }
+    }
+
+
+    public function update(Request $request,$id){
+
+        if (is_null($this->user) || !$this->user->can('menuUpdate')) {
+
+            return redirect()->route('mainLogin');
+        }
+
+
+        try{
+
+            DB::beginTransaction();
+
+           \LogActivity::addToLog('Menu update');
+
+
+
+        if ($request->hasfile('image')) {
+
+            $filePath = 'categoryImage';
+
+            $checkPreviousFile = Category::where('id',$id)->value('image');
+
+                if(File::exists($checkPreviousFile)){
+                    File::delete($checkPreviousFile);
+                }
+
+            Category::where('id',$id)->update([
+                'image'=>CommonController::storeBase64($filePath,$request->image_base64),
+                'category_name'=>$request->category_name,
+                'category_slug'=>Str::slug($request->category_name),
+                'status'=>$request->status
+               ]);
+
+        }else{
+
+            Category::where('id',$id)->update([
+                'category_name'=>$request->category_name,
+                'category_slug'=>Str::slug($request->category_name),
+                'status'=>$request->status
+               ]);
+
+        }
+
+
+        DB::commit();
+
+        return redirect()->route('menuList.index')->with('info','Updated successfully!');
+
+        } catch (\Exception $e) {
+
+        DB::rollBack();
+        return redirect()->back()->with('error','some thing went wrong'.$e);
+
+        }
+    }
+
+    public function destroy($id){
+
+            if (is_null($this->user) || !$this->user->can('menuDelete')) {
+
+                return redirect()->route('mainLogin');
+            }
+
+            try{
+                DB::beginTransaction();
+                \LogActivity::addToLog('Menu delete ');
+
+
+                $checkPreviousFile = Category::where('id',$id)->value('image');
+
+                if(File::exists($checkPreviousFile)){
+                    File::delete($checkPreviousFile);
+                }
+
+
+                Category::destroy($id);
+
+                DB::commit();
+                return redirect()->route('menuList.index')->with('error','Deleted successfully!');
+
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()->back()->with('error','some thing went wrong ');
+        }
     }
 }

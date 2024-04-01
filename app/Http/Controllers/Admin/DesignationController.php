@@ -175,20 +175,20 @@ class DesignationController extends Controller
         public function destroy($id)
     {
 
-        if (is_null($this->user) || !$this->user->can('designationDelete')) {
-            //abort(403, 'Sorry !! You are Unauthorized to Delete !');
-            return redirect()->route('mainLogin');
-        }
-        try{
-            DB::beginTransaction();
-        \LogActivity::addToLog('designation delete ');
-        DesignationList::destroy($id);
-        DB::commit();
-        return redirect()->route('designationList.index')->with('error','Deleted successfully!');
+            if (is_null($this->user) || !$this->user->can('designationDelete')) {
+                //abort(403, 'Sorry !! You are Unauthorized to Delete !');
+                return redirect()->route('mainLogin');
+            }
+            try{
+                DB::beginTransaction();
+            \LogActivity::addToLog('designation delete ');
+            DesignationList::destroy($id);
+            DB::commit();
+            return redirect()->route('designationList.index')->with('error','Deleted successfully!');
 
-    } catch (\Exception $e) {
-        DB::rollBack();
-        return redirect()->back()->with('error','some thing went wrong ');
-    }
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()->back()->with('error','some thing went wrong ');
+        }
     }
 }

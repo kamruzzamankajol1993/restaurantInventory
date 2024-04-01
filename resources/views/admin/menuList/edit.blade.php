@@ -31,10 +31,10 @@ Add Menu
 
 
 
-                            <form class="custom-validation" action="{{ route('menuList.store') }}" method="post" enctype="multipart/form-data" id="form" data-parsley-validate="">
+                            <form class="custom-validation" action="{{ route('menuList.update',$menuLists->id) }}" method="post" enctype="multipart/form-data" id="form" data-parsley-validate="">
                                 @csrf
 
-
+@method('PUT')
 
 
                                 <!--new code for restuadent --->
@@ -42,25 +42,25 @@ Add Menu
                                 <div class="row">
                                     <div class="mb-3 col-md-12">
                                         <label class="form-label">Menu Image</label>
-                                        <input type="file" id="menuImage"  accept="image/*" name="image" class="form-control menuImage" required>
+                                        <input type="file" id="menuImage"  accept="image/*" name="image" class="form-control menuImage" >
 
 
                                         <input type="hidden" name="image_base64">
-                                    <img src="" style="width: 200px;display: none;" class="show-image">
+                                    <img src="{{ asset('/') }}{{ $menuLists->image }}" style="width: 200px;" class="show-image">
 
 
                                     </div>
                                     <div class="mb-3 col-md-12">
                                         <label class="form-label">Menu Name</label>
-                                        <input type="text" name="category_name" class="form-control" placeholder="Name" required>
+                                        <input type="text" value="{{ $menuLists->category_name }}" name="category_name" class="form-control" placeholder="Name" required>
                                     </div>
 
                                     <div class="mb-3 col-md-12">
                                         <label class="form-label">Status</label>
-                                        <select id="inputState" required name="status" class="default-select form-control ms-0 wide">
+                                        <select id="inputState" name="status" class="default-select form-control ms-0 wide" required>
                                             <option value="">Choose...</option>
-                                            <option value="Active">Active</option>
-                                            <option value="Inactive">Inactive</option>
+                                            <option value="Active" {{ 'Active' == $menuLists->status ? 'selected':'' }}>Active</option>
+                                            <option value="Inactive" {{ 'Inactive' == $menuLists->status ? 'selected':'' }}>Inactive</option>
                                         </select>
                                     </div>
                                 </div>
@@ -97,7 +97,7 @@ Add Menu
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" id="cancelButton" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                 <button type="button" class="btn btn-primary" id="crop">Crop</button>
             </div>
         </div>
@@ -107,15 +107,6 @@ Add Menu
 @endsection
 
 @section('script')
-
-<script>
-    $("body").on("click", "#cancelButton", function(e){
-
-        $("#modal").modal('toggle');
-
-    });
-
-</script>
 <script>
     var $modal = $('#modal');
     var image = document.getElementById('image');
@@ -231,3 +222,4 @@ var finalAspectRatio = finalCropWidth / finalCropHeight;
 
 </script>
 @endsection
+
