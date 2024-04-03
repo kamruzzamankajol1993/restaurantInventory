@@ -75,6 +75,9 @@ class CategoryController extends Controller
             return redirect()->route('mainLogin');
         }
 
+
+       // dd($request->all());
+
         $request->validate([
             'category_name' => 'required',
             'image' => 'required',
@@ -98,7 +101,9 @@ class CategoryController extends Controller
            }
 
            Category::create([
-            'image'=>CommonController::storeBase64($filePath,$request->image_base64),
+            'com_image'=>CommonController::storeBase64(600,600,$filePath,$request->image_base64),
+            'web_image'=>CommonController::storeBase64(400,400,$filePath,$request->image_base64),
+            'image'=>CommonController::storeBase64(200,200,$filePath,$request->image_base64),
             'category_name'=>$request->category_name,
             'category_slug'=>Str::slug($request->category_name),
             'status'=>$request->status
@@ -167,7 +172,9 @@ class CategoryController extends Controller
                 }
 
             Category::where('id',$id)->update([
-                'image'=>CommonController::storeBase64($filePath,$request->image_base64),
+                'com_image'=>CommonController::storeBase64(600,600,$filePath,$request->image_base64),
+                'web_image'=>CommonController::storeBase64(400,400,$filePath,$request->image_base64),
+                'image'=>CommonController::storeBase64(200,200,$filePath,$request->image_base64),
                 'category_name'=>$request->category_name,
                 'category_slug'=>Str::slug($request->category_name),
                 'status'=>$request->status

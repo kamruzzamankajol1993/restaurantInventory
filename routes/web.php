@@ -18,6 +18,9 @@ use App\Http\Controllers\Admin\QrCodeController;
 use App\Http\Controllers\Admin\FoodController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\UnitController;
+use App\Http\Controllers\Admin\ExpenseCategoryController;
+use App\Http\Controllers\Admin\LeaveTypeController;
+use App\Http\Controllers\Admin\SupplierController;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,20 +57,21 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::group(['prefix' => 'admin'], function () {
 
-
     Route::resource('tableList', TableController::class);
     Route::resource('qrCodeList', QrCodeController::class);
     Route::resource('foodList', FoodController::class);
     Route::resource('menuList', CategoryController::class);
     Route::resource('unitList', UnitController::class);
+    Route::resource('expenseCategoryList',ExpenseCategoryController::class);
+    Route::resource('leaveTypeList',LeaveTypeController::class);
+    Route::resource('supplierList',SupplierController::class);
 
 
     Route::get('/', [DashBoardController::class, 'index'])->name('admin.dashboard');
 
 
-
     Route::resource('branchList', BranchController::class);
- 
+
 
     Route::controller(BranchController::class)->group(function () {
         Route::get('/checkBranch', 'checkBranch')->name('checkBranch');

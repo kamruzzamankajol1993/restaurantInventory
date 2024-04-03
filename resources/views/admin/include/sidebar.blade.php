@@ -94,7 +94,10 @@
                 <ul aria-expanded="false">
                     <li><a href="product_purchase_list.php">Purchase List</a></li>
                     <li><a href="add_product_purchase.php">Add Purchase</a></li>
-                    <li><a href="add_supplier.php">Add Supplier</a></li>
+                    
+                    @if ($usr->can('supplierAdd') || $usr->can('supplierView') ||  $usr->can('supplierDelete') ||  $usr->can('supplierUpdate'))
+                    <li class="{{ Route::is('supplierList.index') || Route::is('supplierList.edit') || Route::is('supplierList.create') ? 'mm-active' : '' }}"><a href="{{ route('supplierList.index') }}" class="{{ Route::is('supplierList.index') || Route::is('supplierList.edit') || Route::is('supplierList.create') ? 'mm-active' : '' }}">Supplier List</a></li>
+                    @endif
                     <li><a href="add_product_name.php">Add Product Name</a></li>
                     <li><a href="stock_out_product.php">Stock out Ingredient</a></li>
                 </ul>
@@ -155,7 +158,14 @@
                     <li><a href="leave_list.php">Leave List</a></li>
                     <li><a href="add_new_leave.php">Add New Leave</a></li>
                     <li><a href="holiday.php">Yearly Holiday</a></li>
-                    <li><a href="leave_type.php">Leave Type</a></li>
+
+
+                    @if ($usr->can('leaveTypeAdd') || $usr->can('leaveTypeView') ||  $usr->can('leaveTypeDelete') ||  $usr->can('leaveTypeUpdate'))
+                    <li class="{{ Route::is('leaveTypeList.index') || Route::is('leaveTypeList.edit') || Route::is('leaveTypeList.create') ? 'mm-active' : '' }}"><a href="{{ route('leaveTypeList.index') }}" class="{{ Route::is('leaveTypeList.index') || Route::is('leaveTypeList.edit') || Route::is('leaveTypeList.create') ? 'mm-active' : '' }}">Leave Type</a></li>
+                    @endif
+
+
+
                 </ul>
             </li>
             <li>
@@ -165,7 +175,9 @@
                     <span class="nav-text">Expense</span>
                 </a>
                 <ul aria-expanded="false">
-                    <li><a href="expense_category.php">Expense Category</a></li>
+                    @if ($usr->can('expenseCategoryAdd') || $usr->can('expenseCategoryView') ||  $usr->can('expenseCategoryDelete') ||  $usr->can('expenseCategoryUpdate'))
+                    <li class="{{ Route::is('expenseCategoryList.index') || Route::is('expenseCategoryList.edit') || Route::is('expenseCategoryList.create') ? 'mm-active' : '' }}"><a href="{{ route('expenseCategoryList.index') }}" class="{{ Route::is('expenseCategoryList.index') || Route::is('expenseCategoryList.edit') || Route::is('expenseCategoryList.create') ? 'mm-active' : '' }}">Expense Category</a></li>
+                    @endif
                     <li><a href="expense_manage.php">Expense Manage</a></li>
                 </ul>
             </li>

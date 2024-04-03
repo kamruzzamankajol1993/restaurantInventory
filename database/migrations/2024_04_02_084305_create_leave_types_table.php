@@ -11,15 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('categories', function (Blueprint $table) {
+        Schema::create('leave_types', function (Blueprint $table) {
             $table->id();
-            $table->text('image');
-            $table->text('com_image');
-            $table->text('web_image');
-            $table->text('image');
-            $table->string('category_name');
-            $table->string('category_slug');
-            $table->string('status');
+            $table->string('leave_type_name');
+            $table->string('leave_type_slug');
             $table->timestamps();
         });
     }
@@ -29,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('categories');
+        Schema::dropIfExists('leave_types');
     }
 };

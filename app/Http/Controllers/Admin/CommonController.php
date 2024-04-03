@@ -11,15 +11,23 @@ use Session;
 class CommonController extends Controller
 {
 
-    public static  function storeBase64($filePath,$imageBase64)
+    public static  function storeBase64($height,$weight,$filePath,$imageBase64)
     {
         list($type, $imageBase64) = explode(';', $imageBase64);
         list(, $imageBase64)      = explode(',', $imageBase64);
         $imageBase64 = base64_decode($imageBase64);
-        $imageName= date('Y-d-m').time().mt_rand(1000000000, 9999999999).'.png';
+        $imageName= $height.'x'.$weight.date('Y-d-m').time().mt_rand(1000000000, 9999999999).'.png';
         $path = public_path() . "/uploads/" .$filePath.'/'. $imageName;
 
         file_put_contents($path, $imageBase64);
+
+
+        $img=Image::make($path)->resize($height,$weight, function ($constraint) {
+            $constraint->aspectRatio();
+        });
+
+        //$img=Image::make($imageName);
+        $img->save($path);
 
 
         $finalFile = 'public/uploads/'.$filePath.'/'.$imageName;
@@ -27,7 +35,7 @@ class CommonController extends Controller
         return $finalFile;
     }
 
-    public static  function compressImage($request,$file,$filePath){
+    public static  function compressImage($height,$weight,$request,$filePath,$file){
 
 
         $path = public_path('uploads/'.$filePath);
@@ -37,14 +45,17 @@ class CommonController extends Controller
         }
 
 
-        $x=0;
+       // $x=0;
         $imageName = date('Y-d-m').time().mt_rand(1000000000, 9999999999).".".$file->getClientOriginalExtension();
         $directory = 'public/uploads/'.$filePath.'/';
         $imageUrl = $directory.$imageName;
         //dd($imageUrl = $directory.'/'.$imageName);
-        $img=Image::make($file);
+        $img=Image::make($file)->resize($height,$weight, function ($constraint) {
+            $constraint->aspectRatio();
+        });
+
         //$img=Image::make($imageName);
-        $img->save($imageUrl,$x);
+        $img->save($imageUrl);
 
 
         //dd($imageUrl);
