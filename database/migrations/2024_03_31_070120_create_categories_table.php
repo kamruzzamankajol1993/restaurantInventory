@@ -16,7 +16,6 @@ return new class extends Migration
             $table->text('image');
             $table->text('com_image');
             $table->text('web_image');
-            $table->text('image');
             $table->string('category_name');
             $table->string('category_slug');
             $table->string('status');
