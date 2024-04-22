@@ -13,96 +13,92 @@
     <link rel="shortcut icon" href="{{ asset('/') }}{{ $icon }}" type="image/x-icon">
     <title>লগ ইন | {{ $ins_name }}</title>
     <!-- Google font-->
+<!-- Vendors Style-->
+<link rel="stylesheet" href="{{ asset('/') }}public/admin/assets/css/vendors_css.css">
 
-     <link href="{{ asset('/') }}public/admin/assets/vendor/swiper/css/swiper-bundle.min.css" rel="stylesheet">
-
-<link href="{{ asset('/') }}public/admin/assets/css/style.css" rel="stylesheet">
-
+<!-- Style-->
+<link rel="stylesheet" href="{{ asset('/') }}public/admin/assets/css/style.css">
+<link rel="stylesheet" href="{{ asset('/') }}public/admin/assets/css/skin_color.css">
+<link rel="stylesheet" href="https://unpkg.com/@icon/themify-icons/themify-icons.css">
   </head>
-  <body>
+  <body class="hold-transition theme-primary bg-img" style="background-image: url({{ asset('/') }}public/admin/assets/images/auth-bg/bg-1.jpg)">
+    <div class="container h-p100">
+		<div class="row align-items-center justify-content-md-center h-p100">
 
+			<div class="col-12">
+				<div class="row justify-content-center no-gutters">
+					<div class="col-lg-5 col-md-5 col-12">
+						<div class="bg-white rounded30 shadow-lg">
+							<div class="content-top-agile p-20 pb-0">
+                                <div class="text-center mb-3">
 
+                                    <img src="{{ asset('/') }}{{ $logo }}" class="mb-3" alt="">
 
-
-    <div class="container mt-0">
-		<div class="row align-items-center justify-contain-center">
-			<div class="col-xl-12 mt-5">
-				<div class="card border-0">
-					<div class="card-body login-bx">
-						<div class="row  mt-5">
-							<div class="col-xl-8 col-md-6 sign text-center">
-								<div>
-									<img src="{{ asset('/') }}public/admin/assets/images/login-img/pic-5.jpg" style="height: 450px;" class="food-img" alt="">
-								</div>
+                                </div>
+								<h2 class="text-primary">Let's Get Started</h2>
+								<p class="mb-0">Sign in to continue </p>
 							</div>
-							<div class="col-xl-4 col-md-6 pe-0">
-								<div class="sign-in-your">
-									<div class="text-center mb-3">
-										<img src="{{ asset('/') }}{{ $logo }}" class="mb-3" alt="">
-										{{-- <h4 class="fs-20 font-w800 text-black">Create an Account</h4>
-										<span class="dlab-sign-up">Sign Up</span> --}}
-									</div>
-									{{-- <form action="https://fooddesk.dexignlab.com/xhtml/index.html"> --}}
-
-
-                                        <form class="theme-form login-form" id="form" action="{{route('login.store')}}" method="post">
-                                            @csrf
-                                            @include('flash_message')
-
-
-
-										<div class="mb-3">
-											<label class="mb-1"><strong>Email Address</strong></label>
-											<input type="email" name="email" required class="form-control" >
-										</div>
-										<div class="mb-3">
-											<label class="mb-1"><strong>Password</strong></label>
-											<input type="password" name="password" class="form-control" id="password">
-										</div>
-										<div class="row d-flex justify-content-between mt-4 mb-2">
-											<div class="mb-3">
-											   <div class="form-check custom-checkbox ms-1">
-													<input type="checkbox" class="form-check-input" id="basic_checkbox_1">
-													<label class="form-check-label" for="basic_checkbox_1" onclick="myFunction()">See Password</label>
-												</div>
+							<div class="p-40">
+								<form id="form" action="{{route('login.store')}}" method="post">
+                                    @csrf
+                                    @include('flash_message')
+                                    <div class="form-group">
+										<div class="input-group mb-3">
+											<div class="input-group-prepend">
+												<span class="input-group-text bg-transparent"><i class="ti-email"></i></span>
 											</div>
-											<div class="mb-3">
-												<a href="{{ route('forgetPassword') }}">Forgot Password?</a>
+											<input type="email" name="email" required class="form-control pl-15 bg-transparent" placeholder="Email">
+										</div>
+									</div>
+									<div class="form-group">
+										<div class="input-group mb-3">
+											<div class="input-group-prepend">
+												<span class="input-group-text  bg-transparent"><i class="ti-lock"></i></span>
 											</div>
+											<input type="password" name="password"  id="password" class="form-control pl-15 bg-transparent" placeholder="Password">
 										</div>
-										<div class="text-center">
-											<button type="submit" class="btn btn-primary btn-block shadow">Sign Me In</button>
+									</div>
+									  <div class="row">
+										<div class="col-6">
+										  <div class="checkbox">
+											<input type="checkbox" id="basic_checkbox_1" >
+											<label for="basic_checkbox_1" onclick="myFunction()">See Password</label>
+										  </div>
 										</div>
-									</form>
-									{{-- <div class="text-center my-3">
-										<span class="dlab-sign-up style-1">continue With</span>
-									</div>
-									<div class="mb-3 dlab-signup-icon">
-										<button class="btn btn-outline-light"><i class="fa-brands fa-facebook me-2 facebook"></i>Facebook</button>
-										<button class="btn btn-outline-light"><i class="fa-brands fa-google me-2 google"></i>Google</button>
-										<button class="btn btn-outline-light mt-lg-0 mt-md-1 mt-sm-0 mt-1 linked-btn"><i class="fa-brands fa-linkedin me-2 likedin"></i>linkedin</button>
-									</div>
-									<div class="text-center">
-										<span>Already Have An Account?<a href="javascript:void(0);" class="text-primary"> Sign in</a></span>
-									</div> --}}
+										<!-- /.col -->
+										<div class="col-6">
+										 <div class="fog-pwd text-right">
+											<a href="{{ route('forgetPassword') }}" class="hover-warning"><i class="ti-lock"></i> Forgot pwd?</a><br>
+										  </div>
+										</div>
+										<!-- /.col -->
+										<div class="col-12 text-center">
+										  <button type="submit" class="btn btn-danger mt-10">SIGN IN</button>
+										</div>
+										<!-- /.col -->
+									  </div>
+								</form>
 
-								</div>
 							</div>
 						</div>
+
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 
+
+
+
+
     <!--**********************************
         Scripts
     ***********************************-->
-    <!-- Required vendors -->
-    <script src="{{ asset('/') }}public/admin/assets/vendor/global/global.min.js"></script>
-	<script src="{{ asset('/') }}public/admin/assets/vendor/swiper/js/swiper-bundle.min.js"></script>
-    <script src="{{ asset('/') }}public/admin/assets/js/dlabnav-init.js"></script>
-	{{-- <script src="{{ asset('/') }}public/admin/assets/js/styleSwitcher.js"></script> --}}
+
+
+<!-- Vendor JS -->
+<script src="{{ asset('/') }}public/admin/assets/js/vendors.min.js"></script>
 
     <script>
         function myFunction() {
