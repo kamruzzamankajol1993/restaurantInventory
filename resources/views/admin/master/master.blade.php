@@ -1,6 +1,6 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -15,48 +15,34 @@
     <link rel="shortcut icon" href="{{ asset('/') }}{{ $icon }}" type="image/x-icon">
     <title>@yield('title')</title>
 
-    <link href="{{ asset('/')}}public/admin/assets/vendor/jquery-nice-select/css/nice-select.css" rel="stylesheet">
-    <link href="{{ asset('/')}}public/admin/assets/vendor/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
-    <!-- Style css -->
-    <link href="{{ asset('/')}}public/admin/assets/vendor/swiper/css/swiper-bundle.min.css" rel="stylesheet">
-    <link href="{{ asset('/')}}public/admin/assets/vendor/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet">
-    <link href="{{ asset('/')}}public/admin/assets/vendor/swiper/css/swiper-bundle.min.css" rel="stylesheet">
-    <!-- Custom css-->
-    <link href="{{ asset('/')}}public/admin/assets/css/style.css" rel="stylesheet">
-    <!-- CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
-    <link href="{{ asset('/')}}public/admin/assets/vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link rel="stylesheet" href="https://parsleyjs.org/src/parsley.css">
-    <link href='https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/ui-lightness/jquery-ui.css'rel='stylesheet'>
-    <script src="{{ asset('/')}}public/parsely1.js"></script>
-     @yield('css')
-<style>
+    <!-- Vendors Style-->
+    <link rel="stylesheet" href="{{ asset('/') }}public/admin/assets/css/vendors_css.css">
+
+    <!-- font style-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Style-->
+    <link rel="stylesheet" href="{{ asset('/') }}public/admin/assets/css/style.css">
+    <link rel="stylesheet" href="{{ asset('/') }}public/admin/assets/css/skin_color.css">
+<!-- CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link rel="stylesheet" href="https://parsleyjs.org/src/parsley.css">
+<link href='https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/ui-lightness/jquery-ui.css'rel='stylesheet'>
+<script src="{{ asset('/')}}public/parsely1.js"></script>
+ @yield('css')
+
+ @yield('css')
+ <style>
 
     .parsley-required{
 
         margin-top:10px;
     }
 
-    .box
 
-    {
 
-     width:100%;
 
-     max-width:600px;
-
-     background-color:#f9f9f9;
-
-     border:1px solid #ccc;
-
-     border-radius:5px;
-
-     padding:16px;
-
-     margin:0 auto;
-
-    }
 
     input.parsley-success,
 
@@ -130,12 +116,12 @@
 
 
 
-.swal2-confirm{
+    .swal2-confirm{
 
     margin-left:10px;
-}
+    }
 
-.select2.select2-container .select2-selection--multiple .select2-selection__choice .select2-selection__choice__remove {
+    .select2.select2-container .select2-selection--multiple .select2-selection__choice .select2-selection__choice__remove {
     position: absolute !important;
     top: 0 !important;
     left: 0 !important;
@@ -146,105 +132,92 @@
     color: #e74c3c !important;
     font-weight: bold !important;
     font-size: 16px !important;
-}
-
-
-
-
+    }
 
     </style>
-    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-icons/3.0.0/iconfont/material-icons.min.css" integrity="sha512-mRuH7OxetZB1XiSaKZ2fxENKgxVvx3ffpzX0FUcaP6GBqAuqOLc8YiC/3EVTUVt5p5mIRT5D9i4LitZUQKWNCg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 </head>
-<body>
-   <!--*******************
-    Preloader start
-********************-->
-@include('admin.include.loader')
-<!--*******************
-    Preloader end
-********************-->
 
-<!--**********************************
-    Main wrapper start
-***********************************-->
+<body class="hold-transition light-skin sidebar-mini theme-primary fixed">
 
-<div id="main-wrapper">
+<div class="wrapper">
+    <div id="loader"></div>
 
-    <!--**********************************
-        Nav header start
-    ***********************************-->
-
+    <!--*******************
+    Top Header start
+    ********************-->
 
     @include('admin.include.header')
+    <!--*******************
+    Top Header end
+    ********************-->
 
-    <!--**********************************
-        Nav header end
-    ***********************************-->
-
-    <!--**********************************
-    Header start
-    ***********************************-->
+    <!--*******************
+    Sidebar Header  start
+    ********************-->
     @include('admin.include.headerLeft')
-    <!--**********************************
-        Header end ti-comment-alt
-    ***********************************-->
+    <!--*******************
+    Sidebar Header  end
+    ********************-->
 
-    <!--**********************************
-    Sidebar start
-    ***********************************-->
-    @include('admin.include.sidebar')
-    <!--**********************************
-        Sidebar end
-    ***********************************-->
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <div class="container-full">
+            <!-- Main content -->
+          @yield('body')
+            <!-- /.content -->
+        </div>
+    </div>
+    <!-- /.content-wrapper -->
 
-    <!--**********************************
-    Content body start
-    ***********************************-->
-    @yield('body')
-    <!--**********************************
-        Content body end
-    ***********************************-->
-
-    <!--**********************************
-    Footer start
-    ***********************************-->
+    <!--*******************
+    Footer Section  start
+    ********************-->
     @include('admin.include.footer')
-    <!--**********************************
-        Footer end
-    ***********************************-->
+    <!--*******************
+    Footer Section  end
+    ********************-->
+
+
+    <!--*******************
+    Control Section  start
+    ********************-->
+    @include('admin.include.control_section')
+    <!--*******************
+    Control Section  end
+    ********************-->
+
+
 </div>
+<!-- ./wrapper -->
 
-<!-- Required vendors -->
-<script src="{{ asset('/')}}public/admin/assets/vendor/global/global.min.js"></script>
-<script src="{{ asset('/')}}public/admin/assets/vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
-<script src="{{ asset('/')}}public/admin/assets/vendor/chart.js/Chart.bundle.min.js"></script>
-<script src="{{ asset('/')}}public/admin/assets/vendor/jquery-nice-select/js/jquery.nice-select.min.js"></script>
-
-<!-- Apex Chart -->
-<script src="{{ asset('/')}}public/admin/assets/vendor/apexchart/apexchart.js"></script>
-
-<script src="{{ asset('/')}}public/admin/assets/vendor/bootstrap-datetimepicker/js/moment.js"></script>
-<script src="{{ asset('/')}}public/admin/assets/vendor/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
-<script src="{{ asset('/')}}public/admin/assets/vendor/peity/jquery.peity.min.js"></script>
-<script src="{{ asset('/')}}public/admin/assets/vendor/swiper/js/swiper-bundle.min.js"></script>
-
-<!-- Datatable -->
-<script src="{{ asset('/')}}public/admin/assets/vendor/datatables/js/jquery.dataTables.min.js"></script>
-<script src="{{ asset('/')}}public/admin/assets/js/plugins-init/datatables.init.js"></script>
+<!--*******************
+Control Section  start
+********************-->
+@include('admin.include.chat_box')
+<!--*******************
+Control Section  end
+********************-->
 
 
-<!-- Dashboard 1 -->
-<script src="{{ asset('/')}}public/admin/assets/js/dashboard/dashboard-2.js"></script>
+<!-- Page Content overlay -->
 
-<script src="{{ asset('/')}}public/admin/assets/js/dlabnav-init.js"></script>
-<script src="{{ asset('/')}}public/admin/assets/js/custom.js"></script>
 
- <!-- Plugins JS Ends-->
+<!-- Vendor JS -->
+<script src="{{ asset('/') }}public/admin/assets/js/vendors.min.js"></script>
+<script src="{{ asset('/') }}public/admin/assets/js/pages/chat-popup.js"></script>
+<script src="{{ asset('/') }}public/admin/assets/vendor_components/apexcharts-bundle/dist/apexcharts.min.js"></script>
 
- <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script src="{{ asset('/') }}public/admin/assets/vendor_components/progressbar.js-master/dist/progressbar.js"></script>
+<script src="{{ asset('/') }}public/admin/assets/vendor_components/OwlCarousel2/dist/owl.carousel.js"></script>
+
+<!-- Riday Admin App -->
+<script src="{{ asset('/') }}public/admin/assets/js/template.js"></script>
+<script src="{{ asset('/') }}public/admin/assets/js/pages/dashboard3.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 <script src="https://unpkg.com/sweetalert2@7.19.1/dist/sweetalert2.all.js"></script>
 <script type="text/javascript">
@@ -378,19 +351,6 @@
   });//submit
 });//document ready
 </script>
-
-<script>
-    var count = 0;
-var p = Promise.resolve();
-var fn = (perc) => {
-  p = p.then(() => new Promise(resolve => $("#load-perc").text(perc + "%").delay(200).fadeIn("slow", resolve)));
-};
-while (count < 100) {
-  fn(count + 1);
-  count++;
-}
-</script>
-
 <script>
     setTimeout(function(){
   $('#divID').remove();
@@ -400,22 +360,6 @@ while (count < 100) {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.js"></script>
 
 @yield('script')
-<!-- login js-->
-<!-- Plugin used-->
 </body>
+
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

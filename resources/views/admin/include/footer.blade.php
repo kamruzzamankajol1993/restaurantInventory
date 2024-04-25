@@ -1,8 +1,16 @@
 
-<div class="footer">
-    <div class="copyright border-top">
-        <p>Copyright © Designed   by <a href="musatechnologyltd.com" target="_blank">MusaTechnology</a> 2022</p>
+<footer class="main-footer">
+    <div class="pull-right d-none d-sm-inline-block">
+        <ul class="nav nav-primary nav-dotted nav-dot-separated justify-content-center justify-content-md-end">
+            <li class="nav-item">
+                <a class="nav-link" href="javascript:void(0)">FAQ</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Need Help?</a>
+            </li>
+        </ul>
     </div>
-</div>
+    &copy; 2021 <a href="https://www.multipurposethemes.com/">Progga</a>. All Rights Reserved.
+</footer>
 
 

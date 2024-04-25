@@ -1,4 +1,190 @@
-<div class="header">
+<aside class="main-sidebar">
+    <!-- sidebar-->
+    <section class="sidebar position-relative">
+        <div class="multinav">
+            <div class="multinav-scroll" style="height: 100%;">
+                <!-- sidebar menu-->
+                <ul class="sidebar-menu" data-widget="tree">
+
+                    <li>
+                        <a href="index.php">
+                            <i class="icon-Home"><span class="path1"></span><span class="path2"></span></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="icon-Cart"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
+                            <span>POS</span>
+                            <span class="pull-right-container">
+					  <i class="fa fa-angle-right pull-right"></i>
+					</span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="#"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>New Order</a></li>
+                            <li><a href="order_list.php"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Order List</a></li>
+
+                        </ul>
+                    </li>
+
+                    <li class="header">Order Management</li>
+
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="icon-Clipboard-check"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
+                            <span>Orders</span>
+                            <span class="pull-right-container">
+					  <i class="fa fa-angle-right pull-right"></i>
+					</span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="#"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>All</a></li>
+                            <li><a href="#"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Pending</a></li>
+                            <li><a href="#"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Confirmed</a></li>
+                            <li><a href="#"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Processing</a></li>
+                            <li><a href="#"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Out of Delivery</a></li>
+                            <li><a href="#"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Delivered</a></li>
+                            <li><a href="#"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Return</a></li>
+                            <li><a href="#"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Failed To Deliver</a></li>
+                            <li><a href="#"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Cancel</a></li>
+                            <li><a href="#"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Scheduled</a></li>
+                        </ul>
+                    </li>
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="icon-Cardboard-vr"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
+                            <span>Table Orders</span>
+                            <span class="pull-right-container">
+					  <i class="fa fa-angle-right pull-right"></i>
+					</span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="#"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>All</a></li>
+                            <li><a href="#"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Confirmed</a></li>
+                            <li><a href="#"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Cooking</a></li>
+                            <li><a href="#"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Ready For Server</a></li>
+                            <li><a href="#"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Complete</a></li>
+                            <li><a href="#"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Cancel</a></li>
+                            <li><a href="#"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>On Table</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="header">Product Management</li>
+
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="icon-Chart-bar"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
+                            <span>Category Setup</span>
+                            <span class="pull-right-container">
+					  <i class="fa fa-angle-right pull-right"></i>
+					</span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="category.php"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Category</a></li>
+                            <li><a href="sub_category.php"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Sub Category</a></li>
+
+                        </ul>
+                    </li>
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="icon-Menu"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
+                            <span>Product Setup</span>
+                            <span class="pull-right-container">
+					  <i class="fa fa-angle-right pull-right"></i>
+					</span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="product_attributes.php"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Product Attributes</a></li>
+                            <li><a href="product_addon.php"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Product Addon</a></li>
+                            <li><a href="product_add.php"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Product Add</a></li>
+                            <li><a href="#"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Product List</a></li>
+                            <li><a href="#"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Bulk Import</a></li>
+                            <li><a href="#"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Bulk Export</a></li>
+                            <li><a href="#"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Product Reviews</a></li>
+
+                        </ul>
+                    </li>
+
+                    <li class="header">User Management</li>
+
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="icon-Group"><span class="path1"></span><span class="path2"></span></i>
+                            <span>Customer</span>
+                            <span class="pull-right-container">
+					  <i class="fa fa-angle-right pull-right"></i>
+					</span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="add_customer.php"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Customer Add</a></li>
+                            <li><a href="customer_list.php"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Customer List</a></li>
+                        </ul>
+                    </li>
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="icon-Tie"><span class="path1"></span><span class="path2"></span></i>
+                            <span>Employees</span>
+                            <span class="pull-right-container">
+					  <i class="fa fa-angle-right pull-right"></i>
+					</span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="add_employee.php"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Employees Add</a></li>
+                            <li><a href="employee_list.php"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Employees List</a></li>
+                        </ul>
+                    </li>
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-truck"><span class="path1"></span><span class="path2"></span></i>
+                            <span>Delivery Man</span>
+                            <span class="pull-right-container">
+					  <i class="fa fa-angle-right pull-right"></i>
+					</span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href=""><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Delivery Add</a></li>
+                            <li><a href=""><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Delivery List</a></li>
+                        </ul>
+                    </li>
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="icon-Shield-user"><span class="path1"></span><span class="path2"></span></i>
+                            <span>Chef</span>
+                            <span class="pull-right-container">
+					  <i class="fa fa-angle-right pull-right"></i>
+					</span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href=""><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Chef Add</a></li>
+                            <li><a href=""><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Chef List</a></li>
+                        </ul>
+                    </li>
+
+                </ul>
+
+                <div class="sidebar-widgets">
+                    <div class="mx-25 mb-30 pb-20 side-bx bg-primary bg-food-dark rounded20">
+                        <div class="text-center">
+                            <img src="{{ asset('/') }}public/admin/assets/images/res-menu.png" class="sideimg" alt="">
+                            <h3 class="title-bx">Add Menu</h3>
+                            <a href="#" class="text-white py-10 fs-16 mb-0">
+                                Manage Your food and beverages menu</i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="copyright text-start m-25">
+                        <p><strong class="d-block">Progga</strong> © 2021 All Rights Reserved</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</aside>
+
+
+
+
+{{-- <div class="header">
     <div class="header-content">
         <nav class="navbar navbar-expand">
             <div class="container d-block my-0">
@@ -139,7 +325,7 @@
 
                                         {{-- <img src="assets/images/banner-img/pic-1.png" alt=""> --}}
 
-                                        @if(empty(Auth::guard('admin')->user()->admin_image))
+                                        {{-- @if(empty(Auth::guard('admin')->user()->admin_image))
                                         <img src="{{asset('/')}}public/admin/user.png" alt="user-img" class="" />
                                         @else
                                         <img src="{{asset('/')}}{{ Auth::guard('admin')->user()->admin_image }}" alt="user-img" class=""  />
@@ -203,4 +389,4 @@
             </div>
         </nav>
     </div>
-</div>
+</div> --}} --}}

@@ -1,40 +1,256 @@
 @php
 $usr = Auth::guard('admin')->user();
 @endphp
-
-
-
-
-    <!--**********************************
-        Nav header start
-    ***********************************-->
-    <div class="nav-header">
-        <a href="index.php" class="brand-logo">
-            <svg class="logo-abbr" width="39" height="31" viewBox="0 0 39 31" fill="none"
-                 xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" clip-rule="evenodd"
-                      d="M25.125 21.125L26.9952 23.2623C27.6771 24.0417 28.8616 24.1206 29.6409 23.4387C29.7036 23.3839 29.7625 23.325 29.8173 23.2623L31.6875 21.125H36.375C35.2848 26.5762 30.4985 30.5 24.9393 30.5H14.0607C8.5015 30.5 3.71523 26.5762 2.625 21.125H25.125Z"
-                      fill="var(--primary)"/>
-                <path fill-rule="evenodd" clip-rule="evenodd"
-                      d="M36.375 9.875H2.625C3.71523 4.4238 8.5015 0.5 14.0607 0.5H24.9393C30.4985 0.5 35.2848 4.4238 36.375 9.875Z"
-                      fill="var(--primary)"/>
-                <path opacity="0.3"
-                      d="M36.375 13.625H2.625C1.58947 13.625 0.75 14.4645 0.75 15.5C0.75 16.5355 1.58947 17.375 2.625 17.375H36.375C37.4105 17.375 38.25 16.5355 38.25 15.5C38.25 14.4645 37.4105 13.625 36.375 13.625Z"
-                      fill="var(--primary)"/>
-            </svg>
-            <div class="brand-title" width="147" height="22">
-                <h2>FOODIESCAN</h2>
+<header class="main-header">
+    <div class="d-flex align-items-center logo-box justify-content-start">
+        <a href="#" class="waves-effect waves-light nav-link d-none d-md-inline-block mx-10 push-btn bg-transparent hover-primary" data-toggle="push-menu" role="button">
+            <span class="icon-Align-left"><span class="path1"></span><span class="path2"></span><span class="path3"></span></span>
+        </a>
+        <!-- Logo -->
+        <a href="index.php" class="logo">
+            <!-- logo-->
+            <div class="logo-lg">
+                <span class="light-logo"><img src="{{ asset('/') }}public/admin/assets/images/logo-dark-text.png" alt="logo"></span>
+                <span class="dark-logo"><img src="{{ asset('/') }}public/admin/assets/images/logo-light-text.png" alt="logo"></span>
             </div>
         </a>
-        <div class="nav-control">
-            <div class="hamburger">
-                <span class="line"></span><span class="line"></span><span class="line"></span>
-            </div>
-        </div>
     </div>
-    <!--**********************************
-        Nav header end
-    ***********************************-->
+    <!-- Header Navbar -->
+    <nav class="navbar navbar-static-top">
+        <!-- Sidebar toggle button-->
+        <div class="app-menu">
+            <ul class="header-megamenu nav">
+                <li class="btn-group nav-item d-md-none">
+                    <a href="#" class="waves-effect waves-light nav-link push-btn btn-info-light" data-toggle="push-menu" role="button">
+                        <span class="icon-Align-left"><span class="path1"></span><span class="path2"></span><span class="path3"></span></span>
+                    </a>
+                </li>
+                <li class="btn-group nav-item d-none d-xl-inline-block">
+                    <div class="app-menu">
+                        <div class="search-bx mx-5">
+                            <form>
+                                <div class="input-group">
+                                    <input type="search" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="button-addon2">
+                                    <div class="input-group-append">
+                                        <button class="btn" type="submit" id="button-addon3"><i class="ti-search"></i></button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="navbar-custom-menu r-side">
+            <ul class="nav navbar-nav">
+                <li class="btn-group nav-item d-lg-inline-flex d-none">
+                    <a href="#" data-provide="fullscreen" class="waves-effect waves-light nav-link full-screen btn-info-light" title="Full Screen">
+                        <i class="icon-Expand-arrows"><span class="path1"></span><span class="path2"></span></i>
+                    </a>
+                </li>
+                <!-- Notifications -->
+                <li class="dropdown notifications-menu">
+                    <span class="label label-primary">5</span>
+                    <a href="#" class="waves-effect waves-light dropdown-toggle btn-primary-light" data-bs-toggle="dropdown" title="Notifications">
+                        <i class="icon-Notifications"><span class="path1"></span><span class="path2"></span></i>
+                    </a>
+                    <ul class="dropdown-menu animated bounceIn">
+
+                        <li class="header">
+                            <div class="p-20">
+                                <div class="flexbox">
+                                    <div>
+                                        <h4 class="mb-0 mt-0">Notifications</h4>
+                                    </div>
+                                    <div>
+                                        <a href="#" class="text-danger">Clear All</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li>
+                            <!-- inner menu: contains the actual data -->
+                            <ul class="menu sm-scrol">
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-users text-info"></i> Curabitur id eros quis nunc suscipit blandit.
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-warning text-warning"></i> Duis malesuada justo eu sapien elementum, in semper diam posuere.
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-users text-danger"></i> Donec at nisi sit amet tortor commodo porttitor pretium a erat.
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-shopping-cart text-success"></i> In gravida mauris et nisi
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-user text-danger"></i> Praesent eu lacus in libero dictum fermentum.
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-user text-primary"></i> Nunc fringilla lorem
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-user text-success"></i> Nullam euismod dolor ut quam interdum, at scelerisque ipsum imperdiet.
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="footer">
+                            <a href="#">View all</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <!-- Messages -->
+                <li class="dropdown messages-menu">
+                    <span class="label label-primary">5</span>
+                    <a href="#" class="dropdown-toggle btn-primary-light" data-bs-toggle="dropdown" title="Messages">
+                        <i class="icon-Incoming-mail"><span class="path1"></span><span class="path2"></span></i>
+                    </a>
+                    <ul class="dropdown-menu animated bounceIn">
+
+                        <li class="header">
+                            <div class="p-20">
+                                <div class="flexbox">
+                                    <div>
+                                        <h4 class="mb-0 mt-0">Messages</h4>
+                                    </div>
+                                    <div>
+                                        <a href="#" class="text-danger">Clear All</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <!-- inner menu: contains the actual data -->
+                            <ul class="menu sm-scrol">
+                                <li><!-- start message -->
+                                    <a href="#">
+                                        <div class="pull-left">
+                                            <img src="{{ asset('/') }}public/admin/assets/images/user2-160x160.jpg" class="rounded-circle" alt="User Image">
+                                        </div>
+                                        <div class="mail-contnet">
+                                            <h4>
+                                                Lorem Ipsum
+                                                <small><i class="fa fa-clock-o"></i> 15 mins</small>
+                                            </h4>
+                                            <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <!-- end message -->
+                                <li>
+                                    <a href="#">
+                                        <div class="pull-left">
+                                            <img src="{{ asset('/') }}public/admin/assets/images/user3-128x128.jpg" class="rounded-circle" alt="User Image">
+                                        </div>
+                                        <div class="mail-contnet">
+                                            <h4>
+                                                Nullam tempor
+                                                <small><i class="fa fa-clock-o"></i> 4 hours</small>
+                                            </h4>
+                                            <span>Curabitur facilisis erat quis metus congue viverra.</span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <div class="pull-left">
+                                            <img src="{{ asset('/') }}public/admin/assets/images/user4-128x128.jpg" class="rounded-circle" alt="User Image">
+                                        </div>
+                                        <div class="mail-contnet">
+                                            <h4>
+                                                Proin venenatis
+                                                <small><i class="fa fa-clock-o"></i> Today</small>
+                                            </h4>
+                                            <span>Vestibulum nec ligula nec quam sodales rutrum sed luctus.</span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <div class="pull-left">
+                                            <img src="{{ asset('/') }}public/admin/assets/images/user3-128x128.jpg" class="rounded-circle" alt="User Image">
+                                        </div>
+                                        <div class="mail-contnet">
+                                            <h4>
+                                                Praesent suscipit
+                                                <small><i class="fa fa-clock-o"></i> Yesterday</small>
+                                            </h4>
+                                            <span>Curabitur quis risus aliquet, luctus arcu nec, venenatis neque.</span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <div class="pull-left">
+                                            <img src="{{ asset('/') }}public/admin/assets/images/user4-128x128.jpg" class="rounded-circle" alt="User Image">
+                                        </div>
+                                        <div class="mail-contnet">
+                                            <h4>
+                                                Donec tempor
+                                                <small><i class="fa fa-clock-o"></i> 2 days</small>
+                                            </h4>
+                                            <span>Praesent vitae tellus eget nibh lacinia pretium.</span>
+                                        </div>
+
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="footer">
+                            <a href="#">See all e-Mails</a>
+                        </li>
+                    </ul>
+                </li>
+                <!-- Control Sidebar Toggle Button -->
+                <li class="btn-group nav-item">
+                    <span class="label label-danger">5</span>
+                    <a href="#" data-toggle="control-sidebar" title="Setting" class="waves-effect waves-light nav-link full-screen btn-danger-light">
+                        <i class="icon-Settings-2"></i>
+                    </a>
+                </li>
+                <!-- Right Sidebar Toggle Button -->
+                <li class="btn-group nav-item d-xl-none d-inline-flex">
+                    <a href="#" class="push-btn right-bar-btn waves-effect waves-light nav-link full-screen btn-info-light">
+                        <span class="icon-Layout-left-panel-1"><span class="path1"></span><span class="path2"></span></span>
+                    </a>
+                </li>
+                <!-- User Account-->
+                <li class="dropdown user user-menu">
+                    <a href="#" class="dropdown-toggle p-0 text-dark hover-primary ms-md-30 ms-10" data-bs-toggle="dropdown" title="User">
+                        <span class="ps-30 d-md-inline-block d-none">Hello,</span> <strong class="d-md-inline-block d-none">Alia</strong><img src="{{ asset('/') }}public/admin/assets/images/avatar/avatar-11.png" class="user-image rounded-circle avatar bg-white mx-10" alt="User Image">
+                    </a>
+                    <ul class="dropdown-menu animated flipInX">
+                        <li class="user-body">
+                            <a class="dropdown-item" href="#"><i class="ti-user text-muted me-2"></i> Profile</a>
+                            <a class="dropdown-item" href="#"><i class="ti-wallet text-muted me-2"></i> My Wallet</a>
+                            <a class="dropdown-item" href="#"><i class="ti-settings text-muted me-2"></i> Settings</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#"><i class="ti-lock text-muted me-2"></i> Logout</a>
+                        </li>
+                    </ul>
+                </li>
+
+            </ul>
+        </div>
+    </nav>
+</header>
 
 
 
