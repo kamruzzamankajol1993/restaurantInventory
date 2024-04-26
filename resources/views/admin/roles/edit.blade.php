@@ -7,21 +7,26 @@ Update Role
 
 
 @section('body')
-<div class="content-body">
-<div class="container-fluid">
-    <div class="row page-titles">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item active">Setting</li>
-            <li class="breadcrumb-item">Update Role </li>
-        </ol>
+
+
+
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="d-flex align-items-center">
+        <div class="me-auto">
+            <h4 class="page-title">Update Role Information</h4>
+        </div>
+
     </div>
-                        <div class="row">
+</div>
 
-                            <div class="col-lg-12">
-                                <div class="card">
-                                    <div class="card-body">
+<section class="content">
+    <div class="row">
+        <div class="col-12">
+            <div class="box">
+                <div class="box-body">
 
-                                  <form action="{{ route('role.update',$role->id) }}" method="POST" id="form">
+                    <form action="{{ route('role.update',$role->id) }}" method="POST" id="form">
                         @csrf
                         @method('PUT')
                         <div class="form-group">
@@ -72,25 +77,12 @@ Update Role
 
                         <button type="submit" class="btn btn-primary mt-4 pr-4 pl-4">Update</button>
                     </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
-                                    </div>
-
-                                </div>
-                            </div>
-
-
-
-
-
-
-
-                        </div> <!-- end col -->
-
-
-
-                    </div>
-</div>
-</div>
 @endsection
 @section('script')
 

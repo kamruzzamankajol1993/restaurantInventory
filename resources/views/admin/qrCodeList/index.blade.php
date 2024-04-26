@@ -10,18 +10,21 @@ Qr Code List | {{ $ins_name }}
 @endsection
 
 @section('body')
-<div class="content-body">
-<div class="container-fluid">
 
-    <div class="row page-titles">
 
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item active">Food & Table Management</li>
-                    <li class="breadcrumb-item">Qr Code Information </li>
-                </ol>
-
+<div class="content-header">
+    <div class="d-flex align-items-center">
+        <div class="me-auto">
+            <h4 class="page-title">Qr Code Information </h4>
         </div>
+
     </div>
+
+</div>
+
+
+<section class="content">
+
 
     <div class="row">
         <!-- Individual column searching (text inputs) Starts-->
@@ -33,7 +36,7 @@ Qr Code List | {{ $ins_name }}
                     @include('flash_message')
                     <div class="table-responsive">
 
-                            <table id="example3" class="display">
+                        <table id="example" class="table table-bordered table-hover display nowrap margin-top-10 w-p100">
                             <thead>
                             <tr>
                                 <th>Sl</th>
@@ -85,7 +88,7 @@ Qr Code List | {{ $ins_name }}
     </div>
 </div>
 <!-- Container-fluid Ends-->
-</div>
+</section>
 
 
 @endsection

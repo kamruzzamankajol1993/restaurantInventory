@@ -9,14 +9,7 @@ Password
 
 
 <style>
-.wrapper {
-  width: 450px;
-  overflow: hidden;
-  padding: 28px;
-  border-radius: 8px;
-  background: #fff;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.06);
-}
+
 .pass-field {
   height: 35px;
   width: 100%;
@@ -111,74 +104,54 @@ Password
   color: #328036;
 }
 </style>
-<div class="content-body">
 
-
-
-    <div class="container">
-
-        <div class="row page-titles">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item active">Setting</li>
-                <li class="breadcrumb-item">Change Password</li>
-            </ol>
+<div class="content-header">
+    <div class="d-flex align-items-center">
+        <div class="me-auto">
+            <h4 class="page-title">Password Setting</h4>
         </div>
-        <div class="row">
-            <div class="col-sm-8">
-                <form action="{{ route('passwordUpdate') }}" method="post" enctype="multipart/form-data" id="form">
-                    @csrf
+    </div>
+</div>
+
+<section class="content">
+
+    <div class="row">
+        <div class="col-sm-8">
+            <form action="{{ route('passwordUpdate') }}" method="post" enctype="multipart/form-data" id="form">
+                @csrf
 
 
-                    <input type="hidden" value="{{ Auth::guard('admin')->user()->id }}" name="id" />
-                <div class="card">
-                    <div class="card-header pb-0">
-                      <h4 class="card-title mb-0">Change Password</h4>
-                      @include('flash_message')
-                    </div>
-                    <div class="card-body">
+                <input type="hidden" value="{{ Auth::guard('admin')->user()->id }}" name="id" />
+            <div class="card">
+                <div class="card-header pb-0">
+                  <h4 class="card-title mb-0">Change Password</h4>
+                  @include('flash_message')
+                </div>
+                <div class="card-body">
 
-                        <div class="row">
-                            <div class="col">
+                    <div class="row">
+                        <div class="col">
 
-                              <div class="mb-3 row">
-                                <label class="col-sm-3 col-form-label">Present Password:</label>
-                                <div class="col-sm-9">
-                                  <input class="form-control" type="password" name="old_password" placeholder="Present Password">
-                                </div>
-                              </div>
-
-
-
-                              <div class="mb-3 row">
-                                <label class="col-sm-3 col-form-label">New Password:</label>
-
-
-
-                                <div class="col-sm-9">
-
-                                    <div class="pass-field">
-                                        <input type="password" name="password" class="form-control" placeholder="New Password">
-                                        <i class="fa fa-eye"></i>
-                                      </div>
+                          <div class="mb-3 row">
+                            <label class="col-sm-3 col-form-label">Present Password:</label>
+                            <div class="col-sm-9">
+                              <input class="form-control" type="password" name="old_password" placeholder="Present Password">
+                            </div>
+                          </div>
 
 
 
-                                </div>
-                              </div>
+                          <div class="mb-3 row">
+                            <label class="col-sm-3 col-form-label">New Password:</label>
 
 
 
-                              <div class="mb-3 row">
-                                <label class="col-sm-3 col-form-label">Re-Type Password</label>
-                                <div class="col-sm-9">
-                                 <div class="pass-field1">
-                                  <input class="form-control" type="password" name="password_confirmation" placeholder="Re-Type Password">
-                                   <i class="fa fa-eye"></i>
+                            <div class="col-sm-9">
+
+                                <div class="pass-field">
+                                    <input type="password" name="password" class="form-control" placeholder="New Password">
+                                    <i class="fa fa-eye"></i>
                                   </div>
-                                </div>
-                              </div>
-
-
 
 
 
@@ -186,59 +159,82 @@ Password
                           </div>
 
 
-                    </div>
 
-                    <div class="card-footer text-end"  id="buttonRemove">
-                        <div class="col-sm-9 offset-sm-3">
-                          <button class="btn btn-primary" type="submit">Update</button>
+                          <div class="mb-3 row">
+                            <label class="col-sm-3 col-form-label">Re-Type Password</label>
+                            <div class="col-sm-9">
+                             <div class="pass-field1">
+                              <input class="form-control" type="password" name="password_confirmation" placeholder="Re-Type Password">
+                               <i class="fa fa-eye"></i>
+                              </div>
+                            </div>
+                          </div>
+
+
+
+
 
                         </div>
                       </div>
 
 
-
                 </div>
-                </form>
-            </div>
 
-            <div class="col-sm-4">
-                <div class="card">
+                <div class="card-footer text-end"  id="buttonRemove">
+                    <div class="col-sm-9 offset-sm-3">
+                      <button class="btn btn-primary" type="submit">Update</button>
 
-                    <div class="card-body">
-                        <div class="content">
-
-                            <ul class="requirement-list">
-                              <li>
-                                <i class="fa fa-circle"></i>
-                                <span>At least 8 characters</span>
-                              </li>
-                              <li>
-                                <i class="fa fa-circle"></i>
-                                <span>At least 1 digit (0...9)</span>
-                              </li>
-                              <li>
-                                <i class="fa fa-circle"></i>
-                                <span>At least 1 lowercase letter (a...z)</span>
-                              </li>
-                              <li>
-                                <i class="fa fa-circle"></i>
-                                <span>At least 1 special character (!...$)</span>
-                              </li>
-                              <li>
-                                <i class="fa fa-circle"></i>
-                                <span>At least 1 uppercase letter (A...Z)</span>
-                              </li>
-                            </ul>
-                          </div>
                     </div>
+                  </div>
 
-                </div>
+
+
             </div>
-
-
+            </form>
         </div>
+
+        <div class="col-sm-4">
+            <div class="card">
+
+                <div class="card-body">
+                    <div class="content">
+
+                        <ul class="requirement-list">
+                          <li>
+                            <i class="fa fa-circle"></i>
+                            <span>At least 8 characters</span>
+                          </li>
+                          <li>
+                            <i class="fa fa-circle"></i>
+                            <span>At least 1 digit (0...9)</span>
+                          </li>
+                          <li>
+                            <i class="fa fa-circle"></i>
+                            <span>At least 1 lowercase letter (a...z)</span>
+                          </li>
+                          <li>
+                            <i class="fa fa-circle"></i>
+                            <span>At least 1 special character (!...$)</span>
+                          </li>
+                          <li>
+                            <i class="fa fa-circle"></i>
+                            <span>At least 1 uppercase letter (A...Z)</span>
+                          </li>
+                        </ul>
+                      </div>
+                </div>
+
+            </div>
+        </div>
+
+
     </div>
-</div>
+
+
+</section>
+
+
+
 
 @endsection
 

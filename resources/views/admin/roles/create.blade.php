@@ -7,14 +7,24 @@ Add Role
 
 @section('body')
 
-<div class="content-body">
-<div class="container-fluid">
-    <div class="row page-titles">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item active">Setting</li>
-            <li class="breadcrumb-item">Add Role</li>
-        </ol>
+
+
+
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="d-flex align-items-center">
+        <div class="me-auto">
+            <h4 class="page-title">Add Role Information</h4>
+        </div>
+
     </div>
+</div>
+
+<section class="content">
+    <div class="row">
+        <div class="col-12">
+            <div class="box">
+                <div class="box-body">
 
                     <form class="custom-validation" action="{{ route('role.store') }}" method="post" enctype="multipart/form-data" id="form">
                         @csrf
@@ -91,13 +101,13 @@ Add Role
                             </div>
                         </div> <!-- end col -->
                     </form>
-
-
-
-
+                </div>
+            </div>
+        </div>
     </div>
-</div>
-</div>
+</section>
+
+
 @endsection
 @section('script')
 

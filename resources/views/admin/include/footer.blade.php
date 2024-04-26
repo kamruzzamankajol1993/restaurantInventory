@@ -10,7 +10,5 @@
             </li>
         </ul>
     </div>
-    &copy; 2021 <a href="https://www.multipurposethemes.com/">Progga</a>. All Rights Reserved.
+    &copy; 2024 <a href="{{ route('admin.dashboard') }}">{{ $ins_name }}</a>. All Rights Reserved.
 </footer>
-
-

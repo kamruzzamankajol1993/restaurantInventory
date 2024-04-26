@@ -29,19 +29,19 @@ class CategoryController extends Controller
     public function index(){
 
 
-        if (is_null($this->user) || !$this->user->can('menuView')) {
+        if (is_null($this->user) || !$this->user->can('categoryView')) {
 
             return redirect()->route('mainLogin');
         }
 
         try{
 
-            \LogActivity::addToLog('Menu list ');
+            \LogActivity::addToLog('category list ');
 
 
-            $menuList = Category::orderBy('id','desc')->get();
+            $menuList = Category::orderBy('id','asc')->get();
 
-            return view('admin.menuList.index',compact('menuList'));
+            return view('admin.categoryList.index',compact('menuList'));
 
         } catch (\Exception $e) {
             return redirect()->back()->with('error','some thing went wrong ');
@@ -51,16 +51,16 @@ class CategoryController extends Controller
     public function create(){
 
 
-        if (is_null($this->user) || !$this->user->can('menuAdd')) {
+        if (is_null($this->user) || !$this->user->can('categoryAdd')) {
 
             return redirect()->route('mainLogin');
         }
 
         try{
 
-            \LogActivity::addToLog('Menu Add ');
+            \LogActivity::addToLog('category Add ');
 
-            return view('admin.menuList.create');
+            return view('admin.categoryList.create');
 
         } catch (\Exception $e) {
             return redirect()->back()->with('error','some thing went wrong ');
@@ -70,18 +70,18 @@ class CategoryController extends Controller
 
     public function store(Request $request){
 
-        if (is_null($this->user) || !$this->user->can('menuAdd')) {
+        if (is_null($this->user) || !$this->user->can('categoryAdd')) {
 
             return redirect()->route('mainLogin');
         }
 
 
-       // dd($request->all());
+        //dd($request->all());
 
         $request->validate([
             'category_name' => 'required',
             'image' => 'required',
-            'status' => 'required',
+            // 'status' => 'required',
           ]);
 
 
@@ -90,28 +90,39 @@ class CategoryController extends Controller
 
             DB::beginTransaction();
 
-           \LogActivity::addToLog('Menu store ');
+           \LogActivity::addToLog('Category store ');
+
+
+
+           $categoryListLast = Category::orderBy('id','desc')->value('priority');
+
+           if(empty($categoryListLast)){
+
+                 $mainIdList = 1;
+
+           }else{
+            $mainIdList =$categoryListLast +1;
+
+           }
 
 
 
            $filePath = 'categoryImage';
 
-           if ($request->hasfile('image')) {
-               $file = $request->file('image');
-           }
 
            Category::create([
-            'com_image'=>CommonController::storeBase64(600,600,$filePath,$request->image_base64),
-            'web_image'=>CommonController::storeBase64(400,400,$filePath,$request->image_base64),
-            'image'=>CommonController::storeBase64(200,200,$filePath,$request->image_base64),
+
+            'web_image'=>CommonController::compressImage(800,100,$filePath,$request->image),
+            'image'=>CommonController::compressImage(100,100,$filePath,$request->web_image),
             'category_name'=>$request->category_name,
             'category_slug'=>Str::slug($request->category_name),
-            'status'=>$request->status
+            'status'=>1,
+            'priority'=>$mainIdList
            ]);
 
            DB::commit();
 
-           return redirect()->route('menuList.index')->with('success','Added successfully!');
+           return redirect()->route('categoryList.index')->with('success','Added successfully!');
 
         } catch (\Exception $e) {
 
@@ -126,18 +137,18 @@ class CategoryController extends Controller
     public function edit($id){
 
 
-        if (is_null($this->user) || !$this->user->can('menuUpdate')) {
+        if (is_null($this->user) || !$this->user->can('categoryUpdate')) {
 
             return redirect()->route('mainLogin');
         }
 
         try{
 
-            \LogActivity::addToLog('Menu Edit ');
+            \LogActivity::addToLog('category Edit ');
 
             $menuLists = Category::find($id);
 
-            return view('admin.menuList.edit',compact('menuLists'));
+            return view('admin.categoryList.edit',compact('menuLists'));
 
         } catch (\Exception $e) {
             return redirect()->back()->with('error','some thing went wrong ');
@@ -147,7 +158,7 @@ class CategoryController extends Controller
 
     public function update(Request $request,$id){
 
-        if (is_null($this->user) || !$this->user->can('menuUpdate')) {
+        if (is_null($this->user) || !$this->user->can('categoryUpdate')) {
 
             return redirect()->route('mainLogin');
         }
@@ -157,7 +168,7 @@ class CategoryController extends Controller
 
             DB::beginTransaction();
 
-           \LogActivity::addToLog('Menu update');
+           \LogActivity::addToLog('category update');
 
 
 
@@ -193,7 +204,7 @@ class CategoryController extends Controller
 
         DB::commit();
 
-        return redirect()->route('menuList.index')->with('info','Updated successfully!');
+        return redirect()->route('categoryList.index')->with('info','Updated successfully!');
 
         } catch (\Exception $e) {
 
@@ -205,14 +216,14 @@ class CategoryController extends Controller
 
     public function destroy($id){
 
-            if (is_null($this->user) || !$this->user->can('menuDelete')) {
+            if (is_null($this->user) || !$this->user->can('categoryDelete')) {
 
                 return redirect()->route('mainLogin');
             }
 
             try{
                 DB::beginTransaction();
-                \LogActivity::addToLog('Menu delete ');
+                \LogActivity::addToLog('category delete ');
 
 
                 $checkPreviousFile = Category::where('id',$id)->value('image');
@@ -225,7 +236,7 @@ class CategoryController extends Controller
                 Category::destroy($id);
 
                 DB::commit();
-                return redirect()->route('menuList.index')->with('error','Deleted successfully!');
+                return redirect()->route('categoryList.index')->with('error','Deleted successfully!');
 
         } catch (\Exception $e) {
             DB::rollBack();

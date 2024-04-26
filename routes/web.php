@@ -21,6 +21,8 @@ use App\Http\Controllers\Admin\UnitController;
 use App\Http\Controllers\Admin\ExpenseCategoryController;
 use App\Http\Controllers\Admin\LeaveTypeController;
 use App\Http\Controllers\Admin\SupplierController;
+use App\Http\Controllers\Admin\CustomerController;
+use App\Http\Controllers\Admin\SubCategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,10 +59,15 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::group(['prefix' => 'admin'], function () {
 
+
+    Route::resource('customer', CustomerController::class);
+
+
     Route::resource('tableList', TableController::class);
     Route::resource('qrCodeList', QrCodeController::class);
     Route::resource('foodList', FoodController::class);
-    Route::resource('menuList', CategoryController::class);
+    Route::resource('categoryList', CategoryController::class);
+    Route::resource('subcategoryList', SubCategoryController::class);
     Route::resource('unitList', UnitController::class);
     Route::resource('expenseCategoryList',ExpenseCategoryController::class);
     Route::resource('leaveTypeList',LeaveTypeController::class);

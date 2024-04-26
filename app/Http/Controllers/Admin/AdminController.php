@@ -169,12 +169,7 @@ class AdminController extends Controller
         $admins->password = Hash::make(12345678);
         $admins->address = $request->address;
         $admins->nid_number = $request->nid_number;
-        $admins->hire_date = $request->hire_date;
-        $admins->salary = $request->salary;
-        $admins->is_supervisor = $request->is_supervisor;
-        $admins->emergency_contact_number = $request->emergency_contact_number;
-        $admins->status = $request->status;
-        $admins->supervisor_name = $request->supervisor_name;
+        $admins->present_address = $request->present_address;
         $admins->admin_name = $request->name;
         $admins->admin_name_ban = $request->name_ban;
         $admins->designation_list_id = $request->designation_list_id;
@@ -182,18 +177,18 @@ class AdminController extends Controller
         $admins->admin_mobile = $request->phone;
         $admins->email = $request->email;
         $filePath = 'adminImage';
-        if ($request->hasfile('image')) {
+        if ($request->hasfile('employee_image')) {
 
 
-            $file = $request->file('image');
+            $file = $request->file('employee_image');
             $admins->admin_image =  CommonController::imageUpload($request,$file,$filePath);
 
         }
 
-        if ($request->hasfile('sign')) {
+        if ($request->hasfile('employee_nid')) {
 
-            $file = $request->file('sign');
-            $admins->admin_sign =  CommonController::imageUpload($request,$file,$filePath);
+            $file = $request->file('employee_nid');
+            $admins->nid_image =  CommonController::imageUpload($request,$file,$filePath);
 
         }
 
@@ -237,47 +232,29 @@ class AdminController extends Controller
 
         // Create New User
         $admins = Admin::find($id);
-        $admins->admin_name = $request->name;
-        $admins->admin_name_ban = $request->name_ban;
-        $admins->admin_mobile = $request->phone;
-        $admins->email = $request->email;
-        $admins->designation_list_id = $request->designation_list_id;
+        $admins->password = Hash::make(12345678);
         $admins->address = $request->address;
         $admins->nid_number = $request->nid_number;
-        $admins->hire_date = $request->hire_date;
-        $admins->salary = $request->salary;
-        $admins->is_supervisor = $request->is_supervisor;
-        $admins->emergency_contact_number = $request->emergency_contact_number;
-        $admins->status = $request->status;
-        $admins->password = Hash::make(12345678);
-        $admins->supervisor_name = $request->supervisor_name;
-
+        $admins->present_address = $request->present_address;
+        $admins->admin_name = $request->name;
+        $admins->admin_name_ban = $request->name_ban;
+        $admins->designation_list_id = $request->designation_list_id;
+        $admins->branch_id = 1;
+        $admins->admin_mobile = $request->phone;
+        $admins->email = $request->email;
         $filePath = 'adminImage';
-        if ($request->hasfile('image')) {
+        if ($request->hasfile('employee_image')) {
 
 
-            $file = $request->file('image');
+            $file = $request->file('employee_image');
             $admins->admin_image =  CommonController::imageUpload($request,$file,$filePath);
 
         }
 
-        if ($request->hasfile('sign')) {
+        if ($request->hasfile('employee_nid')) {
 
-            $file = $request->file('sign');
-            $admins->admin_sign =  CommonController::imageUpload($request,$file,$filePath);
-
-        }
-
-
-        if($adminEmail == $request->email){
-
-
-
-        }else{
-            // Mail::send('emails.passwordChangeEmail', ['id' =>$request->email], function($message) use($request){
-            //     $message->to($request->email);
-            //     $message->subject('NGOAB Password Set');
-            // });
+            $file = $request->file('employee_nid');
+            $admins->nid_image =  CommonController::imageUpload($request,$file,$filePath);
 
         }
 

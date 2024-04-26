@@ -86,7 +86,7 @@ class SystemInformationController extends Controller
             $directory = 'public/uploads/';
             $imageUrl = $directory.$imageName;
 
-            $img=Image::make($productImage)->resize(204,45);
+            $img=Image::make($productImage)->resize(551,228);
             $img->save($imageUrl);
 
              $systemInformation->system_logo =  'public/uploads/'.$imageName;
@@ -149,7 +149,7 @@ class SystemInformationController extends Controller
             $directory = 'public/uploads/';
             $imageUrl = $directory.$imageName;
 
-            $img=Image::make($productImage)->resize(204,45);
+            $img=Image::make($productImage)->resize(551,228);
             $img->save($imageUrl);
 
              $systemInformation->system_logo =  'public/uploads/'.$imageName;

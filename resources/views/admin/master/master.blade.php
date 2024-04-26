@@ -30,7 +30,7 @@
 <link rel="stylesheet" href="https://parsleyjs.org/src/parsley.css">
 <link href='https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/ui-lightness/jquery-ui.css'rel='stylesheet'>
 <script src="{{ asset('/')}}public/parsely1.js"></script>
- @yield('css')
+
 
  @yield('css')
  <style>
@@ -138,7 +138,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-icons/3.0.0/iconfont/material-icons.min.css" integrity="sha512-mRuH7OxetZB1XiSaKZ2fxENKgxVvx3ffpzX0FUcaP6GBqAuqOLc8YiC/3EVTUVt5p5mIRT5D9i4LitZUQKWNCg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 
-<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+{{-- <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" /> --}}
 </head>
 
 <body class="hold-transition light-skin sidebar-mini theme-primary fixed">
@@ -210,15 +210,17 @@ Control Section  end
 <script src="{{ asset('/') }}public/admin/assets/js/vendors.min.js"></script>
 <script src="{{ asset('/') }}public/admin/assets/js/pages/chat-popup.js"></script>
 <script src="{{ asset('/') }}public/admin/assets/vendor_components/apexcharts-bundle/dist/apexcharts.min.js"></script>
-
+<script src="{{ asset('/') }}public/admin/assets/vendor_components/datatable/datatables.min.js"></script>
 <script src="{{ asset('/') }}public/admin/assets/vendor_components/progressbar.js-master/dist/progressbar.js"></script>
 <script src="{{ asset('/') }}public/admin/assets/vendor_components/OwlCarousel2/dist/owl.carousel.js"></script>
-
+<script src="{{ asset('/') }}public/admin/assets/vendor_components/bootstrap-select/dist/js/bootstrap-select.js"></script>
+	<script src="{{ asset('/') }}public/admin/assets/vendor_components/select2/dist/js/select2.full.js"></script>
 <!-- Riday Admin App -->
 <script src="{{ asset('/') }}public/admin/assets/js/template.js"></script>
 <script src="{{ asset('/') }}public/admin/assets/js/pages/dashboard3.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-
+<script src="{{ asset('/') }}public/admin/assets/js/pages/data-table.js"></script>
+{{-- <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> --}}
+<script src="{{ asset('/') }}public/admin/assets/js/pages/advanced-form-element.js"></script>
 <script src="https://unpkg.com/sweetalert2@7.19.1/dist/sweetalert2.all.js"></script>
 <script type="text/javascript">
     function deleteTag(id) {

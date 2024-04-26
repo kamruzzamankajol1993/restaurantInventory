@@ -234,15 +234,27 @@ $usr = Auth::guard('admin')->user();
                 <!-- User Account-->
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle p-0 text-dark hover-primary ms-md-30 ms-10" data-bs-toggle="dropdown" title="User">
-                        <span class="ps-30 d-md-inline-block d-none">Hello,</span> <strong class="d-md-inline-block d-none">Alia</strong><img src="{{ asset('/') }}public/admin/assets/images/avatar/avatar-11.png" class="user-image rounded-circle avatar bg-white mx-10" alt="User Image">
+                        <span class="ps-30 d-md-inline-block d-none">Hello,</span> <strong class="d-md-inline-block d-none">{{ Auth::guard('admin')->user()->admin_name }}</strong>
+                        @if(empty(Auth::guard('admin')->user()->admin_image))
+                        <img src="{{ asset('/') }}public/admin/assets/images/avatar/avatar-10.png" class="user-image rounded-circle avatar bg-white mx-10" alt="User Image">
+                        @else
+                        <img src="{{asset('/')}}{{ Auth::guard('admin')->user()->admin_image }}" class="user-image rounded-circle avatar bg-white mx-10" alt="User Image">
+
+                        @endif
+
                     </a>
                     <ul class="dropdown-menu animated flipInX">
                         <li class="user-body">
-                            <a class="dropdown-item" href="#"><i class="ti-user text-muted me-2"></i> Profile</a>
-                            <a class="dropdown-item" href="#"><i class="ti-wallet text-muted me-2"></i> My Wallet</a>
-                            <a class="dropdown-item" href="#"><i class="ti-settings text-muted me-2"></i> Settings</a>
+                            <a class="dropdown-item" href="{{ route('profile.index') }}"><i class="ti-user text-muted me-2"></i> Profile</a>
+                            {{-- <a class="dropdown-item" href="#"><i class="ti-wallet text-muted me-2"></i> My Wallet</a> --}}
+                            <a class="dropdown-item" href="{{ route('setting.index') }}"><i class="ti-settings text-muted me-2"></i> Settings</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#"><i class="ti-lock text-muted me-2"></i> Logout</a>
+                            <a class="dropdown-item" href="{{ route('admin.logout.submit') }}"  onclick="event.preventDefault();
+                            document.getElementById('admin-logout-form').submit();"><i class="ti-lock text-muted me-2"></i> Logout</a>
+
+                            <form id="admin-logout-form" action="{{ route('admin.logout.submit') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
                         </li>
                     </ul>
                 </li>

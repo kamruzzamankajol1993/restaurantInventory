@@ -6,45 +6,37 @@ Role List
 
 
 @section('body')
-<div class="content-body">
-<div class="container-fluid">
-
-
-    <div class="row page-titles">
-        <div class="row">
-            <div class="col-lg-6 col-md-6 col-sm-12">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item active">Setting</li>
-                    <li class="breadcrumb-item">Role Information </li>
-                </ol>
-            </div>
-            @if (Auth::guard('admin')->user()->can('roleAdd'))
-            <div class="col-lg-6 col-md-6 col-sm-12">
-                <div style="text-align: right;">
-                    <a href="{{ route('role.create') }}" type="button" class="btn btn-primary btn-sm">Add New Role<span class="btn-icon-end"><i class="fa fa-plus"></i></span></a>
-                </div>
-            </div>
-            @endif
 
 
 
-
-
-
-
+ <!-- Content Header (Page header) -->
+ <div class="content-header">
+    <div class="d-flex align-items-center">
+        <div class="me-auto">
+            <h4 class="page-title">Role Information</h4>
         </div>
+
     </div>
+    <div class="row">
 
-        <!-- end page title -->
 
+        <div class="col-lg-12 col-md-12 col-sm-12">
+            <div style="text-align: right;">
+                <a href="{{ route('role.create') }}" type="button" class="btn btn-primary">Add New Role<span class="btn-icon-end"><i class="fa fa-plus"></i></span></a>
+            </div>
+        </div>
 
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="card">
-                  <div class="card-body">
-                        @include('flash_message')
-                        <div class="table-responsive">
-                            <table id="example3" class="display">
+    </div>
+</div>
+
+<section class="content">
+    <div class="row">
+        <div class="col-12">
+            <div class="box">
+                <div class="box-body">
+
+                    <div class="table-responsive">
+                        <table id="example" class="table table-bordered table-hover display nowrap margin-top-10 w-p100">
                             <thead>
                                 <tr>
 
@@ -133,13 +125,12 @@ Role List
 
                         </table>
                         </div>
-                    </div>
                 </div>
             </div>
-        </div><!--end row-->
+        </div>
     </div>
-</div>
-</div>
+</section>
+
 @endsection
 
 @section('script')

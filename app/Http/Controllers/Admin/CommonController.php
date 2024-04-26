@@ -35,7 +35,7 @@ class CommonController extends Controller
         return $finalFile;
     }
 
-    public static  function compressImage($height,$weight,$request,$filePath,$file){
+    public static  function compressImage($height,$weight,$filePath,$file){
 
 
         $path = public_path('uploads/'.$filePath);

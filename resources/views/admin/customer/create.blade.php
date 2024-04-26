@@ -1,7 +1,7 @@
 @extends('admin.master.master')
 
 @section('title')
-Add Employee
+Add Customer
 @endsection
 
 
@@ -13,14 +13,14 @@ Add Employee
 <div class="content-header">
     <div class="d-flex align-items-center">
         <div class="me-auto">
-            <h4 class="page-title">Employee Add</h4>
+            <h4 class="page-title">Customer Add</h4>
         </div>
 
     </div>
 </div>
 
 <section class="content">
-    <form class="custom-validation" action="{{ route('user.store') }}" method="post" enctype="multipart/form-data" id="form" data-parsley-validate="">
+    <form class="custom-validation" action="{{ route('customer.store') }}" method="post" enctype="multipart/form-data" id="form" data-parsley-validate="">
         @csrf
     <div class="row">
         <div class="col-lg-6 col-sm-12">
@@ -33,7 +33,7 @@ Add Employee
 
 @include('flash_message')
                         <div class="form-group">
-                            <label class="fw-700 fs-16 form-label">Employee Name</label>
+                            <label class="fw-700 fs-16 form-label">Customer Name</label>
 
                             <input type="text" class="form-control" id="name" name="name" data-parsley-maxlength="150" placeholder="Name" required>
 
@@ -52,7 +52,7 @@ Add Employee
                       @endif
                         </div>
                         <div class="form-group">
-                            <label class="fw-700 fs-16 form-label">Employee Email</label>
+                            <label class="fw-700 fs-16 form-label">Customer Email</label>
                             <input type="text" class="form-control form-control-sm" data-parsley-maxlength="100" id="email" name="email" placeholder="Email" required>
 
                             @if ($errors->has('email'))
@@ -60,41 +60,32 @@ Add Employee
                       @endif
                         </div>
                         <div class="form-group">
-                            <label class="fw-700 fs-16 form-label">Permanent Address</label>
+                            <label class="fw-700 fs-16 form-label">Address</label>
                             <input type="text" name="address" class="form-control" placeholder="Address" required>
                         </div>
+
+
                         <div class="form-group">
-                            <label class="fw-700 fs-16 form-label">Present Address</label>
-                            <input type="text" name="present_address" class="form-control" placeholder="Address" required>
-                        </div>
-                        <div class="form-group">
-                            <label class="fw-700 fs-16 form-label">NID Number</label>
-                            <input type="text" name="nid_number" class="form-control" placeholder="Nid Number" required>
-                        </div>
-                        <div class="form-group">
-                            <label class="fw-700 fs-16 form-label">Designation</label>
-                            <select name="designation_list_id" required class="select2 form-control ms-0 wide">
+                            <label class="fw-700 fs-16 form-label">Customer Type</label>
+                            <select name="type" required class="select2 form-control ms-0 wide">
                                 <option value="">Choose...</option>
-                                @foreach($designationLists as $designationListsAll)
-                                <option value="{{ $designationListsAll->id }}">{{ $designationListsAll->designation_name }}</option>
-                                @endforeach
+
+                                <option value="Regular">Regular</option>
+                                <option value="Premium">Premium</option>
                             </select>
                         </div>
 
                         <div class="form-group">
-                            <label class="fw-700 fs-16 form-label">Role</label>
-                            {{-- <select name="roles[]" id="roles" multiple="multiple"  class="form-control form-control-sm js-example-basic-multiple" required> --}}
+                            <label class="fw-700 fs-16 form-label">Reward Point Availabe?</label>
+                            <select name="reward_point" required class="select2 form-control ms-0 wide">
+                                <option value="">Choose...</option>
 
-
-                                <select name="roles[]" class="form-control select2" multiple="multiple" data-placeholder="Select a Role"
-								style="width: 100%;" required>
-
-
-                                @foreach ($roles as $role)
-                                 <option value="{{ $role->name }}">{{ $role->name }}</option>
-                                @endforeach
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
                             </select>
                         </div>
+
+
 
                 </div>
             </div>
@@ -107,26 +98,14 @@ Add Employee
                         <img id="blahone" src="{{ asset('/') }}public/admin/assets/images/progga_images/demo_product/img2.jpg" alt=""
                              class="mb-15">
                         <div class="mb-3">
-                            <label class="form-label">Employee Images</label>
+                            <label class="form-label">Customer Images</label>
                             <small class="text-danger"> * (Ratio 1:1)</small>
                             <input class="form-control" name="employee_image" accept="image/*" type='file' id="imgInpone" required/>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="box">
-                <div class="box-body">
-                    <div class="category_demo text-start">
-                        <img id="blah" src="{{ asset('/') }}public/admin/assets/images/progga_images/demo_product/img2.jpg" alt=""
-                             class="mb-15">
-                        <div class="mb-3">
-                            <label class="form-label">Employee NID</label>
-                            <small class="text-danger"> * (Ratio 1:1)</small>
-                            <input class="form-control" name="employee_nid" accept="image/*" type='file' id="imgInp" required/>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
         </div>
 
     </div>

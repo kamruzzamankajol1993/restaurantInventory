@@ -94,7 +94,7 @@
                 <ul aria-expanded="false">
                     <li><a href="product_purchase_list.php">Purchase List</a></li>
                     <li><a href="add_product_purchase.php">Add Purchase</a></li>
-                    
+
                     @if ($usr->can('supplierAdd') || $usr->can('supplierView') ||  $usr->can('supplierDelete') ||  $usr->can('supplierUpdate'))
                     <li class="{{ Route::is('supplierList.index') || Route::is('supplierList.edit') || Route::is('supplierList.create') ? 'mm-active' : '' }}"><a href="{{ route('supplierList.index') }}" class="{{ Route::is('supplierList.index') || Route::is('supplierList.edit') || Route::is('supplierList.create') ? 'mm-active' : '' }}">Supplier List</a></li>
                     @endif
@@ -193,9 +193,7 @@
 
 
 
-                    @if ($usr->can('unitAdd') || $usr->can('unitView') ||  $usr->can('unitDelete') ||  $usr->can('unitUpdate'))
-                    <li class="{{ Route::is('unitList.index') || Route::is('unitList.edit') || Route::is('unitList.create') ? 'mm-active' : '' }}"><a href="{{ route('unitList.index') }}" class="{{ Route::is('unitList.index') || Route::is('unitList.edit') || Route::is('unitList.create') ? 'mm-active' : '' }}">Unit List</a></li>
-                    @endif
+                    
 
                @if ($usr->can('systemInformationAdd') || $usr->can('systemInformationView') || $usr->can('systemInformationDelete') || $usr->can('systemInformationUpdate'))
                <li class="{{ Route::is('systemInformation.index') ? 'mm-active' : '' }}">

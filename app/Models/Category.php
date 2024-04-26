@@ -11,6 +11,6 @@ class Category extends Model
 
     protected $table = "categories";
 
-    protected $fillable = ['com_image','web_image','image','category_name','category_slug','status'];
+    protected $fillable = ['priority','web_image','image','category_name','category_slug','status'];
 
 }

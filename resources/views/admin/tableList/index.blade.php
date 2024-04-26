@@ -10,26 +10,33 @@ Table List | {{ $ins_name }}
 @endsection
 
 @section('body')
-<div class="content-body">
-<div class="container-fluid">
 
-    <div class="row page-titles">
-        <div class="row">
-            <div class="col-lg-6 col-md-6 col-sm-12">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item active">Food & Table Management</li>
-                    <li class="breadcrumb-item">Table Information </li>
-                </ol>
-            </div>
+
+<div class="content-header">
+    <div class="d-flex align-items-center">
+        <div class="me-auto">
+            <h4 class="page-title">Table Information </h4>
+        </div>
+
+    </div>
+    <div class="row">
+
+
+        <div class="col-lg-12 col-md-12 col-sm-12">
             @if (Auth::guard('admin')->user()->can('tableAdd'))
-            <div class="col-lg-6 col-md-6 col-sm-12">
-                <div style="text-align: right;">
-                    <button type="button" data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg"class="btn btn-primary btn-sm">Add New Table<span class="btn-icon-end"><i class="fa fa-plus"></i></span></button>
-                </div>
+            <div style="text-align: right;">
+                <button type="button" data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg"class="btn btn-primary btn-sm">Add New Table<span class="btn-icon-end"><i class="fa fa-plus"></i></span></button>
             </div>
             @endif
         </div>
+
     </div>
+</div>
+
+
+
+<section class="content">
+
 
     <div class="row">
         <!-- Individual column searching (text inputs) Starts-->
@@ -41,7 +48,7 @@ Table List | {{ $ins_name }}
                     @include('flash_message')
                     <div class="table-responsive">
 
-                            <table id="example3" class="display">
+                        <table id="example" class="table table-bordered table-hover display nowrap margin-top-10 w-p100">
                             <thead>
                             <tr>
                                 <th>Sl</th>
@@ -59,7 +66,7 @@ Table List | {{ $ins_name }}
 
                                 <td>
 
-                                    
+
 
 
                                     <?php $waiter_name = DB::table('admins')
@@ -121,7 +128,7 @@ Table List | {{ $ins_name }}
 
                             @if (Auth::guard('admin')->user()->can('tableDelete'))
 
-<button   type="button" class="btn btn-danger shadow btn-xs sharp" onclick="deleteTag({{ $tableLists->id}})" data-toggle="tooltip" title="Delete"><i class="fas fa-trash"></i></button>
+<button   type="button" class="btn btn-danger shadow btn-xs sharp" onclick="deleteTag({{ $tableLists->id}})" data-toggle="tooltip" title="Delete"><i class="fa fa-trash"></i></button>
               <form id="delete-form-{{ $tableLists->id }}" action="{{ route('tableList.destroy',$tableLists->id) }}" method="POST" style="display: none;">
                 @method('DELETE')
                                               @csrf
@@ -143,7 +150,7 @@ Table List | {{ $ins_name }}
     </div>
 </div>
 <!-- Container-fluid Ends-->
-</div>
+</section>
 
 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">

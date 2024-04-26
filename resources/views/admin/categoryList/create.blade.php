@@ -91,7 +91,21 @@ Add Menu
 @endsection
 
 @section('script')
+<script>
+    imgInp.onchange = evt => {
+  const [file] = imgInp.files
+  if (file) {
+    blah.src = URL.createObjectURL(file)
+  }
+}
 
+imgInpone.onchange = evt => {
+  const [file] = imgInpone.files
+  if (file) {
+    blahone.src = URL.createObjectURL(file)
+  }
+}
+</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.js"></script>
 <script>
 

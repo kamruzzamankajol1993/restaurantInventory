@@ -6,179 +6,181 @@ Permission List
 
 
 @section('body')
-<div class="content-body">
-<div class="container-fluid">
 
-    <div class="row page-titles">
-        <div class="row">
-            <div class="col-lg-6 col-md-6 col-sm-12">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item active">Setting</li>
-                    <li class="breadcrumb-item">Permission Information </li>
-                </ol>
-            </div>
-            @if (Auth::guard('admin')->user()->can('permissionAdd'))
-            <div class="col-lg-6 col-md-6 col-sm-12">
-                <div style="text-align: right;">
-                    <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-primary btn-sm">Add New Permission<span class="btn-icon-end"><i class="fa fa-plus"></i></span></button>
-                </div>
-            </div>
-            @endif
+
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="d-flex align-items-center">
+        <div class="me-auto">
+            <h4 class="page-title">Permission Information</h4>
         </div>
+
     </div>
 
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="card">
+    <div class="row">
 
-                    <div class="card-body">
-                        @include('flash_message')
-                        <table id="example3" class="display" >
-                            <thead>
-                                <tr>
+        @if (Auth::guard('admin')->user()->can('permissionAdd'))
+        <div class="col-lg-12 col-md-12 col-sm-12">
+            <div style="text-align: right;">
+                <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-primary ">Add New Permission<span class="btn-icon-end"><i class="fa fa-plus"></i></span></button>
+            </div>
+        </div>
+        @endif
+    </div>
+</div>
 
-                                    <th>Group Name</th>
-                                    <th>Permission Name</th>
+<section class="content">
+    <div class="row">
+        <div class="col-12">
+            <div class="box">
+                <div class="box-body">
 
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach($pers as $key=>$allPermissionGroup)
-                                <tr>
+                    @include('flash_message')
+                    <div class="table-responsive">
+                        <table id="example" class="table table-bordered table-hover display nowrap margin-top-10 w-p100">
+                        <thead>
+                            <tr>
 
-                                    <td>{{ $allPermissionGroup->group_name }}</td>
-                                    <td>
+                                <th>Group Name</th>
+                                <th>Permission Name</th>
 
-                                        <?php
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($pers as $key=>$allPermissionGroup)
+                            <tr>
+
+                                <td>{{ $allPermissionGroup->group_name }}</td>
+                                <td>
+
+                                    <?php
 
 $permissionList = DB::table('permissions')->where('group_name',$allPermissionGroup->group_name)
 ->select('name')->get();
 
-                                            ?>
+                                        ?>
 
-                                       @foreach($permissionList as $allPermissionList)
+                                   @foreach($permissionList as $allPermissionList)
 
-                                       <span class="badge bg-success">{{ $allPermissionList->name }}</span>
+                                   <span class="badge bg-success">{{ $allPermissionList->name }}</span>
 
-                                       @endforeach
+                                   @endforeach
 
-                                    </td>
+                                </td>
 
-                                    <td>
+                                <td>
 
-                                        <div class="hstack gap-3 fs-15">
+                                    <div class="hstack gap-3 fs-15">
 
-                                        <a data-bs-toggle="modal" data-bs-target="#exampleModal{{ $key+1 }}" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fa fa-edit"></i></a>
+                                    <a data-bs-toggle="modal" data-bs-target="#exampleModal{{ $key+1 }}" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fa fa-edit"></i></a>
 
 
-                                        <div class="modal fade" id="exampleModal{{ $key+1 }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog">
-                                              <div class="modal-content">
-                                                <div class="modal-header">
-                                                  <h1 class="modal-title fs-5" id="exampleModalLabel">Update Information</h1>
-                                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <div class="modal fade" id="exampleModal{{ $key+1 }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                          <div class="modal-content">
+                                            <div class="modal-header">
+                                              <h1 class="modal-title fs-5" id="exampleModalLabel">Update Information</h1>
+                                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+
+                                                <div class="progress" style="display: none;">
+                                                    <div class="bar"></div >
+                                                    <div class="percent">0%</div >
                                                 </div>
-                                                <div class="modal-body">
 
-                                                    <div class="progress" style="display: none;">
-                                                        <div class="bar"></div >
-                                                        <div class="percent">0%</div >
+
+                                                <form id="form" method="post" action="{{ route('permission.update',$allPermissionGroup->group_name)}}" enctype="multipart/form-data">
+                                                    @csrf
+                                                    @method('PUT')
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="mb-4">
+                                                                <label for="formrow-email-input" class="form-label">Group Name</label>
+                                                                <input type="text" name="group_name" value="{{ $allPermissionGroup->group_name }}"  class="form-control" placeholder="Group Name" required>
+                                                                <small></small>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-12">
+
+                                                            <table class="table table-bordered" id="dynamicAddRemovee{{ $key+1 }}">
+                                                                <tr>
+                                                                    <th>Permission Name</th>
+                                                                    <th>Action</th>
+                                                                </tr>
+                                                                @foreach($permissionList as $j=>$allPermissionList)
+                                                                @if($j == 0 )
+                                                                <tr id="mDelete{{ $j+50000 }}">
+                                                                    <td><input type="text" name="name[]" value="{{ $allPermissionList->name }}" placeholder="Enter Ename" id="name{{ $j+50000 }}" class="form-control" />
+                                                                    </td>
+                                                                    <td><button type="button" name="add" id="dynamic-arr{{ $key+1 }}" class="btn btn-primary">Add New</button></td>
+                                                                </tr>
+                                                                @else
+                                                                <tr id="mDelete{{ $j+50000 }}">
+                                                                    <td><input type="text" name="name[]" value="{{ $allPermissionList->name }}" placeholder="Enter Ename" id="name{{ $j+50000 }}" class="form-control" />
+                                                                    </td>
+                                                                    <td><button type="button" id="remove-input-fieldd{{ $j+50000 }}" class="btn btn-danger">Delete</button></td>
+                                                                </tr>
+
+                                                                @endif
+                                                                @endforeach
+                                                            </table>
+
+                                                        </div>
+
+
+
+
+
+
                                                     </div>
 
 
-                                                    <form id="form" method="post" action="{{ route('permission.update',$allPermissionGroup->group_name)}}" enctype="multipart/form-data">
-                                                        @csrf
-                                                        @method('PUT')
-                                                        <div class="row">
-                                                            <div class="col-md-12">
-                                                                <div class="mb-4">
-                                                                    <label for="formrow-email-input" class="form-label">Group Name</label>
-                                                                    <input type="text" name="group_name" value="{{ $allPermissionGroup->group_name }}"  class="form-control" placeholder="Group Name" required>
-                                                                    <small></small>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-12">
-
-                                                                <table class="table table-bordered" id="dynamicAddRemovee{{ $key+1 }}">
-                                                                    <tr>
-                                                                        <th>Permission Name</th>
-                                                                        <th>Action</th>
-                                                                    </tr>
-                                                                    @foreach($permissionList as $j=>$allPermissionList)
-                                                                    @if($j == 0 )
-                                                                    <tr id="mDelete{{ $j+50000 }}">
-                                                                        <td><input type="text" name="name[]" value="{{ $allPermissionList->name }}" placeholder="Enter Ename" id="name{{ $j+50000 }}" class="form-control" />
-                                                                        </td>
-                                                                        <td><button type="button" name="add" id="dynamic-arr{{ $key+1 }}" class="btn btn-outline-primary">Add New</button></td>
-                                                                    </tr>
-                                                                    @else
-                                                                    <tr id="mDelete{{ $j+50000 }}">
-                                                                        <td><input type="text" name="name[]" value="{{ $allPermissionList->name }}" placeholder="Enter Ename" id="name{{ $j+50000 }}" class="form-control" />
-                                                                        </td>
-                                                                        <td><button type="button" id="remove-input-fieldd{{ $j+50000 }}" class="btn btn-outline-danger">Delete</button></td>
-                                                                    </tr>
-
-                                                                    @endif
-                                                                    @endforeach
-                                                                </table>
-
-                                                            </div>
 
 
 
 
+                                                    <div>
+                                                        <button type="submit" class="btn btn-primary w-md mt-3">Update</button>
+                                                    </div>
 
 
-                                                        </div>
-
-
-
-
-
-
-                                                        <div>
-                                                            <button type="submit" class="btn btn-primary w-md mt-3">Update</button>
-                                                        </div>
-
-
-                                                    </form>
-                                                </div>
-
-                                              </div>
+                                                </form>
                                             </div>
+
                                           </div>
-
-                                          <?php
-
-                                        $getIdFromGroup = DB::table('permissions')
-                                        ->where('group_name',$allPermissionGroup->group_name)
-                                        ->value('id');
-                                          ?>
-
-
-                                          <a onclick="deleteTag({{ $getIdFromGroup}})" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
-
-                                          <form id="delete-form-{{ $getIdFromGroup }}" action="{{ route('permission.destroy',$getIdFromGroup) }}" method="POST" style="display: none;">
-                                            @method('DELETE')
-                                                                          @csrf
-
-                                                                      </form>
-
                                         </div>
-                                    </td>
-                                </tr>
-                                @endforeach
+                                      </div>
 
-                        </table>
-                    </div>
+                                      <?php
+
+                                    $getIdFromGroup = DB::table('permissions')
+                                    ->where('group_name',$allPermissionGroup->group_name)
+                                    ->value('id');
+                                      ?>
+
+
+                                      <a onclick="deleteTag({{ $getIdFromGroup}})" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
+
+                                      <form id="delete-form-{{ $getIdFromGroup }}" action="{{ route('permission.destroy',$getIdFromGroup) }}" method="POST" style="display: none;">
+                                        @method('DELETE')
+                                                                      @csrf
+
+                                                                  </form>
+
+                                    </div>
+                                </td>
+                            </tr>
+                            @endforeach
+
+                    </table>
+                </div>
                 </div>
             </div>
-        </div><!--end row-->
+        </div>
     </div>
-</div>
-</div>
-
+</section>
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -213,7 +215,7 @@ $permissionList = DB::table('permissions')->where('group_name',$allPermissionGro
                             <tr>
                                 <td><input type="text" name="name[]" placeholder="Permission Name" id="name0" class="form-control" />
                                 </td>
-                                <td><button type="button" name="add" id="dynamic-ar" class="btn btn-outline-primary">Add New</button></td>
+                                <td><button type="button" name="add" id="dynamic-ar" class="btn btn-primary">Add New</button></td>
                             </tr>
                         </table>
 
@@ -277,7 +279,7 @@ $permissionList = DB::table('permissions')->where('group_name',$allPermissionGro
     var i = 0;
     $("#dynamic-ar").click(function () {
         ++i;
-        $("#dynamicAddRemove").append('<tr><td><input type="text" name="name[]" id="name'+i+'" placeholder="Permission Name" class="form-control" /></td><td><button type="button" class="btn btn-outline-danger remove-input-field">Delete</button></td></tr>'
+        $("#dynamicAddRemove").append('<tr><td><input type="text" name="name[]" id="name'+i+'" placeholder="Permission Name" class="form-control" /></td><td><button type="button" class="btn btn-danger remove-input-field">Delete</button></td></tr>'
             );
     });
     $(document).on('click', '.remove-input-field', function () {
@@ -293,7 +295,7 @@ $permissionList = DB::table('permissions')->where('group_name',$allPermissionGro
         var main_id = $(this).attr('id');
         var id_for_pass = main_id.slice(11);
 
-        $("#dynamicAddRemovee"+id_for_pass).append('<tr id="mDelete'+i+'"><td><input type="text" name="name[]" id="name'+i+'" placeholder="Permission Name" class="form-control" /></td><td><button type="button" id="remove-input-field'+i+'" class="btn btn-outline-danger">Delete</button></td></tr>'
+        $("#dynamicAddRemovee"+id_for_pass).append('<tr id="mDelete'+i+'"><td><input type="text" name="name[]" id="name'+i+'" placeholder="Permission Name" class="form-control" /></td><td><button type="button" id="remove-input-field'+i+'" class="btn btn-danger">Delete</button></td></tr>'
             );
     });
 
