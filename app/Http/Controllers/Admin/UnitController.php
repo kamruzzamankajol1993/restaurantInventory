@@ -45,7 +45,7 @@ class UnitController extends Controller
             return view('admin.unitList.index',compact('unitList'));
 
         } catch (\Exception $e) {
-            return redirect()->back()->with('error','some thing went wrong ');
+            return redirect()->route('error_500');
         }
     }
 
@@ -110,7 +110,7 @@ class UnitController extends Controller
         } catch (\Exception $e) {
 
         DB::rollBack();
-        return redirect()->back()->with('error','some thing went wrong ');
+        return redirect()->route('error_500');
 
         }
 
@@ -136,7 +136,7 @@ class UnitController extends Controller
         } catch (\Exception $e) {
 
             DB::rollBack();
-            return redirect()->back()->with('error','some thing went wrong ');
+            return redirect()->route('error_500');
         }
     }
 }

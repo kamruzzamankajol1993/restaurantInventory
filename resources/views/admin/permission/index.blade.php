@@ -22,7 +22,9 @@ Permission List
         @if (Auth::guard('admin')->user()->can('permissionAdd'))
         <div class="col-lg-12 col-md-12 col-sm-12">
             <div style="text-align: right;">
-                <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-primary ">Add New Permission<span class="btn-icon-end"><i class="fa fa-plus"></i></span></button>
+                <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-primary btn-sm">
+                    <span class="btn-icon-end"><i class="fa fa-plus"></i></span> Add New Permission
+                </button>
             </div>
         </div>
         @endif
@@ -114,13 +116,13 @@ $permissionList = DB::table('permissions')->where('group_name',$allPermissionGro
                                                                 <tr id="mDelete{{ $j+50000 }}">
                                                                     <td><input type="text" name="name[]" value="{{ $allPermissionList->name }}" placeholder="Enter Ename" id="name{{ $j+50000 }}" class="form-control" />
                                                                     </td>
-                                                                    <td><button type="button" name="add" id="dynamic-arr{{ $key+1 }}" class="btn btn-primary">Add New</button></td>
+                                                                    <td><button type="button" name="add" id="dynamic-arr{{ $key+1 }}" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></button></td>
                                                                 </tr>
                                                                 @else
                                                                 <tr id="mDelete{{ $j+50000 }}">
                                                                     <td><input type="text" name="name[]" value="{{ $allPermissionList->name }}" placeholder="Enter Ename" id="name{{ $j+50000 }}" class="form-control" />
                                                                     </td>
-                                                                    <td><button type="button" id="remove-input-fieldd{{ $j+50000 }}" class="btn btn-danger">Delete</button></td>
+                                                                    <td><button type="button" id="remove-input-fieldd{{ $j+50000 }}" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button></td>
                                                                 </tr>
 
                                                                 @endif
@@ -142,7 +144,7 @@ $permissionList = DB::table('permissions')->where('group_name',$allPermissionGro
 
 
                                                     <div>
-                                                        <button type="submit" class="btn btn-primary w-md mt-3">Update</button>
+                                                        <button type="submit" class="btn btn-primary btn-sm w-md mt-3">Update</button>
                                                     </div>
 
 
@@ -215,7 +217,7 @@ $permissionList = DB::table('permissions')->where('group_name',$allPermissionGro
                             <tr>
                                 <td><input type="text" name="name[]" placeholder="Permission Name" id="name0" class="form-control" />
                                 </td>
-                                <td><button type="button" name="add" id="dynamic-ar" class="btn btn-primary">Add New</button></td>
+                                <td><button type="button" name="add" id="dynamic-ar" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></button></td>
                             </tr>
                         </table>
 
@@ -231,7 +233,7 @@ $permissionList = DB::table('permissions')->where('group_name',$allPermissionGro
 
 
                 <div>
-                    <button type="submit" class="btn btn-primary w-md mt-4">Submit</button>
+                    <button type="submit" class="btn btn-primary btn-sm w-md mt-4">Submit</button>
                 </div>
 
 
@@ -279,7 +281,7 @@ $permissionList = DB::table('permissions')->where('group_name',$allPermissionGro
     var i = 0;
     $("#dynamic-ar").click(function () {
         ++i;
-        $("#dynamicAddRemove").append('<tr><td><input type="text" name="name[]" id="name'+i+'" placeholder="Permission Name" class="form-control" /></td><td><button type="button" class="btn btn-danger remove-input-field">Delete</button></td></tr>'
+        $("#dynamicAddRemove").append('<tr><td><input type="text" name="name[]" id="name'+i+'" placeholder="Permission Name" class="form-control" /></td><td><button type="button" class="btn btn-danger btn-sm remove-input-field"><i class="fa fa-trash"></i></button></td></tr>'
             );
     });
     $(document).on('click', '.remove-input-field', function () {
@@ -295,7 +297,7 @@ $permissionList = DB::table('permissions')->where('group_name',$allPermissionGro
         var main_id = $(this).attr('id');
         var id_for_pass = main_id.slice(11);
 
-        $("#dynamicAddRemovee"+id_for_pass).append('<tr id="mDelete'+i+'"><td><input type="text" name="name[]" id="name'+i+'" placeholder="Permission Name" class="form-control" /></td><td><button type="button" id="remove-input-field'+i+'" class="btn btn-danger">Delete</button></td></tr>'
+        $("#dynamicAddRemovee"+id_for_pass).append('<tr id="mDelete'+i+'"><td><input type="text" name="name[]" id="name'+i+'" placeholder="Permission Name" class="form-control" /></td><td><button type="button" id="remove-input-field'+i+'" class="btn btn-danger btn-sm">Delete</button></td></tr>'
             );
     });
 

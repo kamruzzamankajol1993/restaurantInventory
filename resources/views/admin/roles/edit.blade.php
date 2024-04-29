@@ -49,7 +49,7 @@ Update Role
                       <div class="row">
                           <div class="col-md-3">
                               <div class="form-group">
-<input type="checkbox" id="{{ $i }}Management" value="{{ $group->name }}"  onclick="checkPermissionByGroup('role-{{ $i }}-management-checkbox', this)" {{  App\Models\Admin::roleHasPermissions($role, $permissions) ? 'checked' : '' }} class="filled-in"  />
+{{-- <input type="checkbox" id="{{ $i }}Management" value="{{ $group->name }}"  onclick="checkPermissionByGroup('role-{{ $i }}-management-checkbox', this)" {{  App\Models\Admin::roleHasPermissions($role, $permissions) ? 'checked' : '' }} class="filled-in"  /> --}}
                             <label for="checkPermission">{{ $group->name }}</label>
                               </div>
                           </div>
@@ -75,7 +75,7 @@ Update Role
                             @endforeach
 
 
-                        <button type="submit" class="btn btn-primary mt-4 pr-4 pl-4">Update</button>
+                        <button type="submit" class="btn btn-primary btn-sm mt-4 pr-4 pl-4">Update</button>
                     </form>
                 </div>
             </div>

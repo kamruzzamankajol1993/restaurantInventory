@@ -45,7 +45,7 @@ class FoodController extends Controller
             return view('admin.foodList.index',compact('menuList','foodList'));
 
         } catch (\Exception $e) {
-            return redirect()->back()->with('error','some thing went wrong ');
+            return redirect()->route('error_500');
         }
     }
 
@@ -64,7 +64,7 @@ class FoodController extends Controller
             return view('admin.foodList.create',compact('menuList'));
 
         } catch (\Exception $e) {
-            return redirect()->back()->with('error','some thing went wrong ');
+            return redirect()->route('error_500');
         }
     }
 }

@@ -21,7 +21,7 @@ Employee List  | {{ $ins_name }}
             @if (Auth::guard('admin')->user()->can('userAdd'))
             <div class="col-lg-12 col-md-12 col-sm-12">
                 <div style="text-align: right;">
-                    <a href="{{ route('user.create') }}" type="button" class="btn btn-primary btn-sm">Add New User<span class="btn-icon-end"><i class="fa fa-plus"></i></span></a>
+                    <a href="{{ route('user.create') }}" type="button" class="btn btn-primary btn-sm"><span class="btn-icon-end"><i class="fa fa-plus"></i></span> Add New Employee</a>
                 </div>
             </div>
             @endif

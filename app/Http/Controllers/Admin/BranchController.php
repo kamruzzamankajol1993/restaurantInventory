@@ -68,7 +68,7 @@ try{
           return view('admin.branchList.index',compact('branchLists','stepValue'));
 
         } catch (\Exception $e) {
-            return redirect()->back()->with('error','some thing went wrong ');
+            return redirect()->route('error_500');
         }
 
           //dd($stepValue);
@@ -106,7 +106,7 @@ try{
     return redirect()->route('branchList.index')->with('success','Added successfully!');
 } catch (\Exception $e) {
     DB::rollBack();
-    return redirect()->back()->with('error','some thing went wrong ');
+    return redirect()->route('error_500');
 }
 
 
@@ -134,7 +134,7 @@ try{
 
 } catch (\Exception $e) {
     DB::rollBack();
-    return redirect()->back()->with('error','some thing went wrong ');
+    return redirect()->route('error_500');
 }
 
         }
@@ -158,7 +158,7 @@ try{
 
     } catch (\Exception $e) {
         DB::rollBack();
-        return redirect()->back()->with('error','some thing went wrong ');
+        return redirect()->route('error_500');
     }
     }
 }

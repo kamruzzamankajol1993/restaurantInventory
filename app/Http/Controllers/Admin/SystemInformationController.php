@@ -38,7 +38,7 @@ class SystemInformationController extends Controller
         return view('admin.systemInformation.index',compact('systemInformation'));
 
     } catch (\Exception $e) {
-        return redirect()->back()->with('error','some thing went wrong ');
+        return redirect()->route('error_500');
     }
 
 
@@ -114,7 +114,7 @@ class SystemInformationController extends Controller
 
 } catch (\Exception $e) {
     DB::rollBack();
-    return redirect()->back()->with('error','some thing went wrong ');
+    return redirect()->route('error_500');
 }
 
     }
@@ -176,7 +176,7 @@ class SystemInformationController extends Controller
 
 } catch (\Exception $e) {
     DB::rollBack();
-    return redirect()->back()->with('error','some thing went wrong ');
+    return redirect()->route('error_500');
 }
 
 

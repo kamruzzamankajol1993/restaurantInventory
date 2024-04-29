@@ -22,7 +22,7 @@ Role List
 
         <div class="col-lg-12 col-md-12 col-sm-12">
             <div style="text-align: right;">
-                <a href="{{ route('role.create') }}" type="button" class="btn btn-primary">Add New Role<span class="btn-icon-end"><i class="fa fa-plus"></i></span></a>
+                <a href="{{ route('role.create') }}" type="button" class="btn btn-primary btn-sm"><span class="btn-icon-end"><i class="fa fa-plus"></i></span> Add New Role</a>
             </div>
         </div>
 

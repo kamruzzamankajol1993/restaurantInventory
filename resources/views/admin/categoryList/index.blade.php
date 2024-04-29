@@ -116,15 +116,15 @@ Category List
                             @foreach ($menuList as $menuLists)
                            <tr>
                             <td>{{ $loop->index+1 }}</td>
-                            <td> <img src="{{ asset('/') }}{{ $menuLists->image }}"    height="150px"/> </td>
-                            <td> <img src="{{ asset('/') }}{{ $menuLists->web_image }}"    height="150px"/> </td>
+                            <td> <img class="table_image_box"  src="{{ asset('/') }}{{ $menuLists->image }}"    /> </td>
+                            <td> <img class="table_image_box"  src="{{ asset('/') }}{{ $menuLists->web_image }}"    /> </td>
                             <td >{{ $menuLists->category_name }}</td>
                             <td >
 
 
-                                <select class="form-control" name="" id="">
-                                <option value="1" {{ $menuLists->status == '1' ? 'selected':'' }}>Active</option>
-                                <option value="0" {{ $menuLists->status == '0' ? 'selected':'' }}>InActive</option>
+                                <select class="form-control changeStatus" name="" id="">
+                                <option data-id="{{ $menuLists->id }}" value="1" {{ $menuLists->status == '1' ? 'selected':'' }}>Active</option>
+                                <option data-id="{{ $menuLists->id }}" value="0" {{ $menuLists->status == '0' ? 'selected':'' }}>InActive</option>
                             </select>
 
 
@@ -132,9 +132,9 @@ Category List
                             <td >
 
 
-                                <select class="form-control" name="" id="">
+                                <select class="form-control priorityStatus" name="" id="">
                                     @for ($i = 1; $i <= $menuListCount; $i++)
-                                    <option value="{{ $i }}"  {{ $menuLists->priority == $i ? 'selected':'' }}>{{ $i }}</option>
+                                    <option data-mid="{{ $menuLists->id }}" value="{{ $i }}"  {{ $menuLists->priority == $i ? 'selected':'' }}>{{ $i }}</option>
                                   @endfor
                                 </select>
 
@@ -173,6 +173,75 @@ Category List
 
 
 @section('script')
+
+<script>
+
+    //priority status  code
+
+
+    $(document).on('change', '.priorityStatus', function () {
+
+        var priority = $(this).find(':selected').val();
+        var id =   $(this).find(':selected').data('mid')
+
+
+        $.ajax({
+        url: "{{ route('prioritytatusUpdate') }}",
+        method: 'get',
+        data: {priority:priority,id:id},
+        beforeSend: function(){
+        $('#pageloader').show()
+        },
+        complete: function(){
+        $('#pageloader').hide()
+        },
+        success: function(data) {
+
+        alertify.set('notifier','position','top-center');
+        alertify.success('Prioriry Updated SuccessFully');
+        location.reload(true);
+
+
+        }
+        });
+
+    });
+
+    //end priority status code
+
+        $(document).on('change', '.changeStatus', function () {
+
+            var status = $(this).find(':selected').val();
+
+            var id =   $(this).find(':selected').data('id')
+
+
+                $.ajax({
+            url: "{{ route('categoryStatusUpdate') }}",
+            method: 'get',
+            data: {status:status,id:id},
+            beforeSend: function(){
+                $('#pageloader').show()
+            },
+            complete: function(){
+                $('#pageloader').hide()
+            },
+            success: function(data) {
+
+                alertify.set('notifier','position','top-center');
+                alertify.success('Updated SuccessFully');
+                location.reload(true);
+
+
+            }
+            });
+
+    });
+
+    </script>
+
+
+
 <script>
     imgInp.onchange = evt => {
   const [file] = imgInp.files

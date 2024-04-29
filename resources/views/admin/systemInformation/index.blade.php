@@ -158,7 +158,7 @@ System Information
 
 
                                                     <div>
-                                                        <button type="submit" class="btn btn-primary w-md">Update</button>
+                                                        <button type="submit" class="btn btn-primary btn-sm w-md">Update</button>
                                                     </div>
 
 
@@ -275,7 +275,7 @@ System Information
 
 
                      <div>
-                         <button type="submit" class="btn btn-primary w-md">Submit</button>
+                         <button type="submit" class="btn btn-primary btn-sm w-md">Submit</button>
                      </div>
 
 

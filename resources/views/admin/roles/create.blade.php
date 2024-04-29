@@ -49,7 +49,7 @@ Add Role
                       <div class="row">
                           <div class="col-md-3">
                               <div class="form-group">
-<input type="checkbox" id="{{ $i }}Management" value="{{ $group->name }}" onclick="checkPermissionByGroup('role-{{ $i }}-management-checkbox', this)" name="groupName[]" class="filled-in bbb" />
+{{-- <input type="checkbox" id="{{ $i }}Management" value="{{ $group->name }}" onclick="checkPermissionByGroup('role-{{ $i }}-management-checkbox', this)" name="groupName[]" class="filled-in bbb" /> --}}
                             <label for="checkPermission">{{ $group->name }}</label>
                               </div>
                           </div>
@@ -92,7 +92,7 @@ Add Role
                                 <div class="float-right d-none d-md-block">
                                     <div class="form-group mb-4">
                                         <div>
-                                            <button type="submit" class="btn btn-primary btn-lg  waves-effect  btn-sm waves-light mr-1">
+                                            <button type="submit" class="btn btn-primary btn-sm  waves-effect  btn-sm waves-light mr-1">
                                                Submit
                                             </button>
                                         </div>

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('designation_serial')->nullable();
             $table->string('designation_detail')->nullable();
             $table->string('status')->nullable();
+            $table->timestamps();
         });
     }
 

@@ -110,15 +110,18 @@ class CategoryController extends Controller
            $filePath = 'categoryImage';
 
 
-           Category::create([
-
-            'web_image'=>CommonController::compressImage(800,100,$filePath,$request->image),
-            'image'=>CommonController::compressImage(100,100,$filePath,$request->web_image),
-            'category_name'=>$request->category_name,
-            'category_slug'=>Str::slug($request->category_name),
-            'status'=>1,
-            'priority'=>$mainIdList
-           ]);
+           $addNewCategory = new Category();
+           $addNewCategory->category_name = $request->category_name;
+           $addNewCategory->category_slug = Str::slug($request->category_name);
+           $addNewCategory->status = 1;
+           $addNewCategory->priority = $mainIdList;
+           if ($request->hasfile('image')) {
+            $addNewCategory->image = CommonController::compressImage(100,100,$filePath,$request->image);
+           }
+           if ($request->hasfile('web_image')) {
+            $addNewCategory->web_image = CommonController::compressImage(800,100,$filePath,$request->web_image);
+           }
+           $addNewCategory->save();
 
            DB::commit();
 
@@ -127,7 +130,7 @@ class CategoryController extends Controller
         } catch (\Exception $e) {
 
         DB::rollBack();
-        return redirect()->back()->with('error','some thing went wrong'.$e);
+        return redirect()->route('error_500');
 
         }
 
@@ -147,8 +150,8 @@ class CategoryController extends Controller
             \LogActivity::addToLog('category Edit ');
 
             $menuLists = Category::find($id);
-
-            return view('admin.categoryList.edit',compact('menuLists'));
+            $menuList = Category::orderBy('id','asc')->get();
+            return view('admin.categoryList.edit',compact('menuLists','menuList'));
 
         } catch (\Exception $e) {
             return redirect()->back()->with('error','some thing went wrong ');
@@ -170,11 +173,12 @@ class CategoryController extends Controller
 
            \LogActivity::addToLog('category update');
 
-
-
-        if ($request->hasfile('image')) {
-
-            $filePath = 'categoryImage';
+           $filePath = 'categoryImage';
+           $addNewCategory = Category::find($id);
+           $addNewCategory->category_name = $request->category_name;
+           $addNewCategory->category_slug = Str::slug($request->category_name);
+           $addNewCategory->status = $request->status;
+           if ($request->hasfile('image')) {
 
             $checkPreviousFile = Category::where('id',$id)->value('image');
 
@@ -182,25 +186,22 @@ class CategoryController extends Controller
                     File::delete($checkPreviousFile);
                 }
 
-            Category::where('id',$id)->update([
-                'com_image'=>CommonController::storeBase64(600,600,$filePath,$request->image_base64),
-                'web_image'=>CommonController::storeBase64(400,400,$filePath,$request->image_base64),
-                'image'=>CommonController::storeBase64(200,200,$filePath,$request->image_base64),
-                'category_name'=>$request->category_name,
-                'category_slug'=>Str::slug($request->category_name),
-                'status'=>$request->status
-               ]);
 
-        }else{
+            $addNewCategory->image = CommonController::compressImage(100,100,$filePath,$request->image);
+           }
+           if ($request->hasfile('web_image')) {
 
-            Category::where('id',$id)->update([
-                'category_name'=>$request->category_name,
-                'category_slug'=>Str::slug($request->category_name),
-                'status'=>$request->status
-               ]);
 
-        }
+            $checkPreviousFileWeb = Category::where('id',$id)->value('web_image');
 
+                if(File::exists($checkPreviousFileWeb)){
+                    File::delete($checkPreviousFileWeb);
+                }
+
+
+            $addNewCategory->web_image = CommonController::compressImage(800,100,$filePath,$request->web_image);
+           }
+           $addNewCategory->save();
 
         DB::commit();
 
@@ -209,7 +210,7 @@ class CategoryController extends Controller
         } catch (\Exception $e) {
 
         DB::rollBack();
-        return redirect()->back()->with('error','some thing went wrong'.$e);
+        return redirect()->route('error_500');
 
         }
     }
@@ -233,6 +234,13 @@ class CategoryController extends Controller
                 }
 
 
+                $checkPreviousFileWeb = Category::where('id',$id)->value('web_image');
+
+                if(File::exists($checkPreviousFileWeb)){
+                    File::delete($checkPreviousFileWeb);
+                }
+
+
                 Category::destroy($id);
 
                 DB::commit();
@@ -242,5 +250,32 @@ class CategoryController extends Controller
             DB::rollBack();
             return redirect()->back()->with('error','some thing went wrong ');
         }
+    }
+
+
+
+    public function categoryStatusUpdate(Request $request){
+
+
+           $addNewCategory = Category::find($request->id);
+           $addNewCategory->status = $request->status;
+           $addNewCategory->save();
+
+           return 1;
+
+
+    }
+
+
+    public function prioritytatusUpdate(Request $request){
+
+
+        $addNewCategory = Category::find($request->id);
+        $addNewCategory->priority = $request->priority;
+        $addNewCategory->save();
+
+        return 1;
+
+
     }
 }

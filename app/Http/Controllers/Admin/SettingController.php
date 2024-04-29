@@ -24,9 +24,9 @@ class SettingController extends Controller
     }
 
 
-    public function testOne(){
+    public function error_500(){
 
-        return view('admin.setting.testOne');
+        return view('admin.extraPage.error_500');
     }
 
     public function testTwo(Request $request){
@@ -94,19 +94,20 @@ class SettingController extends Controller
 
     public function store(Request $request){
 
+
+
         if (is_null($this->user) || !$this->user->can('profile.edit')) {
             //abort(403, 'Sorry !! You are Unauthorized to View !');
             return redirect()->route('mainLogin');
-               }
+             }
                try{
-                DB::beginTransaction();
+
 
                \LogActivity::addToLog('Profile Update.');
 
         $time_dy = time().date("Ymd");
         $admin =  Admin::find($request->id);
         $admin->admin_name = $request->admin_name;
-        $admin->admin_name_ban = $request->admin_name_ban;
         $admin->email = $request->email;
         $admin->admin_mobile = $request->admin_mobile;
          if ($request->hasfile('admin_image')) {
@@ -124,27 +125,13 @@ class SettingController extends Controller
 
         }
 
-        if ($request->hasfile('admin_sign')) {
-
-
-            $productImage = $request->file('admin_sign');
-            $imageName = $time_dy.$productImage->getClientOriginalName();
-            $directory = 'public/uploads/';
-            $imageUrl = $directory.$imageName;
-
-            $img=Image::make($productImage)->resize(300,80);
-            $img->save($imageUrl);
-
-             $admin->admin_sign =  'public/uploads/'.$imageName;
-
-        }
         $admin->save();
 
         return redirect()->back()->with('success','Updated Succesfully');
 
     } catch (\Exception $e) {
-        DB::rollBack();
-        return redirect()->back()->with('error','some thing went wrong ');
+
+        return redirect()->route('error_500');
     }
 
     }
@@ -229,7 +216,7 @@ class SettingController extends Controller
 
     } catch (\Exception $e) {
         DB::rollBack();
-        return redirect()->back()->with('error','some thing went wrong ');
+        return redirect()->route('error_500');
     }
 
 

@@ -10,8 +10,8 @@ $usr = Auth::guard('admin')->user();
         <a href="index.php" class="logo">
             <!-- logo-->
             <div class="logo-lg">
-                <span class="light-logo"><img src="{{ asset('/') }}public/admin/assets/images/logo-dark-text.png" alt="logo"></span>
-                <span class="dark-logo"><img src="{{ asset('/') }}public/admin/assets/images/logo-light-text.png" alt="logo"></span>
+                <span class="light-logo"><img src="{{ asset('/') }}{{ $logo }}" alt="logo"></span>
+                <span class="dark-logo"><img src="{{ asset('/') }}{{ $logo }}" alt="logo"></span>
             </div>
         </a>
     </div>

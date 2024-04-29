@@ -71,7 +71,7 @@ try{
                return view('admin.designationStepList.index',compact('users_as','users','branchLists','designationLists','designationStepLists'));
 
             } catch (\Exception $e) {
-                return redirect()->back()->with('error','some thing went wrong ');
+                return redirect()->route('error_500');
             }
            }
 
@@ -128,7 +128,7 @@ try{
     return redirect()->route('assignedEmployee.index')->with('success','Added successfully!');
 } catch (\Exception $e) {
     DB::rollBack();
-    return redirect()->back()->with('error','some thing went wrong ');
+    return redirect()->route('error_500');
 }
 
 
@@ -157,7 +157,7 @@ try{
 
 } catch (\Exception $e) {
     DB::rollBack();
-    return redirect()->back()->with('error','some thing went wrong ');
+    return redirect()->route('error_500');
 }
 
         }
@@ -179,7 +179,7 @@ try{
 
     } catch (\Exception $e) {
         DB::rollBack();
-        return redirect()->back()->with('error','some thing went wrong ');
+        return redirect()->route('error_500');
     }
     }
 }

@@ -209,7 +209,7 @@ Control Section  end
 <!-- Vendor JS -->
 <script src="{{ asset('/') }}public/admin/assets/js/vendors.min.js"></script>
 <script src="{{ asset('/') }}public/admin/assets/js/pages/chat-popup.js"></script>
-<script src="{{ asset('/') }}public/admin/assets/vendor_components/apexcharts-bundle/dist/apexcharts.min.js"></script>
+{{-- <script src="{{ asset('/') }}public/admin/assets/vendor_components/apexcharts-bundle/dist/apexcharts.min.js"></script> --}}
 <script src="{{ asset('/') }}public/admin/assets/vendor_components/datatable/datatables.min.js"></script>
 <script src="{{ asset('/') }}public/admin/assets/vendor_components/progressbar.js-master/dist/progressbar.js"></script>
 <script src="{{ asset('/') }}public/admin/assets/vendor_components/OwlCarousel2/dist/owl.carousel.js"></script>

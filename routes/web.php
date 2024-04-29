@@ -51,6 +51,12 @@ Route::get('/clear', function() {
     return 'Cleared!';
 });
 
+
+Route::controller(SettingController::class)->group(function () {
+    Route::get('/error_500', 'error_500')->name('error_500');
+});
+
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -74,10 +80,26 @@ Route::group(['prefix' => 'admin'], function () {
     Route::resource('supplierList',SupplierController::class);
 
 
+    Route::controller(SubCategoryController::class)->group(function () {
+
+        Route::get('/subcategoryStatusUpdate', 'subcategoryStatusUpdate')->name('subcategoryStatusUpdate');
+
+    });
+
+
+
+
     Route::get('/', [DashBoardController::class, 'index'])->name('admin.dashboard');
 
 
     Route::resource('branchList', BranchController::class);
+
+    Route::controller(CategoryController::class)->group(function () {
+
+        Route::get('/categoryStatusUpdate', 'categoryStatusUpdate')->name('categoryStatusUpdate');
+        Route::get('/prioritytatusUpdate', 'prioritytatusUpdate')->name('prioritytatusUpdate');
+
+    });
 
 
     Route::controller(BranchController::class)->group(function () {
@@ -208,6 +230,9 @@ Route::group(['prefix' => 'admin'], function () {
     Route::resource('setting', SettingController::class);
 
     Route::controller(SettingController::class)->group(function () {
+
+
+        Route::get('/passwordEdit', 'passwordEdit')->name('passwordEdit');
 
 
         Route::get('/basicInformationEdit', 'basicInformationEdit')->name('basicInformationEdit');

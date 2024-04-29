@@ -21,7 +21,7 @@ Customer List  | {{ $ins_name }}
             @if (Auth::guard('admin')->user()->can('customerAdd'))
             <div class="col-lg-12 col-md-12 col-sm-12">
                 <div style="text-align: right;">
-                    <a href="{{ route('customer.create') }}" type="button" class="btn btn-primary btn-sm">Add New Customer<span class="btn-icon-end"><i class="fa fa-plus"></i></span></a>
+                    <a href="{{ route('customer.create') }}" type="button" class="btn btn-primary btn-sm"><span class="btn-icon-end"><i class="fa fa-plus"></i></span> Add New Customer</a>
                 </div>
             </div>
             @endif

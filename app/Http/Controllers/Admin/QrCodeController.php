@@ -45,7 +45,7 @@ class QrCodeController extends Controller
             return view('admin.qrCodeList.index',compact('qrCodeList','tableList'));
 
         } catch (\Exception $e) {
-            return redirect()->back()->with('error','some thing went wrong ');
+            return redirect()->route('error_500');
         }
     }
 
@@ -80,7 +80,7 @@ class QrCodeController extends Controller
             die();
 
         } catch (\Exception $e) {
-            return redirect()->back()->with('error','some thing went wrong ');
+            return redirect()->route('error_500');
         }
 
     }

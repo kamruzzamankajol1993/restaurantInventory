@@ -14,14 +14,12 @@ return new class extends Migration
         Schema::create('admins', function (Blueprint $table) {
             $table->id();
             $table->string('admin_name');
-            $table->string('admin_name_ban');
+            $table->string('address');
             $table->string('admin_mobile');
             $table->string('designation_list_id')->nullable();
-            $table->string('branch_id')->nullable();
-            $table->string('admin_sign')->nullable();
-            $table->string('admin_job_start_date')->nullable();
-            $table->string('admin_job_end_date')->nullable();
-            $table->string('admin_job_end_start_date')->nullable();
+            $table->string('present_address')->nullable();
+            $table->string('nid_number')->nullable();
+            $table->string('nid_image')->nullable();
             $table->text('admin_image')->nullable();
             $table->string('email')->unique();
             $table->timestamp('admin_email_verified_at')->nullable();

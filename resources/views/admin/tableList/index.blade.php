@@ -25,7 +25,7 @@ Table List | {{ $ins_name }}
         <div class="col-lg-12 col-md-12 col-sm-12">
             @if (Auth::guard('admin')->user()->can('tableAdd'))
             <div style="text-align: right;">
-                <button type="button" data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg"class="btn btn-primary btn-sm">Add New Table<span class="btn-icon-end"><i class="fa fa-plus"></i></span></button>
+                <button type="button" data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg"class="btn btn-primary btn-sm"><span class="btn-icon-end"><i class="fa fa-plus"></i></span> Add New Table</button>
             </div>
             @endif
         </div>
@@ -116,7 +116,7 @@ Table List | {{ $ins_name }}
                                                             </select>
                                                         </div>
 
-                                                          <button type="submit"  class="btn btn-primary mt-4 pr-4 pl-4">Update </button>
+                                                          <button type="submit"  class="btn btn-primary btn-sm mt-4 pr-4 pl-4">Update </button>
                                                       </form>
                                                   </div>
                                               </div><!-- /.modal-content -->
@@ -180,7 +180,7 @@ Table List | {{ $ins_name }}
                     </div>
 
                 <div class="card-footer text-end ">
-                    <button class="btn btn-primary mt-3" id="finalButton0" type="submit">Submit</button>
+                    <button class="btn btn-primary btn-sm mt-3" id="finalButton0" type="submit">Submit</button>
                 </div>
                 </form>
             </div>

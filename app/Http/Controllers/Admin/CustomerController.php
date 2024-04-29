@@ -138,7 +138,7 @@ class CustomerController extends Controller
        } catch (\Exception $e) {
         DB::rollBack();
 
-        return redirect()->back()->with('error','some thing went wrong '.$e);
+        return redirect()->route('error_500');
        }
     }
 
@@ -176,7 +176,7 @@ class CustomerController extends Controller
 
         $customers->save();
 
-       
+
 
         return redirect()->route('customer.index')->with('success','Updated successfully!');;
     }

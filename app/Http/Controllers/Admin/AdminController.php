@@ -123,7 +123,7 @@ class AdminController extends Controller
            return view('admin.user.index', compact('users','roles'));
 
               } catch (\Exception $e) {
-                return redirect()->back()->with('error','some thing went wrong ');
+                return redirect()->route('error_500');
               }
 
 
@@ -171,7 +171,7 @@ class AdminController extends Controller
         $admins->nid_number = $request->nid_number;
         $admins->present_address = $request->present_address;
         $admins->admin_name = $request->name;
-        $admins->admin_name_ban = $request->name_ban;
+        //$admins->admin_name_ban = $request->name_ban;
         $admins->designation_list_id = $request->designation_list_id;
         $admins->branch_id = 1;
         $admins->admin_mobile = $request->phone;
@@ -212,7 +212,7 @@ class AdminController extends Controller
        } catch (\Exception $e) {
         DB::rollBack();
 
-        return redirect()->back()->with('error','some thing went wrong '.$e);
+        return redirect()->route('error_500');
        }
     }
 
@@ -232,12 +232,12 @@ class AdminController extends Controller
 
         // Create New User
         $admins = Admin::find($id);
-        $admins->password = Hash::make(12345678);
+        // $admins->password = Hash::make(12345678);
         $admins->address = $request->address;
         $admins->nid_number = $request->nid_number;
         $admins->present_address = $request->present_address;
         $admins->admin_name = $request->name;
-        $admins->admin_name_ban = $request->name_ban;
+        // $admins->admin_name_ban = $request->name_ban;
         $admins->designation_list_id = $request->designation_list_id;
         $admins->branch_id = 1;
         $admins->admin_mobile = $request->phone;
@@ -286,7 +286,7 @@ class AdminController extends Controller
                 }
                 return redirect()->route('user.index')->with('error','Deleted successfully!');
             } catch (\Exception $e) {
-                return redirect()->back()->with('error','some thing went wrong ');
+                return redirect()->route('error_500');
             }
 
 
@@ -310,7 +310,7 @@ class AdminController extends Controller
         $users = Admin::where('id','!=',1)->latest()->get();
         return view('admin.user.employeeEndDate',compact('users'));
         } catch (\Exception $e) {
-            return redirect()->back()->with('error','some thing went wrong ');
+            return redirect()->route('error_500');
         }
 
     }
@@ -372,7 +372,7 @@ class AdminController extends Controller
 
     } catch (\Exception $e) {
         DB::rollBack();
-        return redirect()->back()->with('error','some thing went wrong ');
+        return redirect()->route('error_500');
     }
 
     }
@@ -404,7 +404,7 @@ class AdminController extends Controller
         return redirect()->route('mainLogin')->with('success','Successfully Changed!');
         } catch (\Exception $e) {
             DB::rollBack();
-            return redirect()->back()->with('error','some thing went wrong ');
+            return redirect()->route('error_500');
         }
     }
 

@@ -11,7 +11,7 @@
 	<meta property="og:image" content="{{ asset('/') }}{{ $logo }}" />
     <link rel="icon" href="{{ asset('/') }}{{ $icon }}" type="image/x-icon">
     <link rel="shortcut icon" href="{{ asset('/') }}{{ $icon }}" type="image/x-icon">
-    <title>লগ ইন | {{ $ins_name }}</title>
+    <title>Log In | {{ $ins_name }}</title>
     <!-- Google font-->
 <!-- Vendors Style-->
 <link rel="stylesheet" href="{{ asset('/') }}public/admin/assets/css/vendors_css.css">
@@ -19,7 +19,8 @@
 <!-- Style-->
 <link rel="stylesheet" href="{{ asset('/') }}public/admin/assets/css/style.css">
 <link rel="stylesheet" href="{{ asset('/') }}public/admin/assets/css/skin_color.css">
-<link rel="stylesheet" href="https://unpkg.com/@icon/themify-icons/themify-icons.css">
+ <!-- font style-->
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   </head>
   <body class="hold-transition theme-primary bg-img" style="background-image: url({{ asset('/') }}public/admin/assets/images/auth-bg/bg-1.jpg)">
     <div class="container h-p100">
@@ -45,7 +46,7 @@
                                     <div class="form-group">
 										<div class="input-group mb-3">
 											<div class="input-group-prepend">
-												<span class="input-group-text bg-transparent"><i class="ti-email"></i></span>
+												<span class="input-group-text bg-transparent"><i class="fa fa-envelope"></i></span>
 											</div>
 											<input type="email" name="email" required class="form-control pl-15 bg-transparent" placeholder="Email">
 										</div>
@@ -53,7 +54,7 @@
 									<div class="form-group">
 										<div class="input-group mb-3">
 											<div class="input-group-prepend">
-												<span class="input-group-text  bg-transparent"><i class="ti-lock"></i></span>
+												<span class="input-group-text  bg-transparent"><i class="fa fa-lock"></i></span>
 											</div>
 											<input type="password" name="password"  id="password" class="form-control pl-15 bg-transparent" placeholder="Password">
 										</div>
