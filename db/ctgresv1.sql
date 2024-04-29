@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 29, 2024 at 01:32 PM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 8.2.0
+-- Generation Time: Apr 29, 2024 at 08:21 PM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.1.17
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -497,7 +497,75 @@ INSERT INTO `log_activities` (`id`, `subject`, `url`, `method`, `ip_or_mac`, `ag
 (197, 'subcategory list ', 'http://localhost/ctgResV1/admin/subcategoryList', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '05:14:10 pm', '2024-04-29 05:14:11', '2024-04-29 05:14:11'),
 (198, 'subcategory list ', 'http://localhost/ctgResV1/admin/subcategoryList', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '05:14:15 pm', '2024-04-29 05:14:16', '2024-04-29 05:14:16'),
 (199, 'subcategory list ', 'http://localhost/ctgResV1/admin/subcategoryList', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '05:26:29 pm', '2024-04-29 05:26:29', '2024-04-29 05:26:29'),
-(201, 'view dashboard', 'http://localhost/ctgResV1/admin', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '05:26:59 pm', '2024-04-29 05:26:59', '2024-04-29 05:26:59');
+(201, 'view dashboard', 'http://localhost/ctgResV1/admin', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '05:26:59 pm', '2024-04-29 05:26:59', '2024-04-29 05:26:59'),
+(202, 'view dashboard', 'http://localhost/chittagongFront/admin', 'GET', '68-F7-28-0E-12-18   Media disconnected', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '10:42:40 pm', '2024-04-29 10:42:41', '2024-04-29 10:42:41'),
+(203, 'permission list', 'http://localhost/chittagongFront/admin/permission', 'GET', '68-F7-28-0E-12-18   Media disconnected', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '11:17:01 pm', '2024-04-29 11:17:02', '2024-04-29 11:17:02'),
+(204, ' create permission ', 'http://localhost/chittagongFront/admin/permission', 'POST', '68-F7-28-0E-12-18   Media disconnected', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '11:18:00 pm', '2024-04-29 11:18:00', '2024-04-29 11:18:00'),
+(205, 'permission list', 'http://localhost/chittagongFront/admin/permission', 'GET', '68-F7-28-0E-12-18   Media disconnected', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '11:18:01 pm', '2024-04-29 11:18:01', '2024-04-29 11:18:01'),
+(206, 'permission list', 'http://localhost/chittagongFront/admin/permission', 'GET', '68-F7-28-0E-12-18   Media disconnected', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '11:18:02 pm', '2024-04-29 11:18:02', '2024-04-29 11:18:02'),
+(207, ' create permission ', 'http://localhost/chittagongFront/admin/permission', 'POST', '68-F7-28-0E-12-18   Media disconnected', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '11:19:08 pm', '2024-04-29 11:19:08', '2024-04-29 11:19:08'),
+(208, 'permission list', 'http://localhost/chittagongFront/admin/permission', 'GET', '68-F7-28-0E-12-18   Media disconnected', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '11:19:09 pm', '2024-04-29 11:19:10', '2024-04-29 11:19:10'),
+(209, 'permission list', 'http://localhost/chittagongFront/admin/permission', 'GET', '68-F7-28-0E-12-18   Media disconnected', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '11:19:10 pm', '2024-04-29 11:19:11', '2024-04-29 11:19:11'),
+(210, 'Role List.', 'http://localhost/chittagongFront/admin/role', 'GET', '68-F7-28-0E-12-18   Media disconnected', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '11:19:33 pm', '2024-04-29 11:19:34', '2024-04-29 11:19:34'),
+(211, 'View Role Edit Page.', 'http://localhost/chittagongFront/admin/role/1/edit', 'GET', '68-F7-28-0E-12-18   Media disconnected', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '11:19:41 pm', '2024-04-29 11:19:41', '2024-04-29 11:19:41'),
+(212, 'Update Role.', 'http://localhost/chittagongFront/admin/role/1', 'PUT', '68-F7-28-0E-12-18   Media disconnected', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '11:19:48 pm', '2024-04-29 11:19:49', '2024-04-29 11:19:49'),
+(213, 'Role List.', 'http://localhost/chittagongFront/admin/role', 'GET', '68-F7-28-0E-12-18   Media disconnected', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '11:19:55 pm', '2024-04-29 11:19:56', '2024-04-29 11:19:56'),
+(214, 'permission list', 'http://localhost/chittagongFront/admin/permission', 'GET', '68-F7-28-0E-12-18   Media disconnected', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '11:20:14 pm', '2024-04-29 11:20:15', '2024-04-29 11:20:15'),
+(215, ' update permission ', 'http://localhost/chittagongFront/admin/permission/ProductAttribute', 'PUT', '68-F7-28-0E-12-18   Media disconnected', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '11:20:34 pm', '2024-04-29 11:20:35', '2024-04-29 11:20:35'),
+(216, 'permission list', 'http://localhost/chittagongFront/admin/permission', 'GET', '68-F7-28-0E-12-18   Media disconnected', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '11:20:36 pm', '2024-04-29 11:20:36', '2024-04-29 11:20:36'),
+(217, 'permission list', 'http://localhost/chittagongFront/admin/permission', 'GET', '68-F7-28-0E-12-18   Media disconnected', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '11:20:36 pm', '2024-04-29 11:20:37', '2024-04-29 11:20:37'),
+(218, 'Role List.', 'http://localhost/chittagongFront/admin/role', 'GET', '68-F7-28-0E-12-18   Media disconnected', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '11:20:42 pm', '2024-04-29 11:20:42', '2024-04-29 11:20:42'),
+(219, 'View Role Edit Page.', 'http://localhost/chittagongFront/admin/role/1/edit', 'GET', '68-F7-28-0E-12-18   Media disconnected', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '11:21:18 pm', '2024-04-29 11:21:19', '2024-04-29 11:21:19'),
+(220, 'View Role Edit Page.', 'http://localhost/chittagongFront/admin/role/1/edit', 'GET', '68-F7-28-0E-12-18   Media disconnected', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '11:21:44 pm', '2024-04-29 11:21:44', '2024-04-29 11:21:44'),
+(221, 'Update Role.', 'http://localhost/chittagongFront/admin/role/1', 'PUT', '68-F7-28-0E-12-18   Media disconnected', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '11:22:04 pm', '2024-04-29 11:22:05', '2024-04-29 11:22:05'),
+(222, 'Role List.', 'http://localhost/chittagongFront/admin/role', 'GET', '68-F7-28-0E-12-18   Media disconnected', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '11:22:11 pm', '2024-04-29 11:22:12', '2024-04-29 11:22:12'),
+(223, 'Role List.', 'http://localhost/chittagongFront/admin/role', 'GET', '68-F7-28-0E-12-18   Media disconnected', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '11:22:17 pm', '2024-04-29 11:22:18', '2024-04-29 11:22:18'),
+(224, 'permission list', 'http://localhost/chittagongFront/admin/permission', 'GET', '68-F7-28-0E-12-18   Media disconnected', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '11:26:40 pm', '2024-04-29 11:26:40', '2024-04-29 11:26:40'),
+(225, 'permission list', 'http://localhost/chittagongFront/admin/permission', 'GET', '68-F7-28-0E-12-18   Media disconnected', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '11:27:03 pm', '2024-04-29 11:27:03', '2024-04-29 11:27:03'),
+(226, ' update permission ', 'http://localhost/chittagongFront/admin/permission/productAddOn', 'PUT', '68-F7-28-0E-12-18   Media disconnected', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '11:27:25 pm', '2024-04-29 11:27:25', '2024-04-29 11:27:25'),
+(227, 'permission list', 'http://localhost/chittagongFront/admin/permission', 'GET', '68-F7-28-0E-12-18   Media disconnected', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '11:27:26 pm', '2024-04-29 11:27:26', '2024-04-29 11:27:26'),
+(228, 'permission list', 'http://localhost/chittagongFront/admin/permission', 'GET', '68-F7-28-0E-12-18   Media disconnected', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '11:27:27 pm', '2024-04-29 11:27:27', '2024-04-29 11:27:27'),
+(229, 'Role List.', 'http://localhost/chittagongFront/admin/role', 'GET', '68-F7-28-0E-12-18   Media disconnected', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '11:27:46 pm', '2024-04-29 11:27:46', '2024-04-29 11:27:46'),
+(230, 'View Role Edit Page.', 'http://localhost/chittagongFront/admin/role/1/edit', 'GET', '68-F7-28-0E-12-18   Media disconnected', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '11:27:52 pm', '2024-04-29 11:27:53', '2024-04-29 11:27:53'),
+(231, 'Update Role.', 'http://localhost/chittagongFront/admin/role/1', 'PUT', '68-F7-28-0E-12-18   Media disconnected', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '11:28:01 pm', '2024-04-29 11:28:01', '2024-04-29 11:28:01'),
+(232, 'Role List.', 'http://localhost/chittagongFront/admin/role', 'GET', '68-F7-28-0E-12-18   Media disconnected', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '11:28:10 pm', '2024-04-29 11:28:10', '2024-04-29 11:28:10'),
+(233, 'Role List.', 'http://localhost/chittagongFront/admin/role', 'GET', '68-F7-28-0E-12-18   Media disconnected', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '11:30:48 pm', '2024-04-29 11:30:48', '2024-04-29 11:30:48'),
+(234, 'permission list', 'http://localhost/chittagongFront/admin/permission', 'GET', '68-F7-28-0E-12-18   Media disconnected', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '11:40:32 pm', '2024-04-29 11:40:32', '2024-04-29 11:40:32'),
+(235, ' create permission ', 'http://localhost/chittagongFront/admin/permission', 'POST', '68-F7-28-0E-12-18   Media disconnected', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '11:41:30 pm', '2024-04-29 11:41:30', '2024-04-29 11:41:30'),
+(236, 'permission list', 'http://localhost/chittagongFront/admin/permission', 'GET', '68-F7-28-0E-12-18   Media disconnected', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '11:41:31 pm', '2024-04-29 11:41:31', '2024-04-29 11:41:31'),
+(237, 'permission list', 'http://localhost/chittagongFront/admin/permission', 'GET', '68-F7-28-0E-12-18   Media disconnected', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '11:41:32 pm', '2024-04-29 11:41:32', '2024-04-29 11:41:32'),
+(238, 'Role List.', 'http://localhost/chittagongFront/admin/role', 'GET', '68-F7-28-0E-12-18   Media disconnected', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '11:41:54 pm', '2024-04-29 11:41:55', '2024-04-29 11:41:55'),
+(239, 'View Role Edit Page.', 'http://localhost/chittagongFront/admin/role/1/edit', 'GET', '68-F7-28-0E-12-18   Media disconnected', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '11:42:01 pm', '2024-04-29 11:42:02', '2024-04-29 11:42:02'),
+(240, 'Update Role.', 'http://localhost/chittagongFront/admin/role/1', 'PUT', '68-F7-28-0E-12-18   Media disconnected', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '11:42:23 pm', '2024-04-29 11:42:23', '2024-04-29 11:42:23'),
+(241, 'Role List.', 'http://localhost/chittagongFront/admin/role', 'GET', '68-F7-28-0E-12-18   Media disconnected', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '11:42:29 pm', '2024-04-29 11:42:30', '2024-04-29 11:42:30'),
+(242, 'Role List.', 'http://localhost/chittagongFront/admin/role', 'GET', '68-F7-28-0E-12-18   Media disconnected', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '11:50:37 pm', '2024-04-29 11:50:38', '2024-04-29 11:50:38'),
+(243, 'permission list', 'http://localhost/chittagongFront/admin/permission', 'GET', '68-F7-28-0E-12-18   Media disconnected', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '12:13:37 am', '2024-04-29 12:13:37', '2024-04-29 12:13:37'),
+(244, ' create permission ', 'http://localhost/chittagongFront/admin/permission', 'POST', '68-F7-28-0E-12-18   Media disconnected', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '12:15:25 am', '2024-04-29 12:15:26', '2024-04-29 12:15:26'),
+(245, 'permission list', 'http://localhost/chittagongFront/admin/permission', 'GET', '68-F7-28-0E-12-18   Media disconnected', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '12:15:27 am', '2024-04-29 12:15:27', '2024-04-29 12:15:27'),
+(246, 'permission list', 'http://localhost/chittagongFront/admin/permission', 'GET', '68-F7-28-0E-12-18   Media disconnected', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '12:15:27 am', '2024-04-29 12:15:28', '2024-04-29 12:15:28'),
+(247, 'permission list', 'http://localhost/chittagongFront/admin/permission', 'GET', '68-F7-28-0E-12-18   Media disconnected', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '12:15:45 am', '2024-04-29 12:15:45', '2024-04-29 12:15:45'),
+(248, 'Role List.', 'http://localhost/chittagongFront/admin/role', 'GET', '68-F7-28-0E-12-18   Media disconnected', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '12:15:52 am', '2024-04-29 12:15:52', '2024-04-29 12:15:52'),
+(249, 'Create Role.', 'http://localhost/chittagongFront/admin/role/create', 'GET', '68-F7-28-0E-12-18   Media disconnected', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '12:15:56 am', '2024-04-29 12:15:56', '2024-04-29 12:15:56'),
+(250, 'View Role Edit Page.', 'http://localhost/chittagongFront/admin/role/1/edit', 'GET', '68-F7-28-0E-12-18   Media disconnected', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '12:16:06 am', '2024-04-29 12:16:06', '2024-04-29 12:16:06'),
+(251, 'Update Role.', 'http://localhost/chittagongFront/admin/role/1', 'PUT', '68-F7-28-0E-12-18   Media disconnected', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '12:16:17 am', '2024-04-29 12:16:17', '2024-04-29 12:16:17'),
+(252, 'Role List.', 'http://localhost/chittagongFront/admin/role', 'GET', '68-F7-28-0E-12-18   Media disconnected', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '12:16:23 am', '2024-04-29 12:16:23', '2024-04-29 12:16:23'),
+(253, 'Role List.', 'http://localhost/chittagongFront/admin/role', 'GET', '68-F7-28-0E-12-18   Media disconnected', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '12:20:06 am', '2024-04-29 12:20:06', '2024-04-29 12:20:06');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `menus`
+--
+
+CREATE TABLE `menus` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `product_id` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `image` text NOT NULL,
+  `status` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -540,7 +608,13 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (22, '2024_04_02_084305_create_leave_types_table', 1),
 (23, '2024_04_02_084453_create_suppliers_table', 1),
 (24, '2024_04_26_063952_create_customers_table', 1),
-(26, '2024_04_26_081839_create_sub_categories_table', 2);
+(26, '2024_04_26_081839_create_sub_categories_table', 2),
+(27, '2024_04_29_161255_create_product_add_ons_table', 3),
+(28, '2024_04_29_161341_create_product_attributes_table', 3),
+(29, '2024_04_29_173457_create_products_table', 4),
+(30, '2024_04_29_173620_create_product_variations_table', 4),
+(31, '2024_04_29_173659_create_product_variation_lists_table', 4),
+(32, '2024_04_29_181006_create_menus_table', 5);
 
 -- --------------------------------------------------------
 
@@ -667,7 +741,23 @@ INSERT INTO `permissions` (`id`, `name`, `group_name`, `guard_name`, `created_at
 (49, 'subcategoryAdd', 'SubCategory', 'admin', NULL, NULL),
 (50, 'subcategoryView', 'SubCategory', 'admin', NULL, NULL),
 (51, 'subcategoryDelete', 'SubCategory', 'admin', NULL, NULL),
-(52, 'subcategoryUpdate', 'SubCategory', 'admin', NULL, NULL);
+(52, 'subcategoryUpdate', 'SubCategory', 'admin', NULL, NULL),
+(61, 'productAttributeAdd', 'ProductAttribute', 'admin', NULL, NULL),
+(62, 'productAttributeView', 'ProductAttribute', 'admin', NULL, NULL),
+(63, 'productAttributeDelete', 'ProductAttribute', 'admin', NULL, NULL),
+(64, 'productAttributeUpdate', 'ProductAttribute', 'admin', NULL, NULL),
+(65, 'productAddOnAdd', 'productAddOn', 'admin', NULL, NULL),
+(66, 'productAddOnView', 'productAddOn', 'admin', NULL, NULL),
+(67, 'productAddOnDelete', 'productAddOn', 'admin', NULL, NULL),
+(68, 'productAddOnUpdate', 'productAddOn', 'admin', NULL, NULL),
+(69, 'productAdd', 'product', 'admin', NULL, NULL),
+(70, 'productView', 'product', 'admin', NULL, NULL),
+(71, 'productDelete', 'product', 'admin', NULL, NULL),
+(72, 'productUpdate', 'product', 'admin', NULL, NULL),
+(73, 'menuListAdd', 'menuList', 'admin', NULL, NULL),
+(74, 'menuListView', 'menuList', 'admin', NULL, NULL),
+(75, 'menuListDelete', 'menuList', 'admin', NULL, NULL),
+(76, 'menuListUpdate', 'menuList', 'admin', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -684,6 +774,100 @@ CREATE TABLE `personal_access_tokens` (
   `abilities` text DEFAULT NULL,
   `last_used_at` timestamp NULL DEFAULT NULL,
   `expires_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `products`
+--
+
+CREATE TABLE `products` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `product_name` varchar(255) NOT NULL,
+  `product_slug` varchar(255) NOT NULL,
+  `product_short_description` text NOT NULL,
+  `product_image` text NOT NULL,
+  `category_id` varchar(255) NOT NULL,
+  `sub_category_id` varchar(255) NOT NULL,
+  `item_type` varchar(255) NOT NULL,
+  `product_type` varchar(255) NOT NULL,
+  `available_status` varchar(255) NOT NULL,
+  `available_time` varchar(255) NOT NULL,
+  `available_till` varchar(255) NOT NULL,
+  `default_price` varchar(255) NOT NULL,
+  `discount_type` varchar(255) NOT NULL,
+  `discount_price` varchar(255) NOT NULL,
+  `tax_type` varchar(255) NOT NULL,
+  `tax_rate` varchar(255) NOT NULL,
+  `product_add_on` varchar(255) NOT NULL,
+  `product_stock_type` varchar(255) NOT NULL,
+  `product_stock_quantity` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `product_add_ons`
+--
+
+CREATE TABLE `product_add_ons` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `slug` varchar(255) NOT NULL,
+  `price` varchar(255) NOT NULL,
+  `tax` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `product_attributes`
+--
+
+CREATE TABLE `product_attributes` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `slug` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `product_variations`
+--
+
+CREATE TABLE `product_variations` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `product_id` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `selecting_type` text NOT NULL,
+  `min_quantity` text NOT NULL,
+  `max_quantity` varchar(255) NOT NULL,
+  `required_status` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `product_variation_lists`
+--
+
+CREATE TABLE `product_variation_lists` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `product_id` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `price` text NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -792,7 +976,23 @@ INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
 (49, 1),
 (50, 1),
 (51, 1),
-(52, 1);
+(52, 1),
+(61, 1),
+(62, 1),
+(63, 1),
+(64, 1),
+(65, 1),
+(66, 1),
+(67, 1),
+(68, 1),
+(69, 1),
+(70, 1),
+(71, 1),
+(72, 1),
+(73, 1),
+(74, 1),
+(75, 1),
+(76, 1);
 
 -- --------------------------------------------------------
 
@@ -1002,6 +1202,12 @@ ALTER TABLE `log_activities`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `menus`
+--
+ALTER TABLE `menus`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `migrations`
 --
 ALTER TABLE `migrations`
@@ -1047,6 +1253,36 @@ ALTER TABLE `personal_access_tokens`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `personal_access_tokens_token_unique` (`token`),
   ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`);
+
+--
+-- Indexes for table `products`
+--
+ALTER TABLE `products`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `product_add_ons`
+--
+ALTER TABLE `product_add_ons`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `product_attributes`
+--
+ALTER TABLE `product_attributes`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `product_variations`
+--
+ALTER TABLE `product_variations`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `product_variation_lists`
+--
+ALTER TABLE `product_variation_lists`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `qr_codes`
@@ -1191,24 +1427,60 @@ ALTER TABLE `leave_types`
 -- AUTO_INCREMENT for table `log_activities`
 --
 ALTER TABLE `log_activities`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=202;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=254;
+
+--
+-- AUTO_INCREMENT for table `menus`
+--
+ALTER TABLE `menus`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `products`
+--
+ALTER TABLE `products`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `product_add_ons`
+--
+ALTER TABLE `product_add_ons`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `product_attributes`
+--
+ALTER TABLE `product_attributes`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `product_variations`
+--
+ALTER TABLE `product_variations`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `product_variation_lists`
+--
+ALTER TABLE `product_variation_lists`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --

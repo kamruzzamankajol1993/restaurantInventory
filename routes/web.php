@@ -23,6 +23,10 @@ use App\Http\Controllers\Admin\LeaveTypeController;
 use App\Http\Controllers\Admin\SupplierController;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\SubCategoryController;
+use App\Http\Controllers\Admin\ProductAddOnController;
+use App\Http\Controllers\Admin\ProductAttributeController;
+use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\MenuController;
 
 /*
 |--------------------------------------------------------------------------
@@ -64,10 +68,13 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 Route::group(['prefix' => 'admin'], function () {
-
+    Route::resource('menuList', MenuController::class);
+    Route::resource('productList', ProductController::class);
 
     Route::resource('customer', CustomerController::class);
 
+    Route::resource('productAddOn', ProductAddOnController::class);
+    Route::resource('productAttribute', ProductAttributeController::class);
 
     Route::resource('tableList', TableController::class);
     Route::resource('qrCodeList', QrCodeController::class);

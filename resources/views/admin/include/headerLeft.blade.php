@@ -11,7 +11,7 @@ $usr = Auth::guard('admin')->user();
                 <ul class="sidebar-menu" data-widget="tree">
 
                     <li>
-                        <a href="index.php">
+                        <a href="{{ route('admin.dashboard') }}">
                             <i class="icon-Home"><span class="path1"></span><span class="path2"></span></i>
                             <span>Dashboard</span>
                         </a>
@@ -92,7 +92,7 @@ $usr = Auth::guard('admin')->user();
                             <li class="{{ Route::is('subcategoryList.index') || Route::is('subcategoryList.edit') || Route::is('subcategoryList.create') ? 'active' : '' }}"><a href="{{ route('subcategoryList.index') }}" class="{{ Route::is('subcategoryList.index') || Route::is('subcategoryList.edit') || Route::is('subcategoryList.create') ? 'active' : '' }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Sub Category List</a></li>
                             @endif
 
-                           
+
 
                         </ul>
                     </li>
@@ -105,10 +105,18 @@ $usr = Auth::guard('admin')->user();
 					</span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="product_attributes.php"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Product Attributes</a></li>
-                            <li><a href="product_addon.php"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Product Addon</a></li>
-                            <li><a href="product_add.php"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Product Add</a></li>
-                            <li><a href="#"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Product List</a></li>
+                            @if ($usr->can('productAttributeAdd') || $usr->can('productAttributeView') ||  $usr->can('productAttributeDelete') ||  $usr->can('productAttributeUpdate'))
+                            <li><a href="{{ route('productAttribute.index') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Product Attributes</a></li>
+                            @endif
+                            @if ($usr->can('productAddOnAdd') || $usr->can('productAddOnView') ||  $usr->can('productAddOnDelete') ||  $usr->can('productAddOnUpdate'))
+                            <li><a href="{{ route('productAddOn.index') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Product Addon</a></li>
+                            @endif
+                            @if ($usr->can('productAdd'))
+                            <li><a href="{{ route('productList.create') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Product Add</a></li>
+                            @endif
+                            @if ($usr->can('productAdd') || $usr->can('productView') ||  $usr->can('productDelete') ||  $usr->can('productUpdate'))
+                            <li><a href="{{ route('productList.index') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Product List</a></li>
+                            @endif
                             <li><a href="#"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Bulk Import</a></li>
                             <li><a href="#"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Bulk Export</a></li>
                             <li><a href="#"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Product Reviews</a></li>
@@ -242,9 +250,11 @@ $usr = Auth::guard('admin')->user();
                         <div class="text-center">
                             <img src="{{ asset('/') }}public/admin/assets/images/res-menu.png" class="sideimg" alt="">
                             <h3 class="title-bx">Add Menu</h3>
-                            <a href="#" class="text-white py-10 fs-16 mb-0">
+                            @if ($usr->can('menuListAdd') || $usr->can('menuListView') ||  $usr->can('menuListDelete') ||  $usr->can('menuListUpdate'))
+                            <a href="{{ route('menuList.index') }}" class="text-white py-10 fs-16 mb-0">
                                 Manage Your food and beverages menu</i>
                             </a>
+                            @endif
                         </div>
                     </div>
                     <div class="copyright text-start m-25">

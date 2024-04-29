@@ -7,7 +7,7 @@ $usr = Auth::guard('admin')->user();
             <span class="icon-Align-left"><span class="path1"></span><span class="path2"></span><span class="path3"></span></span>
         </a>
         <!-- Logo -->
-        <a href="index.php" class="logo">
+        <a href="{{ route('admin.dashboard') }}" class="logo">
             <!-- logo-->
             <div class="logo-lg">
                 <span class="light-logo"><img src="{{ asset('/') }}{{ $logo }}" alt="logo"></span>
