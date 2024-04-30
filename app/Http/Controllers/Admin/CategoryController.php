@@ -44,7 +44,7 @@ class CategoryController extends Controller
             return view('admin.categoryList.index',compact('menuList'));
 
         } catch (\Exception $e) {
-            return redirect()->back()->with('error','some thing went wrong ');
+            return redirect()->route('error_500');
         }
     }
 
@@ -63,7 +63,7 @@ class CategoryController extends Controller
             return view('admin.categoryList.create');
 
         } catch (\Exception $e) {
-            return redirect()->back()->with('error','some thing went wrong ');
+            return redirect()->route('error_500');
         }
     }
 
@@ -154,7 +154,7 @@ class CategoryController extends Controller
             return view('admin.categoryList.edit',compact('menuLists','menuList'));
 
         } catch (\Exception $e) {
-            return redirect()->back()->with('error','some thing went wrong ');
+            return redirect()->route('error_500');
         }
     }
 
@@ -248,7 +248,7 @@ class CategoryController extends Controller
 
         } catch (\Exception $e) {
             DB::rollBack();
-            return redirect()->back()->with('error','some thing went wrong ');
+            return redirect()->route('error_500');
         }
     }
 

@@ -165,10 +165,10 @@ $(document).on('change', '.changeStatus', function () {
     method: 'get',
     data: {status:status,id:id},
     beforeSend: function(){
-        $('#pageloader').show()
+        $('#loader').show()
     },
     complete: function(){
-        $('#pageloader').hide()
+        $('#loader').hide()
     },
     success: function(data) {
 

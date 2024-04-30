@@ -139,7 +139,7 @@ $usr = Auth::guard('admin')->user();
                         <li>
                             <!-- inner menu: contains the actual data -->
                             <ul class="menu sm-scrol">
-                                <li><!-- start message -->
+                                {{-- <li><!-- start message -->
                                     <a href="#">
                                         <div class="pull-left">
                                             <img src="{{ asset('/') }}public/admin/assets/images/user2-160x160.jpg" class="rounded-circle" alt="User Image">
@@ -152,65 +152,9 @@ $usr = Auth::guard('admin')->user();
                                             <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
                                         </div>
                                     </a>
-                                </li>
+                                </li> --}}
                                 <!-- end message -->
-                                <li>
-                                    <a href="#">
-                                        <div class="pull-left">
-                                            <img src="{{ asset('/') }}public/admin/assets/images/user3-128x128.jpg" class="rounded-circle" alt="User Image">
-                                        </div>
-                                        <div class="mail-contnet">
-                                            <h4>
-                                                Nullam tempor
-                                                <small><i class="fa fa-clock-o"></i> 4 hours</small>
-                                            </h4>
-                                            <span>Curabitur facilisis erat quis metus congue viverra.</span>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <div class="pull-left">
-                                            <img src="{{ asset('/') }}public/admin/assets/images/user4-128x128.jpg" class="rounded-circle" alt="User Image">
-                                        </div>
-                                        <div class="mail-contnet">
-                                            <h4>
-                                                Proin venenatis
-                                                <small><i class="fa fa-clock-o"></i> Today</small>
-                                            </h4>
-                                            <span>Vestibulum nec ligula nec quam sodales rutrum sed luctus.</span>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <div class="pull-left">
-                                            <img src="{{ asset('/') }}public/admin/assets/images/user3-128x128.jpg" class="rounded-circle" alt="User Image">
-                                        </div>
-                                        <div class="mail-contnet">
-                                            <h4>
-                                                Praesent suscipit
-                                                <small><i class="fa fa-clock-o"></i> Yesterday</small>
-                                            </h4>
-                                            <span>Curabitur quis risus aliquet, luctus arcu nec, venenatis neque.</span>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <div class="pull-left">
-                                            <img src="{{ asset('/') }}public/admin/assets/images/user4-128x128.jpg" class="rounded-circle" alt="User Image">
-                                        </div>
-                                        <div class="mail-contnet">
-                                            <h4>
-                                                Donec tempor
-                                                <small><i class="fa fa-clock-o"></i> 2 days</small>
-                                            </h4>
-                                            <span>Praesent vitae tellus eget nibh lacinia pretium.</span>
-                                        </div>
 
-                                    </a>
-                                </li>
                             </ul>
                         </li>
                         <li class="footer">

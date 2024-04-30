@@ -190,10 +190,10 @@ Category List
         method: 'get',
         data: {priority:priority,id:id},
         beforeSend: function(){
-        $('#pageloader').show()
+        $('#loader').show()
         },
         complete: function(){
-        $('#pageloader').hide()
+        $('#loader').hide()
         },
         success: function(data) {
 
@@ -221,10 +221,10 @@ Category List
             method: 'get',
             data: {status:status,id:id},
             beforeSend: function(){
-                $('#pageloader').show()
+                $('#loader').show()
             },
             complete: function(){
-                $('#pageloader').hide()
+                $('#loader').hide()
             },
             success: function(data) {
 

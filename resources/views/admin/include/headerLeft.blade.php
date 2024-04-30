@@ -106,16 +106,16 @@ $usr = Auth::guard('admin')->user();
                         </a>
                         <ul class="treeview-menu">
                             @if ($usr->can('productAttributeAdd') || $usr->can('productAttributeView') ||  $usr->can('productAttributeDelete') ||  $usr->can('productAttributeUpdate'))
-                            <li><a href="{{ route('productAttribute.index') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Product Attributes</a></li>
+                            <li class="{{ Route::is('productAttribute.index') || Route::is('productAttributeSearch.index') ? 'active' : '' }}"><a href="{{ route('productAttribute.index') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Product Attributes</a></li>
                             @endif
                             @if ($usr->can('productAddOnAdd') || $usr->can('productAddOnView') ||  $usr->can('productAddOnDelete') ||  $usr->can('productAddOnUpdate'))
-                            <li><a href="{{ route('productAddOn.index') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Product Addon</a></li>
+                            <li class="{{ Route::is('productAddOn.index') || Route::is('productAddOnSearch.index') ? 'active' : '' }}"><a href="{{ route('productAddOn.index') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Product Addon</a></li>
                             @endif
                             @if ($usr->can('productAdd'))
-                            <li><a href="{{ route('productList.create') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Product Add</a></li>
+                            <li class="{{ Route::is('productList.create')  ? 'active' : '' }}"><a href="{{ route('productList.create') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Product Add</a></li>
                             @endif
                             @if ($usr->can('productAdd') || $usr->can('productView') ||  $usr->can('productDelete') ||  $usr->can('productUpdate'))
-                            <li><a href="{{ route('productList.index') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Product List</a></li>
+                            <li class="{{ Route::is('productList.index') || Route::is('productList.edit') || Route::is('productList.view') ? 'active' : '' }}"><a href="{{ route('productList.index') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Product List</a></li>
                             @endif
                             <li><a href="#"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Bulk Import</a></li>
                             <li><a href="#"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Bulk Export</a></li>

@@ -86,6 +86,25 @@ Route::group(['prefix' => 'admin'], function () {
     Route::resource('leaveTypeList',LeaveTypeController::class);
     Route::resource('supplierList',SupplierController::class);
 
+    Route::controller(ProductController::class)->group(function () {
+
+        Route::get('/getSubCategoryId', 'getSubCategoryId')->name('getSubCategoryId');
+
+    });
+
+
+    Route::controller(ProductAddOnController::class)->group(function () {
+
+        Route::get('/searchProductAddOn', 'searchProductAddOn')->name('searchProductAddOn');
+
+    });
+
+
+    Route::controller(ProductAttributeController::class)->group(function () {
+
+        Route::get('/searchProductAttribute', 'searchProductAttribute')->name('searchProductAttribute');
+
+    });
 
     Route::controller(SubCategoryController::class)->group(function () {
 

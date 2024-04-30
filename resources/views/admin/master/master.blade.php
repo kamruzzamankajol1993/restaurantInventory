@@ -28,7 +28,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <link rel="stylesheet" href="https://parsleyjs.org/src/parsley.css">
-<link href='https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/ui-lightness/jquery-ui.css'rel='stylesheet'>
+{{-- <link href='https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/ui-lightness/jquery-ui.css'rel='stylesheet'> --}}
 <script src="{{ asset('/')}}public/parsely1.js"></script>
 
 
@@ -210,13 +210,27 @@ Control Section  end
 <script src="{{ asset('/') }}public/admin/assets/js/vendors.min.js"></script>
 <script src="{{ asset('/') }}public/admin/assets/js/pages/chat-popup.js"></script>
 {{-- <script src="{{ asset('/') }}public/admin/assets/vendor_components/apexcharts-bundle/dist/apexcharts.min.js"></script> --}}
+<script src="{{ asset('/') }}public/admin/assets/vendor_components/bootstrap-select/dist/js/bootstrap-select.js"></script>
+<script src="{{ asset('/') }}public/admin/assets/vendor_components/bootstrap-tagsinput/dist/bootstrap-tagsinput.js"></script>
+<script src="{{ asset('/') }}public/admin/assets/vendor_components/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js"></script>
+<script src="{{ asset('/') }}public/admin/assets/vendor_components/select2/dist/js/select2.full.js"></script>
+<script src="{{ asset('/') }}public/admin/assets/vendor_plugins/input-mask/jquery.inputmask.js"></script>
+<script src="{{ asset('/') }}public/admin/assets/vendor_plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+<script src="{{ asset('/') }}public/admin/assets/vendor_plugins/input-mask/jquery.inputmask.extensions.js"></script>
+<script src="{{ asset('/') }}public/admin/assets/vendor_components/moment/min/moment.min.js"></script>
+<script src="{{ asset('/') }}public/admin/assets/vendor_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+<script src="{{ asset('/') }}public/admin/assets/vendor_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+<script src="{{ asset('/') }}public/admin/assets/vendor_components/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js"></script>
+<script src="{{ asset('/') }}public/admin/assets/vendor_plugins/timepicker/bootstrap-timepicker.min.js"></script>
+<script src="{{ asset('/') }}public/admin/assets/vendor_plugins/iCheck/icheck.min.js"></script>
 <script src="{{ asset('/') }}public/admin/assets/vendor_components/datatable/datatables.min.js"></script>
 <script src="{{ asset('/') }}public/admin/assets/vendor_components/progressbar.js-master/dist/progressbar.js"></script>
 <script src="{{ asset('/') }}public/admin/assets/vendor_components/OwlCarousel2/dist/owl.carousel.js"></script>
-<script src="{{ asset('/') }}public/admin/assets/vendor_components/bootstrap-select/dist/js/bootstrap-select.js"></script>
-	<script src="{{ asset('/') }}public/admin/assets/vendor_components/select2/dist/js/select2.full.js"></script>
+
+
 <!-- Riday Admin App -->
 <script src="{{ asset('/') }}public/admin/assets/js/template.js"></script>
+<script src="{{ asset('/') }}public/admin/assets/js/pages/advanced-form-element.js"></script>
 <script src="{{ asset('/') }}public/admin/assets/js/pages/dashboard3.js"></script>
 <script src="{{ asset('/') }}public/admin/assets/js/pages/data-table.js"></script>
 {{-- <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> --}}
@@ -271,7 +285,7 @@ Control Section  end
         $('.bd-example-modal-lg').modal('hide');
 });
 </script>
-<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js" type="text/javascript"></script>
+{{-- <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js" type="text/javascript"></script> --}}
 <script type="text/javascript">
     jQuery.browser = {};
     (function () {
