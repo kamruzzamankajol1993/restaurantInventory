@@ -64,8 +64,8 @@ Product List
                                 </td>
                                 <td>
                                     <select class="form-control available_status" name="" id="">
-                                        <option value="Yes" {{ 'Yes' == $productLists->available_status ? 'selected':'' }}>Yes</option>
-                                        <option value="No" {{ 'No' == $productLists->available_status ? 'selected':'' }}>No</option>
+                                        <option data-id="{{ $productLists->id }}" value="Yes" {{ 'Yes' == $productLists->available_status ? 'selected':'' }}>Yes</option>
+                                        <option data-id="{{ $productLists->id }}"  value="No" {{ 'No' == $productLists->available_status ? 'selected':'' }}>No</option>
                                     </select>
                                 </td>
                                 <td>
@@ -106,5 +106,36 @@ Product List
 
 @section('script')
 
+<script>
+$(document).on('change', '.available_status', function () {
+
+    var status = $(this).find(':selected').val();
+
+    var id =   $(this).find(':selected').data('id')
+
+
+        $.ajax({
+    url: "{{ route('productStatusUpdate') }}",
+    method: 'get',
+    data: {status:status,id:id},
+    beforeSend: function(){
+        $('#loader').show()
+    },
+    complete: function(){
+        $('#loader').hide()
+    },
+    success: function(data) {
+
+        alertify.set('notifier','position','top-center');
+        alertify.success('Updated SuccessFully');
+        location.reload(true);
+
+
+    }
+    });
+
+});
+
+</script>
 
 @endsection

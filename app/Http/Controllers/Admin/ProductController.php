@@ -346,4 +346,40 @@ $filePath='ProductImage';
         }
 
     }
+
+
+    public function productStatusUpdate(Request $request){
+
+
+        $product = Product::find($request->id);
+        $product->available_status = $request->status;
+        $product->save();
+
+        return 1;
+
+
+ }
+
+
+ public function destroy(string $id)
+    {
+        if (is_null($this->user) || !$this->user->can('productDelete')) {
+
+            return redirect()->route('mainLogin');
+        }
+
+        try{
+            DB::beginTransaction();
+            \LogActivity::addToLog('product delete ');
+
+            Product::destroy($id);
+
+            DB::commit();
+            return redirect()->route('product.index')->with('error','Deleted successfully!');
+
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()->route('error_500');
+        }
+    }
 }

@@ -133,7 +133,13 @@ class CustomerController extends Controller
 
 
        DB::commit();
+
+       if($request->bt == 23){
+        return redirect()->back()->with('success','Created successfully!');
+       }else{
         return redirect()->route('customer.index')->with('success','Created successfully!');
+
+       }
 
        } catch (\Exception $e) {
         DB::rollBack();

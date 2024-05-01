@@ -27,6 +27,7 @@ use App\Http\Controllers\Admin\ProductAddOnController;
 use App\Http\Controllers\Admin\ProductAttributeController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\MenuController;
+use App\Http\Controllers\Admin\PosController;
 
 /*
 |--------------------------------------------------------------------------
@@ -68,6 +69,9 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 Route::group(['prefix' => 'admin'], function () {
+
+    Route::resource('pos', PosController::class);
+
     Route::resource('menuList', MenuController::class);
     Route::resource('productList', ProductController::class);
 
@@ -86,10 +90,17 @@ Route::group(['prefix' => 'admin'], function () {
     Route::resource('leaveTypeList',LeaveTypeController::class);
     Route::resource('supplierList',SupplierController::class);
 
+
+    Route::controller(PosController::class)->group(function () {
+
+        Route::get('/waiterDashBoard', 'waiterDashBoard')->name('waiterDashBoard');
+        Route::get('/KitchenDashBoard', 'KitchenDashBoard')->name('KitchenDashBoard');
+    });
+
     Route::controller(ProductController::class)->group(function () {
 
         Route::get('/getSubCategoryId', 'getSubCategoryId')->name('getSubCategoryId');
-
+        Route::get('/productStatusUpdate', 'productStatusUpdate')->name('productStatusUpdate');
     });
 
 

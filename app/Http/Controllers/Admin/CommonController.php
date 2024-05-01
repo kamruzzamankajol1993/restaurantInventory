@@ -50,9 +50,7 @@ class CommonController extends Controller
         $directory = 'public/uploads/'.$filePath.'/';
         $imageUrl = $directory.$imageName;
         //dd($imageUrl = $directory.'/'.$imageName);
-        $img=Image::make($file)->resize($height,$weight, function ($constraint) {
-            $constraint->aspectRatio();
-        });
+        $img=Image::make($file)->resize($height,$weight);
 
         //$img=Image::make($imageName);
         $img->save($imageUrl);

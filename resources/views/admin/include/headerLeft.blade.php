@@ -25,9 +25,12 @@ $usr = Auth::guard('admin')->user();
 					</span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="#"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>New Order</a></li>
-                            <li><a href="order_list.php"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Order List</a></li>
-
+                            @if ($usr->can('posAdd'))
+                            <li class="{{ Route::is('pos.create')  ? 'active' : '' }}"><a href="{{ route('pos.create') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>New Order</a></li>
+                            @endif
+                            @if ($usr->can('posView') || $usr->can('posDelete') || $usr->can('posUpdate'))
+                            <li class="{{ Route::is('pos.index') || Route::is('pos.show') || Route::is('pos.edit')   ? 'active' : '' }}"><a href="{{ route('pos.index') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Order List</a></li>
+                            @endif
                         </ul>
                     </li>
 
@@ -42,6 +45,8 @@ $usr = Auth::guard('admin')->user();
 					</span>
                         </a>
                         <ul class="treeview-menu">
+                            <li><a href="{{ route('waiterDashBoard') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Waiter Dashboard</a></li>
+                            <li><a href="{{ route('KitchenDashBoard') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Kitchen Dashboard</a></li>
                             <li><a href="#"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>All</a></li>
                             <li><a href="#"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Pending</a></li>
                             <li><a href="#"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Confirmed</a></li>
