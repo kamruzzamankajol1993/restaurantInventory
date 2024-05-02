@@ -52,6 +52,24 @@ class PosController extends Controller
     }
 
 
+    public function getProductForPOS(Request $request){
+
+            $productList = Product::where('category_id',$request->category_id)->orderBy('id','desc')->get();
+
+            return $data = view('admin.pos.partial.getProductForPOS',compact('productList'))->render();
+    }
+
+
+
+    public function posProductSearch(Request $request){
+
+        $productList = Product::where('product_name','LIKE','%'.$request->posProductSearch.'%')
+        ->orderBy('id','desc')->get();
+
+            return $data = view('admin.pos.partial.getProductForPOS',compact('productList'))->render();
+    }
+
+
     public function waiterDashBoard(){
 
 if (is_null($this->user) || !$this->user->can('posAdd')) {

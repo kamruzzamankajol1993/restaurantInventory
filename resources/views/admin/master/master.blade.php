@@ -139,12 +139,34 @@
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 
 {{-- <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" /> --}}
+<style>
+.ajax-loader {
+  visibility: hidden;
+  background-color: rgba(255,255,255,0.7);
+  position: absolute;
+  z-index: +100 !important;
+  width: 100%;
+  height:100%;
+}
+
+.ajax-loader img {
+  position: relative;
+  top:34%;
+  left:40%;
+}
+</style>
 </head>
 
 <body class="hold-transition light-skin sidebar-mini theme-primary fixed">
 
 <div class="wrapper">
     <div id="loader"></div>
+
+    <div class="ajax-loader">
+        <img src="{{ asset('/') }}public/admin/assets/images/preloaders/1.gif" class="img-responsive" />
+    </div>
+
+
 
     <!--*******************
     Top Header start

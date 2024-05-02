@@ -165,6 +165,7 @@ return [
         S1K3\Bangla\Date\BanglaDateServiceProvider::class,
         Milon\Barcode\BarcodeServiceProvider::class,
         SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
+        Darryldecode\Cart\CartServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -193,6 +194,7 @@ return [
         'DNS1D' => Milon\Barcode\Facades\DNS1DFacade::class,
         'DNS2D' => Milon\Barcode\Facades\DNS2DFacade::class,
         'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
+        'Cart' => Darryldecode\Cart\Facades\CartFacade::class,
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
 

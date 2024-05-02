@@ -92,6 +92,11 @@ Route::group(['prefix' => 'admin'], function () {
 
 
     Route::controller(PosController::class)->group(function () {
+        
+
+        Route::get('/posProductSearch', 'posProductSearch')->name('posProductSearch');
+        Route::get('/getProductForPOS', 'getProductForPOS')->name('getProductForPOS');
+        Route::post('/addCustomerFromPOS', 'addCustomerFromPOS')->name('addCustomerFromPOS');
 
         Route::get('/waiterDashBoard', 'waiterDashBoard')->name('waiterDashBoard');
         Route::get('/KitchenDashBoard', 'KitchenDashBoard')->name('KitchenDashBoard');

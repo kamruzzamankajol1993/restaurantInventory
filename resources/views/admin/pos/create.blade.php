@@ -29,7 +29,7 @@ create Order
                     <div style="height: 75vh; overflow-y: auto; overflow-x: hidden;">
                         <div class="row">
                             <div class="col-lg-6">
-                                <select class="form-control select2"
+                                <select id="posCategory" class="form-control select2"
                                         data-placeholder="Select a Category"
                                         style="width: 100%;">
                                     <option value="">Select Category</option>
@@ -41,8 +41,8 @@ create Order
                             </div>
                             <div class="col-lg-6">
                                 <div class="input-group">
-                                    <input type="search" class="form-control" placeholder="Search"
-                                           aria-label="Search" aria-describedby="button-addon2">
+                                    <input type="search" id="posProductSearch" class="form-control" placeholder="Search"
+                                           aria-label="Search" name="posProductSearch" aria-describedby="button-addon2">
                                     <div class="input-group-append">
                                         <button class="btn" type="submit" id="button-addon3"><i
                                                     class="ti-search"></i></button>
@@ -51,7 +51,7 @@ create Order
                             </div>
                             <div class="col-12 mt-4">
                                 <div class="card-body">
-                                    <div class="row">
+                                    <div class="row"  id="getProductForPos">
 
                                         @foreach($productList as $key=>$productLists)
                                         <div class="col-lg-3 col-md-4 col-sm-6">
@@ -70,114 +70,7 @@ create Order
 
                                         <!-- modal related to product start --->
 
-                                        <div id="myModal{{ $key+1 }}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog modal-lg">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <div class="row">
-                                                            <div class="col-lg-5">
-                                                                <img height="200" src="{{ asset('/') }}{{ $productLists->product_image }}" alt="">
-                                                            </div>
-                                                            <div class="col-lg-7">
-                                                                <h1>{{ $productLists->product_name }}</h1>
-                                                                <h5>{{ $productLists->default_price }} Taka</h5>
-                                                            </div>
-                                                            <div class="col-lg-12">
-                                                                <h3>Description</h3>
-                                                                <p>{{ $productLists->product_short_description }}</p>
-
-                                                                @if (isset($productLists->variations))
-                        @foreach (json_decode($productLists->variations,true) as $key_choice_options=>$item)
-                            @if (isset($item["price"]))
-                                @break
-                            @else
-                                                                <div class="mt-5">
-
-@if($item['required'] == 'on')
-                                                                    <h3>{{ $item['name'] }} <span class="text-danger">(Required)</span></h3>
-                                                                    <p>You need to select minimum {{ $item['min'] }} To maximum {{ $item['max'] }} Options </p>
-@else
-<h3>{{ $item['name'] }}</h3>
-
-
-@endif
-
-                                                                    <ul>
-                                                                        @if (isset($item['values']))
-                                                                        @foreach ($item['values'] as $key_value => $value)
-                                                                        <li>
-                                                                            <div class="d-flex justify-content-between">
-                                                                                <div class="demo-checkbox">
-                                                                                    <input type="checkbox" id="basic_checkbox_{{ $key_value }}"/>
-                                                                                    <label for="basic_checkbox_{{ $key_value }}">{{ $value['label'] }}</label>
-                                                                                </div>
-                                                                                <p>{{ $value['optionPrice'] }} Taka</p>
-                                                                            </div>
-                                                                        </li>
-                                                                        @endforeach
-                                                                        @endif
-
-                                                                    </ul>
-                                                                    <table class="table table-borderless">
-                                                                        <tr>
-                                                                            <td>
-                                                                                <h3>Quantity:</h3>
-                                                                            </td>
-                                                                            <td class="text-end" style="width:25%">
-                                                                                <div class="input-group">
-                                              <span class="input-group-btn">
-                                                  <button type="button" class="btn btn-danger btn-number" data-type="minus" data-field="quant[2]">
-                                                    <span class="glyphicon glyphicon-minus"></span>
-                                                  </button>
-                                              </span>
-                                                                                    <input type="text" name="quant[2]" class="form-control input-number"
-                                                                                           value="10" min="1" max="100">
-                                                                                    <span class="input-group-btn">
-                                                  <button type="button" class="btn btn-success btn-number" data-type="plus" data-field="quant[2]">
-                                                      <span class="glyphicon glyphicon-plus"></span>
-                                                  </button>
-                                              </span>
-                                                                                </div>
-                                                                            </td>
-                                                                        </tr>
-                                                                    </table>
-                                                                </div>
-@endif
-@endforeach
-@endif
-
-                                                                <h3>Addon</h3>
-                                                                <ul>
-
-                                                                    @foreach(json_decode($productLists['product_add_on'],true) as $key=>$addOnId)
-                                                                    <li>
-                                                                        <div class="d-flex justify-content-between">
-                                                                            <div class="demo-checkbox">
-                                                                                <input type="checkbox" id="basic_checkbox_{{ $key+6000 }}"/>
-                                                                                <label for="basic_checkbox_{{ $key+6000 }}">{{ \App\Models\ProductAddOn::where('id',$addOnId)->value('name')  }}</label>
-                                                                            </div>
-                                                                            <p>{{ \App\Models\ProductAddOn::where('id',$addOnId)->value('price')  }} Taka</p>
-                                                                        </div>
-                                                                    </li>
-                                                                    @endforeach
-
-                                                                </ul>
-                                                                <h2>Total Amount: <span class="text-success text-bold">0 Taka</span></h2>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-primary"><i class="fa fa-cart-plus"></i> Add</button>
-                                                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                                                    </div>
-                                                </div>
-                                                <!-- /.modal-content -->
-                                            </div>
-                                            <!-- /.modal-dialog -->
-                                        </div>
+                                       @include('admin.pos.partial.modalRelatedProduct')
 
                                         <!-- modal related to product end --->
                                         @endforeach
@@ -226,7 +119,7 @@ $customerList = \App\Models\Customer::latest()->get();
                             <div class="form-group">
                                 <select class="form-control" name="" id="">
                                     <option value="">Select Branch</option>
-                                    <option value="">Dhaka</option>
+                                    <option value="" selected>Dhaka</option>
                                 </select>
                             </div>
                         </div>
@@ -340,21 +233,22 @@ $customerList = \App\Models\Customer::latest()->get();
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
+                <h1>Add New customer</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form class="custom-validation" action="{{ route('customer.store') }}" method="post" enctype="multipart/form-data" id="form" data-parsley-validate="">
+                <form class="custom-validation" action="#" method="post" enctype="multipart/form-data" id="form" data-parsley-validate="">
                     @csrf
 
-                    <input type="hidden" class="form-control" id="b" name="bt" value="23" placeholder="Name" >
+                    {{-- <input type="hidden" class="form-control" id="b" name="bt" value="23" placeholder="Name" > --}}
                 <div class="row">
-                    <div class="col-lg-6 col-sm-12">
+                    <div class="col-lg-12 col-sm-12">
                         <div class="box">
                             <div class="box-body">
-                                <div class="progress" style="display: none;">
+                                {{-- <div class="progress" style="display: none;">
                                     <div class="bar"></div >
                                     <div class="percent">0%</div >
-                                </div>
+                                </div> --}}
 
             @include('flash_message')
                                     <div class="form-group">
@@ -378,7 +272,7 @@ $customerList = \App\Models\Customer::latest()->get();
                                     </div>
                                     <div class="form-group">
                                         <label class="fw-700 fs-16 form-label">Customer Email</label>
-                                        <input type="text" class="form-control form-control-sm" data-parsley-maxlength="100" id="email" name="email" placeholder="Email" required>
+                                        <input type="text" class="form-control form-control-sm" data-parsley-maxlength="100" id="email" name="email" placeholder="Email" >
 
                                         @if ($errors->has('email'))
                                       <span class="text-danger">{{ $errors->first('email') }}</span>
@@ -386,11 +280,19 @@ $customerList = \App\Models\Customer::latest()->get();
                                     </div>
                                     <div class="form-group">
                                         <label class="fw-700 fs-16 form-label">Address</label>
-                                        <input type="text" name="address" class="form-control" placeholder="Address" required>
+                                        <input type="text" name="address" class="form-control" placeholder="Address" >
                                     </div>
 
 
-                                    <div class="form-group">
+                                    <input type="hidden" name="type" value="Regular" class="form-control" placeholder="Address" required>
+                                    <input type="hidden" name="reward_point" value="No" class="form-control" placeholder="Address" required>
+
+
+
+
+
+
+                                    {{-- <div class="form-group">
                                         <label class="fw-700 fs-16 form-label">Customer Type</label>
                                         <select name="type" required class="select2 form-control ms-0 wide">
                                             <option value="">Choose...</option>
@@ -408,7 +310,7 @@ $customerList = \App\Models\Customer::latest()->get();
                                             <option value="Yes">Yes</option>
                                             <option value="No">No</option>
                                         </select>
-                                    </div>
+                                    </div> --}}
 
 
 
@@ -416,7 +318,7 @@ $customerList = \App\Models\Customer::latest()->get();
                         </div>
                     </div>
 
-                    <div class="col-lg-6 col-sm-12">
+                    {{-- <div class="col-lg-6 col-sm-12">
                         <div class="box">
                             <div class="box-body">
                                 <div class="category_demo text-start">
@@ -431,11 +333,11 @@ $customerList = \App\Models\Customer::latest()->get();
                             </div>
                         </div>
 
-                    </div>
+                    </div> --}}
 
                 </div>
                 <div class="form-actions mt-10">
-                    <button type="submit" class="btn btn-primary"> <i class="fa fa-check"></i> Save / Add</button>
+                    <button id="saveButton" class="btn btn-primary"> <i class="fa fa-check"></i> Save / Add</button>
                 </div>
             </form>
             </div>
@@ -454,5 +356,72 @@ $customerList = \App\Models\Customer::latest()->get();
 
 
 @section('script')
+<script>
 
+    $(document).on('change', '#posCategory', function () {
+
+        var category_id = $(this).find(':selected').val();
+
+
+            $.ajax({
+        url: "{{ route('getProductForPOS') }}",
+        method: 'get',
+        data: {category_id:category_id},
+        beforeSend: function(){
+            $('.ajax-loader').show()
+        },
+        complete: function(){
+            $('.ajax-loader').hide()
+        },
+        success: function(data) {
+
+
+
+            alertify.set('notifier','position','top-center');
+            alertify.success('product Shown successfully');
+            //location.reload(true);
+            $('#getProductForPos').html('');
+            $('#getProductForPos').html(data);
+
+        }
+        });
+
+});
+
+
+/////search product
+
+$(document).on('keyup', '.posProductSearch', function () {
+
+var productSearch = $(this).val();
+
+
+    $.ajax({
+url: "{{ route('posProductSearch') }}",
+method: 'get',
+data: {productSearch:productSearch},
+beforeSend: function(){
+    $('.ajax-loader').show()
+},
+complete: function(){
+    $('.ajax-loader').hide()
+},
+success: function(data) {
+
+
+
+    alertify.set('notifier','position','top-center');
+    alertify.success('product Shown successfully');
+    //location.reload(true);
+    $('#getProductForPos').html('');
+    $('#getProductForPos').html(data);
+
+}
+});
+
+});
+
+
+
+</script>
 @endsection
