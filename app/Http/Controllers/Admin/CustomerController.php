@@ -130,20 +130,12 @@ class CustomerController extends Controller
         }
         $customers->save();
 
-
-
-       DB::commit();
-
-       if($request->bt == 23){
-        return redirect()->back()->with('success','Created successfully!');
-       }else{
+        DB::commit();
         return redirect()->route('customer.index')->with('success','Created successfully!');
 
-       }
-
        } catch (\Exception $e) {
-        DB::rollBack();
 
+        DB::rollBack();
         return redirect()->route('error_500');
        }
     }

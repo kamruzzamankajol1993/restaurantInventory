@@ -391,7 +391,7 @@ $customerList = \App\Models\Customer::latest()->get();
 
 /////search product
 
-$(document).on('keyup', '.posProductSearch', function () {
+$(document).on('keyup', '#posProductSearch', function () {
 
 var productSearch = $(this).val();
 

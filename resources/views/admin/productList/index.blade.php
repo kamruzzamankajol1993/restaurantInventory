@@ -44,7 +44,7 @@ Product List
 
                                 @foreach($productList as $key=>$productLists)
                             <tr>
-                                <td>01</td>
+                                <td>{{ $key+1 }}</td>
                                 <td>
                                     <div class="d-flex justify-content-center align-items-center">
                                         <img class="table_image_box" src="{{ asset('/') }}{{ $productLists->product_image }}" alt="">

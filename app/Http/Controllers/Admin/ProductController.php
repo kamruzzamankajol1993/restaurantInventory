@@ -361,7 +361,7 @@ $filePath='ProductImage';
  }
 
 
- public function destroy(string $id)
+ public function destroy($id)
     {
         if (is_null($this->user) || !$this->user->can('productDelete')) {
 
@@ -375,7 +375,7 @@ $filePath='ProductImage';
             Product::destroy($id);
 
             DB::commit();
-            return redirect()->route('product.index')->with('error','Deleted successfully!');
+            return redirect()->route('productList.index')->with('error','Deleted successfully!');
 
         } catch (\Exception $e) {
             DB::rollBack();

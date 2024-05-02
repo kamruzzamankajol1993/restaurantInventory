@@ -3,7 +3,7 @@
     <div class="card">
 
             <img class="card-img-top"
-                 src="{{ asset('/') }}public/admin/product-not-found.jpg;"
+                 src="{{ asset('/') }}public/admin/product-not-found.jpg"
                  alt="Card image cap">
 
 

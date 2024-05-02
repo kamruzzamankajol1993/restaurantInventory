@@ -63,7 +63,7 @@ class PosController extends Controller
 
     public function posProductSearch(Request $request){
 
-        $productList = Product::where('product_name','LIKE','%'.$request->posProductSearch.'%')
+        $productList = Product::where('product_name','LIKE','%'.$request->productSearch.'%')
         ->orderBy('id','desc')->get();
 
             return $data = view('admin.pos.partial.getProductForPOS',compact('productList'))->render();

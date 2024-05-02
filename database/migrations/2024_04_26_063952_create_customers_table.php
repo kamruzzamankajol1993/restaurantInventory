@@ -15,10 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('phone_number');
-            $table->string('email');
+            $table->string('email')->nullable();
             $table->string('address')->nullable();
             $table->string('type')->nullable();
             $table->string('reward_point')->nullable();
+            $table->string('admin_id')->nullable();
             $table->text('image')->nullable();
             $table->string('status');
             $table->timestamps();

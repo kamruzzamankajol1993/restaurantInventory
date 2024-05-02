@@ -115,7 +115,7 @@ Product Addon
                             <tr>
                                 <td>{{ $key+1 }}</td>
                                 <td>{{ $productAddOnLists->name }}</td>
-                                <td>{{ $productAddOnLists->price }}</td>
+                                <td>৳ {{ $productAddOnLists->price }}</td>
                                 <td>{{ $productAddOnLists->tax }}</td>
                                 <td>
 

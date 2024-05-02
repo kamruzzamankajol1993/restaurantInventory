@@ -131,7 +131,7 @@ Update Category
                            <tr>
                             <td>{{ $loop->index+1 }}</td>
                             <td> <img src="{{ asset('/') }}{{ $menuLists->image }}"    class="table_image_box"/> </td>
-                            <td> <img src="{{ asset('/') }}{{ $menuLists->web_image }}"    class="table_image_box"/> </td>
+                            <td> <img src="{{ asset('/') }}{{ $menuLists->web_image }}"    style="height:40px;width:80px;"/> </td>
                             <td >{{ $menuLists->category_name }}</td>
                             <td >
 

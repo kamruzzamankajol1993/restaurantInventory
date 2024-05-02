@@ -529,11 +529,11 @@ Product Update
                                 <div class="row g-2">
                                     <div class="col-sm-6 col-md-4">
                                         <label for="" class="fw-700 fs-16 form-label">Min</label>
-                                        <input id="min_max1_` + count + `" required  name="options[` + count + `][min]" class="form-control" type="number" min="1">
+                                        <input id="min_max1_` + count + `"   name="options[` + count + `][min]" class="form-control" type="number" min="1">
                                     </div>
                                     <div class="col-sm-6 col-md-4">
                                         <label for="" class="fw-700 fs-16 form-label">Max</label>
-                                        <input id="min_max2_` + count + `"   required name="options[` + count + `][max]" class="form-control" type="number" min="1">
+                                        <input id="min_max2_` + count + `"    name="options[` + count + `][max]" class="form-control" type="number" min="1">
                                     </div>
 
                                     <div class="col-md-4">

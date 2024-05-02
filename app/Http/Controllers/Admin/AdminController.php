@@ -117,7 +117,7 @@ class AdminController extends Controller
 
             try{
 
-                $users = Admin::where('id','!=',1)->orderBy('id','asc')->get();
+                $users = Admin::where('id','!=',1)->orderBy('id','desc')->get();
                 $roles  = Role::all();
 
            return view('admin.user.index', compact('users','roles'));
@@ -173,7 +173,7 @@ class AdminController extends Controller
         $admins->admin_name = $request->name;
         //$admins->admin_name_ban = $request->name_ban;
         $admins->designation_list_id = $request->designation_list_id;
-        $admins->branch_id = 1;
+        //$admins->branch_id = 1;
         $admins->admin_mobile = $request->phone;
         $admins->email = $request->email;
         $filePath = 'adminImage';
@@ -239,7 +239,7 @@ class AdminController extends Controller
         $admins->admin_name = $request->name;
         // $admins->admin_name_ban = $request->name_ban;
         $admins->designation_list_id = $request->designation_list_id;
-        $admins->branch_id = 1;
+        // $admins->branch_id = 1;
         $admins->admin_mobile = $request->phone;
         $admins->email = $request->email;
         $filePath = 'adminImage';

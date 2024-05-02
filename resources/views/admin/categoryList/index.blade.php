@@ -117,7 +117,7 @@ Category List
                            <tr>
                             <td>{{ $loop->index+1 }}</td>
                             <td> <img class="table_image_box"  src="{{ asset('/') }}{{ $menuLists->image }}"    /> </td>
-                            <td> <img class="table_image_box"  src="{{ asset('/') }}{{ $menuLists->web_image }}"    /> </td>
+                            <td> <img style="height:40px;width:80px;"  src="{{ asset('/') }}{{ $menuLists->web_image }}"    /> </td>
                             <td >{{ $menuLists->category_name }}</td>
                             <td >
 

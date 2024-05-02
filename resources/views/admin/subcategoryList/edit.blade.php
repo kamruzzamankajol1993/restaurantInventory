@@ -119,14 +119,14 @@ Sub-Category Edit
                                 </td>
                                 <td>
 
-                                    <a href="{{ route('subcategoryList.edit',$menuLists->id) }}" class="text-info me-10" data-bs-toggle="tooltip" data-bs-original-title="Edit">
+                                    <a href="{{ route('subcategoryList.edit',$subcategoryLists->id) }}" class="text-info me-10" data-bs-toggle="tooltip" data-bs-original-title="Edit">
                                         <i class="fa fa-pencil"></i>
                                         </a>
-                                        <a href="javascript:void(0)" onclick="deleteTag({{ $menuLists->id }})" class="text-danger" data-bs-original-title="Delete" data-bs-toggle="tooltip">
+                                        <a href="javascript:void(0)" onclick="deleteTag({{ $subcategoryLists->id }})" class="text-danger" data-bs-original-title="Delete" data-bs-toggle="tooltip">
                                             <i class="fa fa-trash"></i>
                                         </a>
 
-                                        <form id="delete-form-{{ $menuLists->id }}" action="{{ route('subcategoryList.destroy',$menuLists->id) }}" method="POST" style="display: none;">
+                                        <form id="delete-form-{{ $subcategoryLists->id }}" action="{{ route('subcategoryList.destroy',$subcategoryLists->id) }}" method="POST" style="display: none;">
                                             @method('DELETE')
                                                                                               @csrf
 

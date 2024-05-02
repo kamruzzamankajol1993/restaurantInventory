@@ -70,6 +70,8 @@ class SubCategoryController extends Controller
 
             $subcategoryListEdit = SubCategory::find($id);
 
+            //dd($subcategoryListEdit);
+
             return view('admin.subcategoryList.edit',compact('subcategoryListEdit','menuList','subcategoryList'));
 
         } catch (\Exception $e) {
