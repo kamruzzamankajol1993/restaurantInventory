@@ -5,6 +5,12 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
+
+
+                   <input type="hidden" class="pId{{ $productLists->id }}" name="id" value="{{ $productLists->id }}">
+                   <input type="hidden" class="pPrice{{ $productLists->id }}" name="price" value="{{ $productLists->default_price }}">
+
+
                 <div class="row">
                     <div class="col-lg-5">
                         <img height="200" src="{{ asset('/') }}{{ $productLists->product_image }}" alt="">
@@ -40,8 +46,8 @@
                                 <li>
                                     <div class="d-flex justify-content-between">
                                         <div class="demo-checkbox">
-                                            <input type="checkbox" id="basic_checkbox_{{ $value['label'] }}"/>
-                                            <label for="basic_checkbox_{{ $value['label']}}">{{ $value['label'] }}</label>
+                                            <input type="checkbox" data-vvList="{{ $value['label'] }}" value="{{ $value['optionPrice'] }}" class="variation{{ $productLists->id }}" name="variation[]" id="variation_basic_checkbox_{{ $value['label'] }}"/>
+                                            <label for="variation_basic_checkbox_{{ $value['label']}}">{{ $value['label'] }}</label>
                                         </div>
                                         <p>{{ $value['optionPrice'] }} Taka</p>
                                     </div>
@@ -59,19 +65,21 @@
                                         <h3>Quantity:</h3>
                                     </td>
                                     <td class="text-end" style="width:25%">
-                                        <div class="input-group">
+                                        <div class="input-group p">
+
       <span class="input-group-btn">
-          <button type="button" class="btn btn-danger btn-number" data-type="minus" data-field="quant[2]">
+          <button type="button" id="btn-minus{{ $productLists->id }}" class="btn btn-danger btn-number btn-minus" data-type="minus" data-field="quant[2]">
             <span class="glyphicon glyphicon-minus"></span>
           </button>
       </span>
-                                            <input type="text" name="quant[2]" class="form-control input-number"
-                                                   value="10" min="1" max="100">
+                                            <input type="text" name="quant[2]" id="quantityResult{{ $productLists->id }}" class="quantityResult form-control input-number"
+                                                   value="1" min="1" max="100">
                                             <span class="input-group-btn">
-          <button type="button" class="btn btn-success btn-number" data-type="plus" data-field="quant[2]">
+          <button type="button" class="btn btn-success btn-number btn-plus" id="btn-plus{{ $productLists->id }}" data-type="plus" data-field="quant[2]">
               <span class="glyphicon glyphicon-plus"></span>
           </button>
       </span>
+
                                         </div>
                                     </td>
                                 </tr>
@@ -86,8 +94,8 @@
                             <li>
                                 <div class="d-flex justify-content-between">
                                     <div class="demo-checkbox">
-                                        <input type="checkbox" id="basic_checkbox_{{ $key+6000 }}"/>
-                                        <label for="basic_checkbox_{{ $key+6000 }}">{{ \App\Models\ProductAddOn::where('id',$addOnId)->value('name')  }}</label>
+                                        <input type="checkbox" data-addon="{{$addOnId}}" class="addonData{{ $productLists->id }}" value="{{ \App\Models\ProductAddOn::where('id',$addOnId)->value('price')  }}" name="addonData[]" id="basic_checkbox_{{ $key+6000 }}{{ $productLists->product_name }}"/>
+                                        <label for="basic_checkbox_{{ $key+6000 }}{{ $productLists->product_name }}">{{ \App\Models\ProductAddOn::where('id',$addOnId)->value('name')  }}</label>
                                     </div>
                                     <p>{{ \App\Models\ProductAddOn::where('id',$addOnId)->value('price')  }} Taka</p>
                                 </div>
@@ -95,12 +103,13 @@
                             @endforeach
 
                         </ul>
-                        <h2>Total Amount: <span class="text-success text-bold">0 Taka</span></h2>
+                        <input type="hidden" id="finalAmountForDataBase{{ $productLists->id}}" />
+                        <h2>Total Amount: <span class="text-success text-bold"  id="finalTotalAmount{{ $productLists->id}}">{{ $productLists->default_price }} Taka</span></h2>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary"><i class="fa fa-cart-plus"></i> Add</button>
+                <button type="button" class="btn btn-primary" id="finalTotalAdd{{ $productLists->id}}"><i class="fa fa-cart-plus" ></i> Add</button>
                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
             </div>
         </div>

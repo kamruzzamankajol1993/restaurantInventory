@@ -125,4 +125,72 @@ if (is_null($this->user) || !$this->user->can('posAdd')) {
             return redirect()->route('error_500');
         }
     }
+
+
+    public function itemAddToCart(Request $request){
+
+        $productInfo = Product::where('id',$request->result)->first();
+
+        
+
+        \Cart::add(array(
+            'id' => $request->result,
+            'name' => $productInfo->product_name,
+            'price' => $productInfo->default_price,
+            'quantity' => $request->quantity,
+
+            'attributes' => array(
+                'image' => $productInfo->product_image,
+                'totalAmount' => $request->cartTotalAmount,
+                'addOnPrice'=>$request->final_addOn_price,
+                'variationPrice'=>$request->final_variation_price,
+                'product_slug' => $productInfo->product_slug,
+                'addOnLabelList'=>$request->addOnLabelList,
+                'varationLabelList'=>$request->varationLabelList,
+                'variationPriceList'=>$request->total_final_variation_price
+            )
+        ));
+
+
+        $cartContent = \Cart::getContent();
+        return $data = view('admin.pos.partial.itemAddToCart',compact('cartContent'))->render();
+
+
+    }
+
+    public function itemUpdateToCart(Request $request){
+
+        $productInfo = Product::where('id',$request->result)->first();
+
+        \Cart::update($request->result,
+			array(
+				'quantity' => array(
+					'relative' => false,
+					'value' => $request->quantity
+				),
+			));
+
+
+        $cartContent = \Cart::getContent();
+        return $data = view('admin.pos.partial.itemAddToCart',compact('cartContent'))->render();
+
+
+    }
+
+
+    public function clearAllCartData(Request $request){
+
+        \Cart::clear();
+        $cartContent = \Cart::getContent();
+        return $data = view('admin.pos.partial.itemAddToCart',compact('cartContent'))->render();
+
+    }
+
+
+    public function deleteSingleData(Request $request){
+
+        \Cart::remove($request->result);
+        $cartContent = \Cart::getContent();
+        return $data = view('admin.pos.partial.itemAddToCart',compact('cartContent'))->render();
+    }
 }

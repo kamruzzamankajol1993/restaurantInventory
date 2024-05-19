@@ -92,7 +92,14 @@ Route::group(['prefix' => 'admin'], function () {
 
 
     Route::controller(PosController::class)->group(function () {
-        
+
+
+        Route::get('/itemAddToCart', 'itemAddToCart')->name('itemAddToCart');
+        Route::get('/itemUpdateToCart', 'itemUpdateToCart')->name('itemUpdateToCart');
+        Route::get('/clearAllCartData', 'clearAllCartData')->name('clearAllCartData');
+
+        Route::get('/deleteSingleData', 'deleteSingleData')->name('deleteSingleData');
+
 
         Route::get('/posProductSearch', 'posProductSearch')->name('posProductSearch');
         Route::get('/getProductForPOS', 'getProductForPOS')->name('getProductForPOS');
