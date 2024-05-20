@@ -153,7 +153,7 @@ $customerList = \App\Models\Customer::latest()->get();
                                         <input class="form-control" id="updateCartQuantity{{ $productInfoCArt->id  }}" type="number" value="{{ $productInfoCArt->quantity }}">
                                     </td>
                                     <td>
-                                        {{ ($productInfoCArt->price + $productInfoCArt->attributes->variationPrice)*$productInfoCArt->quantity }} Taka
+                                        {{ $productInfoCArt->price }} Taka
                                     </td>
                                     <td>
                                         <a id="singleItemDelete{{ $productInfoCArt->id  }}" href="javascript:void(0)" class="text-info me-10"

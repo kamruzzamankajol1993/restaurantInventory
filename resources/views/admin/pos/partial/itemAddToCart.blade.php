@@ -48,7 +48,7 @@
                 <input class="form-control" id="updateCartQuantityy{{ $productInfoCArt->id  }}" type="number" value="{{ $productInfoCArt->quantity }}">
             </td>
             <td>
-                {{ ($productInfoCArt->price + $productInfoCArt->attributes->variationPrice)*$productInfoCArt->quantity }} Taka
+                {{ $productInfoCArt->price  }} Taka
             </td>
             <td>
                 <a id="singleItemDeletee{{ $productInfoCArt->id  }}" href="javascript:void(0)" class="text-info me-10"

@@ -417,3 +417,18 @@ $('[id^=singleItemDelete]').on('click', function() {
 
 </script>
 <!-- end product add  script --->
+
+<!-- new code 20 may start ---->
+<script>
+
+$(function() {
+
+$('#extraDiscount').on('keyup', function() {
+
+    var extraDisPrice = $(this).val();
+
+});
+});
+</script>
+
+<!-- end new code 20 may end --->
