@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 19, 2024 at 01:56 PM
+-- Generation Time: May 21, 2024 at 01:10 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `admins` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `admin_name` varchar(255) NOT NULL,
-  `admin_name_ban` varchar(255) NOT NULL,
+  `admin_name_ban` varchar(255) DEFAULT NULL,
   `admin_mobile` varchar(255) NOT NULL,
   `designation_list_id` varchar(255) DEFAULT NULL,
   `admin_sign` varchar(255) DEFAULT NULL,
@@ -52,7 +52,9 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`id`, `admin_name`, `admin_name_ban`, `admin_mobile`, `designation_list_id`, `admin_sign`, `address`, `nid_number`, `nid_image`, `present_address`, `admin_image`, `email`, `admin_email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'super admin1', 'super admin ban', '123456789', '1', NULL, NULL, NULL, NULL, NULL, 'public/uploads/1714371684202404292024-26-0417141156753614081457.png', 'superadmin@gmail.com', NULL, '$2y$10$.URaGgaWW5DvbE0VzQ65neMENJKRmENkirMYdCFhCvDcjdfiaNX/W', NULL, '2024-04-28 23:11:45', '2024-04-29 00:21:24');
+(1, 'super admin1', 'super admin ban', '123456789', '1', NULL, NULL, NULL, NULL, NULL, 'public/uploads/1714371684202404292024-26-0417141156753614081457.png', 'superadmin@gmail.com', NULL, '$2y$10$.URaGgaWW5DvbE0VzQ65neMENJKRmENkirMYdCFhCvDcjdfiaNX/W', NULL, '2024-04-28 23:11:45', '2024-04-29 00:21:24'),
+(2, 'waiter', NULL, '11111111111', '4', NULL, 'বনানী ,ঢাকা', '121212121212121', 'public/uploads/adminImage/2024-21-0517162690755682074053.png', 'বনানী ,ঢাকা', 'public/uploads/adminImage/2024-21-0517162690754949896140.png', 'waiter@gmail.com', NULL, '$2y$10$qkyzIKBd3iiM9xcWlqpexesSUO16eqckvdo7K7WS063X0KoTZafIW', NULL, '2024-05-20 23:24:35', '2024-05-20 23:24:35'),
+(3, 'chef', NULL, '11111111111', '5', NULL, 'বনানী ,ঢাকা', '121212121212121', 'public/uploads/adminImage/2024-21-0517162771441358365672.png', 'বনানী ,ঢাকা', 'public/uploads/adminImage/2024-21-0517162771447765411719.png', 'chef@gmail.com', NULL, '$2y$10$SO7xj29hUS.FVaAeIBKu4ebfn4q2tCIEPgLMwG.SwGUQku6dChx7m', NULL, '2024-05-20 23:25:38', '2024-05-21 01:39:04');
 
 -- --------------------------------------------------------
 
@@ -135,9 +137,18 @@ CREATE TABLE `customers` (
   `reward_point` varchar(255) DEFAULT NULL,
   `image` text DEFAULT NULL,
   `status` varchar(255) NOT NULL,
+  `admin_id` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `customers`
+--
+
+INSERT INTO `customers` (`id`, `name`, `phone_number`, `email`, `address`, `type`, `reward_point`, `image`, `status`, `admin_id`, `created_at`, `updated_at`) VALUES
+(1, 'ewewqe', '11111111111', 'dg@gmail.com', 'বনানী ,ঢাকা', 'Regular', 'No', NULL, '1', '1', '2024-05-21 03:44:43', '2024-05-21 03:44:43'),
+(2, 'customer One', '11111111111', 'dg@gmail.com', 'বনানী ,ঢাকা', 'Regular', 'No', NULL, '1', '1', '2024-05-21 03:45:07', '2024-05-21 03:45:07');
 
 -- --------------------------------------------------------
 
@@ -1113,7 +1124,127 @@ INSERT INTO `log_activities` (`id`, `subject`, `url`, `method`, `ip_or_mac`, `ag
 (805, 'Pos Add', 'http://localhost/ctgResV1/admin/waiterDashBoard', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '05:52:15 pm', '2024-05-19 05:52:16', '2024-05-19 05:52:16'),
 (806, 'Pos Add', 'http://localhost/ctgResV1/admin/waiterDashBoard', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '05:52:29 pm', '2024-05-19 05:52:30', '2024-05-19 05:52:30'),
 (807, 'Pos Add', 'http://localhost/ctgResV1/admin/waiterDashBoard', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '05:54:15 pm', '2024-05-19 05:54:16', '2024-05-19 05:54:16'),
-(808, 'Pos Add', 'http://localhost/ctgResV1/admin/waiterDashBoard', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '05:54:55 pm', '2024-05-19 05:54:55', '2024-05-19 05:54:55');
+(808, 'Pos Add', 'http://localhost/ctgResV1/admin/waiterDashBoard', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '05:54:55 pm', '2024-05-19 05:54:55', '2024-05-19 05:54:55'),
+(809, 'view dashboard', 'http://localhost/ctgResV1/admin', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '01:03:02 pm', '2024-05-20 01:03:03', '2024-05-20 01:03:03'),
+(810, 'Pos Add', 'http://localhost/ctgResV1/admin/waiterDashBoard', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '01:03:20 pm', '2024-05-20 01:03:20', '2024-05-20 01:03:20'),
+(811, 'Pos Add', 'http://localhost/ctgResV1/admin/waiterDashBoard', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '01:03:29 pm', '2024-05-20 01:03:30', '2024-05-20 01:03:30'),
+(812, 'Pos Add', 'http://localhost/ctgResV1/admin/waiterDashBoard', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '01:05:07 pm', '2024-05-20 01:05:07', '2024-05-20 01:05:07'),
+(813, 'Logged In.', 'http://localhost/ctgResV1/admin/login', 'POST', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '10:52:12 am', '2024-05-20 22:52:14', '2024-05-20 22:52:14'),
+(814, 'view dashboard', 'http://localhost/ctgResV1/admin', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '10:52:16 am', '2024-05-20 22:52:16', '2024-05-20 22:52:16'),
+(815, 'Pos Add', 'http://localhost/ctgResV1/admin/waiterDashBoard', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '10:52:34 am', '2024-05-20 22:52:35', '2024-05-20 22:52:35'),
+(816, 'Pos Add', 'http://localhost/ctgResV1/admin/waiterDashBoard', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '11:02:09 am', '2024-05-20 23:02:09', '2024-05-20 23:02:09'),
+(817, 'Pos Add', 'http://localhost/ctgResV1/admin/waiterDashBoard', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '11:02:44 am', '2024-05-20 23:02:44', '2024-05-20 23:02:44'),
+(818, 'Pos Add', 'http://localhost/ctgResV1/admin/waiterDashBoard', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '11:03:25 am', '2024-05-20 23:03:26', '2024-05-20 23:03:26'),
+(819, 'Pos Add', 'http://localhost/ctgResV1/admin/waiterDashBoard', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '11:14:05 am', '2024-05-20 23:14:06', '2024-05-20 23:14:06'),
+(820, 'Pos Add', 'http://localhost/ctgResV1/admin/waiterDashBoard', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '11:17:19 am', '2024-05-20 23:17:19', '2024-05-20 23:17:19'),
+(821, 'Table list ', 'http://localhost/ctgResV1/admin/tableList', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '11:21:52 am', '2024-05-20 23:21:53', '2024-05-20 23:21:53'),
+(822, 'create employee ', 'http://localhost/ctgResV1/admin/user/create', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '11:22:09 am', '2024-05-20 23:22:09', '2024-05-20 23:22:09'),
+(823, ' employee store', 'http://localhost/ctgResV1/admin/user', 'POST', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '11:22:50 am', '2024-05-20 23:22:50', '2024-05-20 23:22:50'),
+(824, ' employee store', 'http://localhost/ctgResV1/admin/user', 'POST', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '11:24:08 am', '2024-05-20 23:24:09', '2024-05-20 23:24:09'),
+(825, ' employee store', 'http://localhost/ctgResV1/admin/user', 'POST', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '11:24:34 am', '2024-05-20 23:24:35', '2024-05-20 23:24:35'),
+(826, 'view employee list', 'http://localhost/ctgResV1/admin/user', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '11:24:35 am', '2024-05-20 23:24:36', '2024-05-20 23:24:36'),
+(827, 'create employee ', 'http://localhost/ctgResV1/admin/user/create', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '11:25:09 am', '2024-05-20 23:25:09', '2024-05-20 23:25:09'),
+(828, ' employee store', 'http://localhost/ctgResV1/admin/user', 'POST', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '11:25:38 am', '2024-05-20 23:25:38', '2024-05-20 23:25:38'),
+(829, 'view employee list', 'http://localhost/ctgResV1/admin/user', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '11:25:39 am', '2024-05-20 23:25:39', '2024-05-20 23:25:39'),
+(830, 'Table list ', 'http://localhost/ctgResV1/admin/tableList', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '11:26:03 am', '2024-05-20 23:26:04', '2024-05-20 23:26:04'),
+(831, 'Table store ', 'http://localhost/ctgResV1/admin/tableList', 'POST', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '11:26:15 am', '2024-05-20 23:26:16', '2024-05-20 23:26:16'),
+(832, 'Table list ', 'http://localhost/ctgResV1/admin/tableList', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '11:26:16 am', '2024-05-20 23:26:16', '2024-05-20 23:26:16'),
+(833, 'Pos Add', 'http://localhost/ctgResV1/admin/waiterDashBoard', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '11:41:38 am', '2024-05-20 23:41:38', '2024-05-20 23:41:38'),
+(834, 'Pos Add', 'http://localhost/ctgResV1/admin/waiterDashBoard', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '11:42:30 am', '2024-05-20 23:42:30', '2024-05-20 23:42:30'),
+(835, 'Pos Add', 'http://localhost/ctgResV1/admin/waiterDashBoard', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '12:04:30 pm', '2024-05-21 00:04:30', '2024-05-21 00:04:30'),
+(836, 'Pos Add', 'http://localhost/ctgResV1/admin/waiterDashBoard', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '12:06:21 pm', '2024-05-21 00:06:21', '2024-05-21 00:06:21'),
+(837, 'Pos Add', 'http://localhost/ctgResV1/admin/waiterDashBoard', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '12:08:39 pm', '2024-05-21 00:08:39', '2024-05-21 00:08:39'),
+(838, 'Pos Add', 'http://localhost/ctgResV1/admin/waiterDashBoard', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '12:08:56 pm', '2024-05-21 00:08:56', '2024-05-21 00:08:56'),
+(839, 'Pos Add', 'http://localhost/ctgResV1/admin/waiterDashBoard', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '12:10:01 pm', '2024-05-21 00:10:01', '2024-05-21 00:10:01'),
+(840, 'Pos Add', 'http://localhost/ctgResV1/admin/waiterDashBoard', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '01:04:28 pm', '2024-05-21 01:04:28', '2024-05-21 01:04:28'),
+(841, 'Pos Add', 'http://localhost/ctgResV1/admin/waiterDashBoard', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '01:08:28 pm', '2024-05-21 01:08:28', '2024-05-21 01:08:28'),
+(842, 'Role List.', 'http://localhost/ctgResV1/admin/role', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '01:10:21 pm', '2024-05-21 01:10:21', '2024-05-21 01:10:21'),
+(843, 'View Role Edit Page.', 'http://localhost/ctgResV1/admin/role/3/edit', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '01:10:26 pm', '2024-05-21 01:10:27', '2024-05-21 01:10:27'),
+(844, 'permission list', 'http://localhost/ctgResV1/admin/permission', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '01:12:28 pm', '2024-05-21 01:12:28', '2024-05-21 01:12:28'),
+(845, ' create permission ', 'http://localhost/ctgResV1/admin/permission', 'POST', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '01:13:09 pm', '2024-05-21 01:13:09', '2024-05-21 01:13:09'),
+(846, 'permission list', 'http://localhost/ctgResV1/admin/permission', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '01:13:10 pm', '2024-05-21 01:13:10', '2024-05-21 01:13:10'),
+(847, 'permission list', 'http://localhost/ctgResV1/admin/permission', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '01:13:10 pm', '2024-05-21 01:13:10', '2024-05-21 01:13:10'),
+(848, ' create permission ', 'http://localhost/ctgResV1/admin/permission', 'POST', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '01:14:02 pm', '2024-05-21 01:14:02', '2024-05-21 01:14:02'),
+(849, 'permission list', 'http://localhost/ctgResV1/admin/permission', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '01:14:02 pm', '2024-05-21 01:14:03', '2024-05-21 01:14:03'),
+(850, 'permission list', 'http://localhost/ctgResV1/admin/permission', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '01:14:03 pm', '2024-05-21 01:14:03', '2024-05-21 01:14:03'),
+(851, ' create permission ', 'http://localhost/ctgResV1/admin/permission', 'POST', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '01:15:12 pm', '2024-05-21 01:15:12', '2024-05-21 01:15:12'),
+(852, 'permission list', 'http://localhost/ctgResV1/admin/permission', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '01:15:13 pm', '2024-05-21 01:15:13', '2024-05-21 01:15:13'),
+(853, 'permission list', 'http://localhost/ctgResV1/admin/permission', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '01:15:13 pm', '2024-05-21 01:15:13', '2024-05-21 01:15:13'),
+(854, 'permission list', 'http://localhost/ctgResV1/admin/permission', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '01:15:40 pm', '2024-05-21 01:15:40', '2024-05-21 01:15:40'),
+(855, 'permission list', 'http://localhost/ctgResV1/admin/permission', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '01:16:26 pm', '2024-05-21 01:16:26', '2024-05-21 01:16:26'),
+(856, 'View System Information.', 'http://localhost/ctgResV1/admin/systemInformation', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '01:16:33 pm', '2024-05-21 01:16:33', '2024-05-21 01:16:33'),
+(857, 'Role List.', 'http://localhost/ctgResV1/admin/role', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '01:16:38 pm', '2024-05-21 01:16:38', '2024-05-21 01:16:38'),
+(858, 'View Role Edit Page.', 'http://localhost/ctgResV1/admin/role/3/edit', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '01:16:42 pm', '2024-05-21 01:16:43', '2024-05-21 01:16:43'),
+(859, 'Update Role.', 'http://localhost/ctgResV1/admin/role/3', 'PUT', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '01:17:12 pm', '2024-05-21 01:17:12', '2024-05-21 01:17:12'),
+(860, 'Role List.', 'http://localhost/ctgResV1/admin/role', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '01:17:13 pm', '2024-05-21 01:17:13', '2024-05-21 01:17:13'),
+(861, 'View Role Edit Page.', 'http://localhost/ctgResV1/admin/role/2/edit', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '01:17:26 pm', '2024-05-21 01:17:26', '2024-05-21 01:17:26'),
+(862, 'Update Role.', 'http://localhost/ctgResV1/admin/role/2', 'PUT', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '01:17:43 pm', '2024-05-21 01:17:44', '2024-05-21 01:17:44'),
+(863, 'Role List.', 'http://localhost/ctgResV1/admin/role', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '01:17:44 pm', '2024-05-21 01:17:45', '2024-05-21 01:17:45'),
+(864, 'View Role Edit Page.', 'http://localhost/ctgResV1/admin/role/1/edit', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '01:17:56 pm', '2024-05-21 01:17:57', '2024-05-21 01:17:57'),
+(865, 'Update Role.', 'http://localhost/ctgResV1/admin/role/1', 'PUT', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '01:18:02 pm', '2024-05-21 01:18:03', '2024-05-21 01:18:03'),
+(866, 'Role List.', 'http://localhost/ctgResV1/admin/role', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '01:18:06 pm', '2024-05-21 01:18:06', '2024-05-21 01:18:06'),
+(867, 'view dashboard', 'http://localhost/ctgResV1/admin', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '01:19:59 pm', '2024-05-21 01:20:00', '2024-05-21 01:20:00'),
+(868, 'Role List.', 'http://localhost/ctgResV1/admin/role', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '01:30:03 pm', '2024-05-21 01:30:03', '2024-05-21 01:30:03'),
+(869, 'Role List.', 'http://localhost/ctgResV1/admin/role', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '01:30:19 pm', '2024-05-21 01:30:20', '2024-05-21 01:30:20'),
+(870, 'create employee ', 'http://localhost/ctgResV1/admin/customer/create', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '01:37:50 pm', '2024-05-21 01:37:51', '2024-05-21 01:37:51'),
+(871, 'view employee list', 'http://localhost/ctgResV1/admin/customer', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '01:37:54 pm', '2024-05-21 01:37:54', '2024-05-21 01:37:54'),
+(872, 'view employee list', 'http://localhost/ctgResV1/admin/user', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '01:38:35 pm', '2024-05-21 01:38:35', '2024-05-21 01:38:35'),
+(873, 'edit employee list', 'http://localhost/ctgResV1/admin/user/3/edit', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '01:38:43 pm', '2024-05-21 01:38:43', '2024-05-21 01:38:43'),
+(874, 'update employee list', 'http://localhost/ctgResV1/admin/user/3', 'PUT', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '01:39:04 pm', '2024-05-21 01:39:04', '2024-05-21 01:39:04'),
+(875, 'view employee list', 'http://localhost/ctgResV1/admin/user', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '01:39:05 pm', '2024-05-21 01:39:05', '2024-05-21 01:39:05'),
+(876, 'Logged Out.', 'http://localhost/ctgResV1/admin/logout/submit', 'POST', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '01:39:17 pm', '2024-05-21 01:39:17', '2024-05-21 01:39:17'),
+(877, 'Logged In.', 'http://localhost/ctgResV1/admin/login', 'POST', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '2', '01:39:29 pm', '2024-05-21 01:39:29', '2024-05-21 01:39:29'),
+(878, 'view dashboard', 'http://localhost/ctgResV1/admin', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '2', '01:39:30 pm', '2024-05-21 01:39:30', '2024-05-21 01:39:30'),
+(879, 'Logged Out.', 'http://localhost/ctgResV1/admin/logout/submit', 'POST', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '2', '01:40:00 pm', '2024-05-21 01:40:00', '2024-05-21 01:40:00'),
+(880, 'Logged In.', 'http://localhost/ctgResV1/admin/login', 'POST', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '01:40:10 pm', '2024-05-21 01:40:11', '2024-05-21 01:40:11'),
+(881, 'view dashboard', 'http://localhost/ctgResV1/admin', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '01:40:11 pm', '2024-05-21 01:40:12', '2024-05-21 01:40:12'),
+(882, 'view dashboard', 'http://localhost/ctgResV1/admin', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '01:40:15 pm', '2024-05-21 01:40:16', '2024-05-21 01:40:16'),
+(883, 'Logged Out.', 'http://localhost/ctgResV1/admin/logout/submit', 'POST', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '01:40:25 pm', '2024-05-21 01:40:26', '2024-05-21 01:40:26'),
+(884, 'Logged In.', 'http://localhost/ctgResV1/admin/login', 'POST', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '2', '01:40:36 pm', '2024-05-21 01:40:36', '2024-05-21 01:40:36'),
+(885, 'view dashboard', 'http://localhost/ctgResV1/admin', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '2', '01:40:37 pm', '2024-05-21 01:40:37', '2024-05-21 01:40:37'),
+(886, 'view dashboard', 'http://localhost/ctgResV1/admin', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '2', '01:40:43 pm', '2024-05-21 01:40:43', '2024-05-21 01:40:43'),
+(887, 'view dashboard', 'http://localhost/ctgResV1/admin', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '2', '01:41:18 pm', '2024-05-21 01:41:19', '2024-05-21 01:41:19'),
+(888, 'view dashboard', 'http://localhost/ctgResV1/admin', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '2', '01:41:41 pm', '2024-05-21 01:41:41', '2024-05-21 01:41:41'),
+(889, 'view dashboard', 'http://localhost/ctgResV1/admin', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '2', '01:43:03 pm', '2024-05-21 01:43:04', '2024-05-21 01:43:04'),
+(890, 'view dashboard', 'http://localhost/ctgResV1/admin', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '2', '01:43:07 pm', '2024-05-21 01:43:07', '2024-05-21 01:43:07'),
+(891, 'view dashboard', 'http://localhost/ctgResV1/admin', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '2', '01:43:15 pm', '2024-05-21 01:43:15', '2024-05-21 01:43:15'),
+(892, 'view dashboard', 'http://localhost/ctgResV1/admin', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '2', '01:43:30 pm', '2024-05-21 01:43:30', '2024-05-21 01:43:30'),
+(893, 'view dashboard', 'http://localhost/ctgResV1/admin', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '2', '01:43:36 pm', '2024-05-21 01:43:36', '2024-05-21 01:43:36'),
+(894, 'Pos Add', 'http://localhost/ctgResV1/admin/waiterDashBoard', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '2', '01:44:27 pm', '2024-05-21 01:44:28', '2024-05-21 01:44:28'),
+(895, 'Pos Add', 'http://localhost/ctgResV1/admin/waiterDashBoard', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '2', '01:44:33 pm', '2024-05-21 01:44:33', '2024-05-21 01:44:33'),
+(896, 'Logged Out.', 'http://localhost/ctgResV1/admin/logout/submit', 'POST', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '2', '02:07:53 pm', '2024-05-21 02:07:53', '2024-05-21 02:07:53'),
+(897, 'Logged Out.', 'http://localhost/ctgResV1/admin/logout/submit', 'POST', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '02:35:58 pm', '2024-05-21 02:35:58', '2024-05-21 02:35:58'),
+(898, 'Logged In.', 'http://localhost/ctgResV1/admin/login', 'POST', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '02:37:24 pm', '2024-05-21 02:37:25', '2024-05-21 02:37:25'),
+(899, 'view dashboard', 'http://localhost/ctgResV1/admin', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '02:37:25 pm', '2024-05-21 02:37:26', '2024-05-21 02:37:26'),
+(900, 'Menu List View', 'http://localhost/ctgResV1/admin/menuList', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '02:37:31 pm', '2024-05-21 02:37:31', '2024-05-21 02:37:31'),
+(901, 'Menu List Update', 'http://localhost/ctgResV1/admin/menuList/2/edit', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '02:37:37 pm', '2024-05-21 02:37:38', '2024-05-21 02:37:38'),
+(902, 'Logged In.', 'http://localhost/ctgResV1/admin/login', 'POST', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '02:49:12 pm', '2024-05-21 02:49:13', '2024-05-21 02:49:13'),
+(903, 'view dashboard', 'http://localhost/ctgResV1/admin', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '02:49:13 pm', '2024-05-21 02:49:14', '2024-05-21 02:49:14'),
+(904, 'Pos Add', 'http://localhost/ctgResV1/admin/pos/create', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '03:12:20 pm', '2024-05-21 03:12:20', '2024-05-21 03:12:20'),
+(905, 'Pos Add', 'http://localhost/ctgResV1/admin/pos/create', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '03:36:26 pm', '2024-05-21 03:36:27', '2024-05-21 03:36:27'),
+(906, 'Pos Add', 'http://localhost/ctgResV1/admin/pos/create', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '03:39:33 pm', '2024-05-21 03:39:34', '2024-05-21 03:39:34'),
+(907, ' employee store', 'http://localhost/ctgResV1/admin/customer', 'POST', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '03:39:45 pm', '2024-05-21 03:39:46', '2024-05-21 03:39:46'),
+(908, 'Pos Add', 'http://localhost/ctgResV1/admin/pos/create', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '03:43:19 pm', '2024-05-21 03:43:19', '2024-05-21 03:43:19'),
+(909, 'Pos Add', 'http://localhost/ctgResV1/admin/pos/create', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '03:43:37 pm', '2024-05-21 03:43:37', '2024-05-21 03:43:37'),
+(910, 'Pos Add', 'http://localhost/ctgResV1/admin/pos/create', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '03:44:43 pm', '2024-05-21 03:44:43', '2024-05-21 03:44:43'),
+(911, 'Pos Add', 'http://localhost/ctgResV1/admin/pos/create', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '03:45:08 pm', '2024-05-21 03:45:08', '2024-05-21 03:45:08');
+INSERT INTO `log_activities` (`id`, `subject`, `url`, `method`, `ip_or_mac`, `agent`, `admin_id`, `activity_time`, `created_at`, `updated_at`) VALUES
+(912, 'Pos Add', 'http://localhost/ctgResV1/admin/pos/create', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '03:46:59 pm', '2024-05-21 03:47:00', '2024-05-21 03:47:00'),
+(913, 'Pos Add', 'http://localhost/ctgResV1/admin/pos/create', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '03:47:27 pm', '2024-05-21 03:47:27', '2024-05-21 03:47:27'),
+(914, 'Pos Add', 'http://localhost/ctgResV1/admin/pos/create', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '03:51:18 pm', '2024-05-21 03:51:19', '2024-05-21 03:51:19'),
+(915, 'Pos Add', 'http://localhost/ctgResV1/admin/pos/create', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '04:02:02 pm', '2024-05-21 04:02:02', '2024-05-21 04:02:02'),
+(916, 'Pos Add', 'http://localhost/ctgResV1/admin/pos/create', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '04:04:48 pm', '2024-05-21 04:04:48', '2024-05-21 04:04:48'),
+(917, 'Pos Add', 'http://localhost/ctgResV1/admin/pos/create', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '04:05:40 pm', '2024-05-21 04:05:41', '2024-05-21 04:05:41'),
+(918, 'Pos Add', 'http://localhost/ctgResV1/admin/pos/create', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '04:06:45 pm', '2024-05-21 04:06:45', '2024-05-21 04:06:45'),
+(919, 'Pos Add', 'http://localhost/ctgResV1/admin/pos/create', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '04:07:09 pm', '2024-05-21 04:07:09', '2024-05-21 04:07:09'),
+(920, 'Pos Add', 'http://localhost/ctgResV1/admin/pos/create', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '04:09:03 pm', '2024-05-21 04:09:04', '2024-05-21 04:09:04'),
+(921, 'Pos Add', 'http://localhost/ctgResV1/admin/pos/create', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '04:09:12 pm', '2024-05-21 04:09:12', '2024-05-21 04:09:12'),
+(922, 'Pos Add', 'http://localhost/ctgResV1/admin/pos/create', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '04:10:12 pm', '2024-05-21 04:10:12', '2024-05-21 04:10:12'),
+(923, 'Pos Add', 'http://localhost/ctgResV1/admin/pos/create', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '04:14:12 pm', '2024-05-21 04:14:12', '2024-05-21 04:14:12'),
+(924, 'Pos Add', 'http://localhost/ctgResV1/admin/pos/create', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '04:14:53 pm', '2024-05-21 04:14:54', '2024-05-21 04:14:54'),
+(925, 'Pos Add', 'http://localhost/ctgResV1/admin/pos/create', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '04:15:39 pm', '2024-05-21 04:15:39', '2024-05-21 04:15:39'),
+(926, 'Pos Add', 'http://localhost/ctgResV1/admin/pos/create', 'GET', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '04:21:42 pm', '2024-05-21 04:21:42', '2024-05-21 04:21:42'),
+(927, 'Logged Out.', 'http://localhost/ctgResV1/admin/logout/submit', 'POST', 'B0-A7-B9-EB-20-D0   \\Device\\Tcpip_{BE34F30D-E490-468C-860E-1BA42BCC5542}', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', '1', '05:09:23 pm', '2024-05-21 05:09:24', '2024-05-21 05:09:24');
 
 -- --------------------------------------------------------
 
@@ -1186,7 +1317,10 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (29, '2024_04_29_173457_create_products_table', 4),
 (30, '2024_04_29_173620_create_product_variations_table', 4),
 (31, '2024_04_29_173659_create_product_variation_lists_table', 4),
-(32, '2024_04_29_181006_create_menus_table', 5);
+(32, '2024_04_29_181006_create_menus_table', 5),
+(33, '2024_05_01_024540_create_orders_table', 6),
+(34, '2024_05_01_024605_create_ship_addresses_table', 6),
+(35, '2024_05_21_051921_create_order_details_table', 6);
 
 -- --------------------------------------------------------
 
@@ -1217,7 +1351,77 @@ CREATE TABLE `model_has_roles` (
 --
 
 INSERT INTO `model_has_roles` (`role_id`, `model_type`, `model_id`) VALUES
-(1, 'App\\Models\\Admin', 1);
+(1, 'App\\Models\\Admin', 1),
+(2, 'App\\Models\\Admin', 3),
+(3, 'App\\Models\\Admin', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orders`
+--
+
+CREATE TABLE `orders` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `invoice_id` varchar(255) NOT NULL,
+  `subtotal` varchar(255) NOT NULL,
+  `addon` varchar(255) DEFAULT NULL,
+  `discount` varchar(255) DEFAULT NULL,
+  `extra_discount` varchar(255) DEFAULT NULL,
+  `vat` varchar(255) DEFAULT NULL,
+  `delivery_charge` varchar(255) DEFAULT NULL,
+  `grand_total` varchar(255) DEFAULT NULL,
+  `status` varchar(255) DEFAULT NULL,
+  `admin_id` varchar(255) DEFAULT NULL,
+  `order_type` varchar(255) DEFAULT NULL,
+  `customer_id` varchar(255) DEFAULT NULL,
+  `branch` varchar(255) DEFAULT NULL,
+  `waiter_id` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`id`, `invoice_id`, `subtotal`, `addon`, `discount`, `extra_discount`, `vat`, `delivery_charge`, `grand_total`, `status`, `admin_id`, `order_type`, `customer_id`, `branch`, `waiter_id`, `created_at`, `updated_at`) VALUES
+(2, '9508353953047525', '1013', '5', '2', '4', '40', NULL, '1052', 'pending', '1', NULL, NULL, NULL, NULL, '2024-05-21 00:10:00', '2024-05-21 00:10:00'),
+(5, '8407157078473446', '1000', '0', '10', '0', '50', NULL, '1040', 'pending', '1', NULL, NULL, NULL, NULL, '2024-05-21 01:08:27', '2024-05-21 01:08:27'),
+(6, '4945673720282377', '953', '5', '2', '0', '38', NULL, '994', 'pending', '1', 'Home Delivery', 'Walk In Customer', 'Dhaka', '2', '2024-05-21 04:21:41', '2024-05-21 04:21:41');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `order_details`
+--
+
+CREATE TABLE `order_details` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `order_id` varchar(255) NOT NULL,
+  `product_id` varchar(255) DEFAULT NULL,
+  `product_name` varchar(255) NOT NULL,
+  `product_image` text DEFAULT NULL,
+  `product_quantity` varchar(255) DEFAULT NULL,
+  `prodcut_price` varchar(255) DEFAULT NULL,
+  `addOnPrice` varchar(255) DEFAULT NULL,
+  `variationPrice` varchar(255) DEFAULT NULL,
+  `addOnLabelList` text DEFAULT NULL,
+  `varationLabelList` text DEFAULT NULL,
+  `variationPriceList` text DEFAULT NULL,
+  `status` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `order_details`
+--
+
+INSERT INTO `order_details` (`id`, `order_id`, `product_id`, `product_name`, `product_image`, `product_quantity`, `prodcut_price`, `addOnPrice`, `variationPrice`, `addOnLabelList`, `varationLabelList`, `variationPriceList`, `status`, `created_at`, `updated_at`) VALUES
+(2, '2', '2', 'Burger', 'public/uploads/ProductImage/2024-19-0517160993062498506786.png', '2', '444', '5', '60', '2', 'variation_basic_checkbox_soft drinks,variation_basic_checkbox_water', '30,30', 'Processing', '2024-05-21 00:10:00', '2024-05-21 00:47:22'),
+(3, '5', '3', 'Chicken Pizza', 'public/uploads/ProductImage/2024-19-0517160990684645722605.jpg', '2', '500', '0', '0', NULL, NULL, NULL, 'Pending', '2024-05-21 01:08:27', '2024-05-21 01:08:27'),
+(4, '6', '2', 'Burger', 'public/uploads/ProductImage/2024-19-0517160993062498506786.png', '2', '444', '5', '30', NULL, NULL, NULL, 'Pending', '2024-05-21 04:21:41', '2024-05-21 04:21:41');
 
 -- --------------------------------------------------------
 
@@ -1333,7 +1537,13 @@ INSERT INTO `permissions` (`id`, `name`, `group_name`, `guard_name`, `created_at
 (77, 'posAdd', 'pos', 'admin', NULL, NULL),
 (78, 'posView', 'pos', 'admin', NULL, NULL),
 (79, 'posDelete', 'pos', 'admin', NULL, NULL),
-(80, 'posUpdate', 'pos', 'admin', NULL, NULL);
+(80, 'posUpdate', 'pos', 'admin', NULL, NULL),
+(81, 'orderAdd', 'order', 'admin', NULL, NULL),
+(82, 'orderView', 'order', 'admin', NULL, NULL),
+(83, 'orderDelete', 'order', 'admin', NULL, NULL),
+(84, 'orderUpdate', 'order', 'admin', NULL, NULL),
+(85, 'KitchenDashboardAdd', 'KitchenDashboard', 'admin', NULL, NULL),
+(86, 'waiterDashboardAdd', 'waiterDashboard', 'admin', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1508,8 +1718,8 @@ CREATE TABLE `roles` (
 
 INSERT INTO `roles` (`id`, `name`, `guard_name`, `created_at`, `updated_at`) VALUES
 (1, 'superadmin', 'admin', '2024-04-28 23:11:41', '2024-04-28 23:11:41'),
-(2, 'admin', 'admin', '2024-04-28 23:11:41', '2024-04-28 23:11:41'),
-(3, 'editor', 'admin', '2024-04-28 23:11:41', '2024-04-28 23:11:41'),
+(2, 'kitchen', 'admin', '2024-04-28 23:11:41', '2024-05-21 01:17:44'),
+(3, 'waiter', 'admin', '2024-04-28 23:11:41', '2024-05-21 01:17:12'),
 (4, 'user', 'admin', '2024-04-28 23:11:42', '2024-04-28 23:11:42');
 
 -- --------------------------------------------------------
@@ -1529,7 +1739,11 @@ CREATE TABLE `role_has_permissions` (
 
 INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
 (1, 1),
+(1, 2),
+(1, 3),
 (2, 1),
+(2, 2),
+(2, 3),
 (3, 1),
 (4, 1),
 (5, 1),
@@ -1598,7 +1812,39 @@ INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
 (77, 1),
 (78, 1),
 (79, 1),
-(80, 1);
+(80, 1),
+(81, 1),
+(82, 1),
+(83, 1),
+(84, 1),
+(85, 1),
+(85, 2),
+(86, 1),
+(86, 3);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ship_addresses`
+--
+
+CREATE TABLE `ship_addresses` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `order_id` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `phone` text DEFAULT NULL,
+  `email` text DEFAULT NULL,
+  `address` text DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `ship_addresses`
+--
+
+INSERT INTO `ship_addresses` (`id`, `order_id`, `name`, `phone`, `email`, `address`, `created_at`, `updated_at`) VALUES
+(1, '6', 'Walk In Customer', '11111111111', NULL, 'test', '2024-05-21 04:21:41', '2024-05-21 04:21:41');
 
 -- --------------------------------------------------------
 
@@ -1682,6 +1928,13 @@ CREATE TABLE `tables` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `tables`
+--
+
+INSERT INTO `tables` (`id`, `name`, `table_slug`, `admin_id`, `created_at`, `updated_at`) VALUES
+(1, 'tableOne', 'tableone', '2', '2024-05-20 23:26:16', '2024-05-20 23:26:16');
 
 -- --------------------------------------------------------
 
@@ -1833,6 +2086,18 @@ ALTER TABLE `model_has_roles`
   ADD KEY `model_has_roles_model_id_model_type_index` (`model_id`,`model_type`);
 
 --
+-- Indexes for table `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `order_details`
+--
+ALTER TABLE `order_details`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `password_resets`
 --
 ALTER TABLE `password_resets`
@@ -1910,6 +2175,12 @@ ALTER TABLE `role_has_permissions`
   ADD KEY `role_has_permissions_role_id_foreign` (`role_id`);
 
 --
+-- Indexes for table `ship_addresses`
+--
+ALTER TABLE `ship_addresses`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `sub_categories`
 --
 ALTER TABLE `sub_categories`
@@ -1954,7 +2225,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `admin_designation_histories`
@@ -1978,7 +2249,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `designation_lists`
@@ -2032,7 +2303,7 @@ ALTER TABLE `leave_types`
 -- AUTO_INCREMENT for table `log_activities`
 --
 ALTER TABLE `log_activities`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=809;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=928;
 
 --
 -- AUTO_INCREMENT for table `menus`
@@ -2044,13 +2315,25 @@ ALTER TABLE `menus`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+
+--
+-- AUTO_INCREMENT for table `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `order_details`
+--
+ALTER TABLE `order_details`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -2101,6 +2384,12 @@ ALTER TABLE `roles`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT for table `ship_addresses`
+--
+ALTER TABLE `ship_addresses`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `sub_categories`
 --
 ALTER TABLE `sub_categories`
@@ -2122,7 +2411,7 @@ ALTER TABLE `system_information`
 -- AUTO_INCREMENT for table `tables`
 --
 ALTER TABLE `tables`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `units`

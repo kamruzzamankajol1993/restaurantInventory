@@ -98,13 +98,17 @@ $customerList = \App\Models\Customer::latest()->get();
                     ?>
                 </div>
                 <div class="card-body">
+                    <form class="custom-validation" action="{{ route('pos.store') }}" method="post" enctype="multipart/form-data" id="form" data-parsley-validate="">
+                        @csrf
+                        @include('flash_message')
                     <div class="row">
                         <div class="col-lg-8">
                             <div class="form-group">
-                                <select class="form-control select2"
+                                <select name="customer_id" class="form-control select2"
                                         data-placeholder="Select a State"
                                         style="width: 100%;">
-                                    <option>Select Customer</option>
+                                    <option value="">Select Customer</option>
+                                    <option value="Walk In Customer" selected>Walk In Customer</option>
                                     @foreach($customerList as $customerLists)
                                     <option  value="{{ $customerLists->id }}">{{ $customerLists->name }}</option>
                                      @endforeach
@@ -117,19 +121,19 @@ $customerList = \App\Models\Customer::latest()->get();
                         </div>
                         <div class="col-lg-12 ">
                             <div class="form-group">
-                                <select class="form-control" name="" id="">
+                                <select class="form-control" name="branch" id="">
                                     <option value="">Select Branch</option>
-                                    <option value="" selected>Dhaka</option>
+                                    <option value="Dhaka" selected>Dhaka</option>
                                 </select>
                             </div>
                         </div>
                         <div class="col-lg-12">
                             <div class="form-group">
-                                <select class="form-control" name="" id="">
+                                <select class="form-control" name="order_type" id="order_type">
                                     <option value="">Select Order Type</option>
-                                    <option value="">Take Away</option>
-                                    <option value="">Dine In</option>
-                                    <option value="">Home Delivery</option>
+                                    <option value="Take Away">Take Away</option>
+                                    <option value="Dine In">Dine In</option>
+                                    <option value="Home Delivery">Home Delivery</option>
                                 </select>
                             </div>
                         </div>
@@ -140,14 +144,34 @@ $customerList = \App\Models\Customer::latest()->get();
                         ?>
                         <div class="col-lg-12">
                             <div class="form-group">
-                                <select class="form-control" name="" id="">
+                                <select class="form-control" name="waiter_id" id="">
                                     <option value="">Select Waiter</option>
                                     @foreach($waiterList as $waiterLists)
-                                    <option value="{{ $waiterLists->admin_name }}">{{ $waiterLists->admin_name }}</option>
+                                    <option value="{{ $waiterLists->id }}">{{ $waiterLists->admin_name }}</option>
                                     @endforeach
                                 </select>
                             </div>
                         </div>
+
+                        <div class="col-lg-12" id="shipAddress" style="display: none;">
+                              <label>Delivery Phone</label>
+                            <div class="form-group">
+                                <input name="phone" class="form-control" type="number"/>
+                            </div>
+                            <label>Delivery Address</label>
+                            <div class="form-group">
+                                <textarea name="shipAddress" class="form-control" id="" cols="3" rows="2"></textarea>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                    <div class="row" id="ajaxDataForCart">
+                        <?php
+                        $cartContent = \Cart::getContent();
+
+                                                        ?>
                         <div class="col-lg-12 mt-4">
                             <table class="table table-bordered">
                                 <tr>
@@ -156,71 +180,174 @@ $customerList = \App\Models\Customer::latest()->get();
                                     <th>Price</th>
                                     <th>Action</th>
                                 </tr>
-                                {{-- <tr>
+                                <?php
+
+                                $totalAddOnPrice = 0;
+                                $totalVariationPrice = 0;
+                                $totalProductDiscount = 0;
+                                $totalProductTax = 0;
+                                $totalFinalCostOne=0;
+
+                                ?>
+
+                                @foreach($cartContent as $productInfoCArt)
+                                <tr>
                                     <td>
-                                        <img src="../images/food/dish-1.png" height="30" width="30" alt="">
-                                        Burger
+                                        <img src="{{ asset('/') }}{{ $productInfoCArt->attributes->image }}" height="30" width="30" alt="">
+                                        {{ $productInfoCArt->name }}
+
+                                        {{-- {{ implode(',',$productInfoCArt->attributes->addOnLabelList) }}
+                                        {{ implode(',',$productInfoCArt->attributes->varationLabelList) }}
+                                        {{ implode(',',$productInfoCArt->attributes->variationPriceList) }} --}}
+
+
+
                                     </td>
                                     <td>
-                                        <input class="form-control" type="text" placeholder="1">
+                                        <input class="form-control" id="updateCartQuantity{{ $productInfoCArt->id  }}" type="number" value="{{ $productInfoCArt->quantity }}">
                                     </td>
                                     <td>
-                                        230 Taka
+                                        {{ $productInfoCArt->price }} Taka
                                     </td>
                                     <td>
-                                        <a href="javascript:void(0)" class="text-info me-10"
+                                        <a id="singleItemDelete{{ $productInfoCArt->id  }}" href="javascript:void(0)" class="text-info me-10"
                                            data-bs-toggle="tooltip" data-bs-original-title="Edit">
                                             <i class="fa fa-trash"></i>
                                         </a>
                                     </td>
-                                </tr> --}}
+                                </tr>
+
+                                <?php
+                                $totalFinalCostOne = $totalFinalCostOne + (($productInfoCArt->price + $productInfoCArt->attributes->variationPrice + $productInfoCArt->attributes->addOnPrice)*$productInfoCArt->quantity);
+                                $totalFinalCost = ($productInfoCArt->price + $productInfoCArt->attributes->variationPrice + $productInfoCArt->attributes->addOnPrice)*$productInfoCArt->quantity;
+
+                                 $getDiscountInfo = DB::table('products')
+                                              ->where('id',$productInfoCArt->id)->first();
+
+                                 if($getDiscountInfo->discount_type == 'Amount'){
+
+
+
+                                    $getFinalCal = intval($getDiscountInfo->discount_price);
+
+
+
+                                 }else{
+
+                                    $getFinalCal = intval(($totalFinalCost/100)*$getDiscountInfo->discount_price);
+
+
+                                 }
+
+                                 $totalProductDiscount = $totalProductDiscount+$getFinalCal;
+
+
+
+                                 if($getDiscountInfo->tax_type == 'Amount'){
+
+                                    $getFinalCalTax = intval($getDiscountInfo->tax_rate);
+
+
+
+                                }else{
+
+                                $getFinalCalTax = intval(($totalFinalCost/100)*$getDiscountInfo->tax_rate);
+
+
+                                }
+
+                                $totalProductTax = $totalProductTax+$getFinalCalTax;
+
+
+
+                                 $totalVariationPrice = $totalVariationPrice + $productInfoCArt->attributes->variationPrice;
+                                 $totalAddOnPrice = $totalAddOnPrice + $productInfoCArt->attributes->addOnPrice;
+
+                                ?>
+                                @endforeach
                             </table>
                         </div>
                         <div class="col-lg-12 mt-2">
                             <table class="table table-borderless">
-                                <tr>
-                                    <td>Addon</td>
-                                    <td style="text-align:right">:</td>
-                                </tr>
+
                                 <tr>
                                     <td>Subtotal</td>
-                                    <td style="text-align:right">:</td>
+                                    <td style="text-align:right">:
+
+                                        {{ $totalFinalCostOne - $totalAddOnPrice  }}
+
+                                        <input type="hidden" name="subTotal" value="{{ $totalFinalCostOne - $totalAddOnPrice  }}" id="subTotal"/>
+
+
+                                    </td>
                                 </tr>
+
+                                <tr>
+                                    <td>Addon </td>
+                                    <td style="text-align:right">:
+
+                                        {{ $totalAddOnPrice }}
+                                        <input type="hidden" name="addOn" value="{{ $totalAddOnPrice  }}" id="addOn"/>
+
+                                    </td>
+                                </tr>
+
                                 <tr>
                                     <td>Product Discount</td>
-                                    <td style="text-align:right">:</td>
+                                    <td style="text-align:right">:
+
+                                        {{ $totalProductDiscount }}
+                                        <input type="hidden" name="discount" value="{{ $totalProductDiscount  }}" id="discount"/>
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>Extra Discount :</td>
-                                    <td style="text-align:right">:</td>
+                                    <td style="text-align:right">  <input name="extraDiscount" id="extraDiscount" value="0" class="form-control" type="number"/></td>
                                 </tr>
                                 <tr>
                                     <td>VAT/TAX:</td>
-                                    <td style="text-align:right">:</td>
+                                    <td style="text-align:right">:
+
+                                        {{ $totalProductTax }}
+                                        <input type="hidden" name="vatTAx" value="{{ $totalProductTax  }}" id="vatTax"/>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>Delivery Charge :</td>
-                                    <td style="text-align:right">:</td>
+                                    <td style="text-align:right">: 0 </td>
                                 </tr>
                                 <tr style="border-top: 1px solid black">
                                     <td>Total</td>
-                                    <td style="text-align:right">:</td>
+                                    <td style="text-align:right">:
+
+                                        <span id="t2">
+                                        {{ ($totalFinalCostOne + $totalProductTax ) - $totalProductDiscount  }}
+                                        </span>
+                                        <input type="hidden" name="total" value="{{ ($totalFinalCostOne + $totalProductTax ) - $totalProductDiscount  }}" id="total"/>
+
+                                    </td>
                                 </tr>
                             </table>
                         </div>
+                        @if(count($cartContent) == 0)
+
+                        @else
                         <div class="col-lg-6 mt-4">
-                            <button type="button"
+                            <button type="button" id="clearAllCartData"
                                     class="waves-effect waves-light btn mb-5 bg-gradient-primary">Cancel
                                 Order
                             </button>
                         </div>
+                        @endif
                         <div class="col-lg-6 mt-4">
-                            <button type="button"
+                            <button type="submit"
                                     class="btn-block waves-effect waves-green btn mb-5 bg-gradient-primary">
                                 Submit Order
                             </button>
                         </div>
                     </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -237,7 +364,7 @@ $customerList = \App\Models\Customer::latest()->get();
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form class="custom-validation" action="#" method="post" enctype="multipart/form-data" id="form" data-parsley-validate="">
+                <form class="custom-validation" action="{{ route('postData') }}" method="post" enctype="multipart/form-data" id="form" data-parsley-validate="">
                     @csrf
 
                     {{-- <input type="hidden" class="form-control" id="b" name="bt" value="23" placeholder="Name" > --}}
@@ -356,6 +483,7 @@ $customerList = \App\Models\Customer::latest()->get();
 
 
 @section('script')
+@include('admin.pos.partial.script')
 <script>
 
     $(document).on('change', '#posCategory', function () {

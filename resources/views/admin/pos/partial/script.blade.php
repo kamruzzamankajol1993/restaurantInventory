@@ -254,14 +254,14 @@ var addOnLabelList= $('.addonData'+result+':checked').map(function (idx, ele) {
 }).get();
 
 
-
+var extraDiscount = $('#extraDiscount').val();
 
 
 
             $.ajax({
         url: "{{ route('itemAddToCart') }}",
         method: 'get',
-        data: {addOnLabelList:addOnLabelList,varationLabelList:varationLabelList,total_final_variation_price:total_final_variation_price,result:result,quantity:quantity,cartTotalAmount:cartTotalAmount,final_addOn_price:final_addOn_price,final_variation_price:final_variation_price},
+        data: {extraDiscount:extraDiscount,addOnLabelList:addOnLabelList,varationLabelList:varationLabelList,total_final_variation_price:total_final_variation_price,result:result,quantity:quantity,cartTotalAmount:cartTotalAmount,final_addOn_price:final_addOn_price,final_variation_price:final_variation_price},
         beforeSend: function(){
         $('#loader').show()
         },
@@ -293,7 +293,7 @@ $(function() {
 
 $('[id^=updateCartQuantity]').on('keyup', function() {
 
-
+    var extraDiscount = $('#extraDiscount').val();
     var main_id = $(this).attr('id');
     var result = main_id.slice(18);
 
@@ -302,7 +302,7 @@ $('[id^=updateCartQuantity]').on('keyup', function() {
     $.ajax({
         url: "{{ route('itemUpdateToCart') }}",
         method: 'get',
-        data: {result:result,quantity:quantity},
+        data: {extraDiscount:extraDiscount,result:result,quantity:quantity},
         beforeSend: function(){
         $('#loader').show()
         },
@@ -379,12 +379,12 @@ $('[id^=singleItemDelete]').on('click', function() {
     var main_id = $(this).attr('id');
     var result = main_id.slice(16);
 
-
+    var extraDiscount = $('#extraDiscount').val();
     if (confirm('Are you sure you want to Remove From The cart?')) {
     $.ajax({
         url: "{{ route('deleteSingleData') }}",
         method: 'get',
-        data: {result:result},
+        data: {extraDiscount:extraDiscount,result:result},
         beforeSend: function(){
         $('#loader').show()
         },
@@ -426,9 +426,33 @@ $(function() {
 $('#extraDiscount').on('keyup', function() {
 
     var extraDisPrice = $(this).val();
+    var total = $('#total').val();
+
+    var result = total - extraDisPrice;
+
+
+    $('#total').val(result);
+    $('#t2').html(result);
 
 });
 });
 </script>
 
 <!-- end new code 20 may end --->
+
+<script>
+$(function() {
+
+    $('#order_type').on('change', function() {
+
+        var mainValue = $(this).val();
+
+        if(mainValue == 'Home Delivery'){
+            $('#shipAddress').show();
+        }else{
+            $('#shipAddress').hide();
+        }
+
+    });
+    });
+    </script>

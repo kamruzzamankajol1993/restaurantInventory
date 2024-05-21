@@ -45,9 +45,14 @@ $usr = Auth::guard('admin')->user();
 					</span>
                         </a>
                         <ul class="treeview-menu">
+                            @if ($usr->can('waiterDashboardAdd'))
                             <li><a href="{{ route('waiterDashBoard') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Waiter Dashboard</a></li>
+                            @endif
+                            @if ($usr->can('KitchenDashboardAdd'))
                             <li><a href="{{ route('KitchenDashBoard') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Kitchen Dashboard</a></li>
-                            <li><a href="#"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>All</a></li>
+                            @endif
+                            <li><a href="{{ route('allOrderList') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>All</a></li>
+                            @if ($usr->can('orderAdd') || $usr->can('orderView') ||  $usr->can('orderDelete') ||  $usr->can('orderUpdate'))
                             <li><a href="#"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Pending</a></li>
                             <li><a href="#"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Confirmed</a></li>
                             <li><a href="#"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Processing</a></li>
@@ -57,6 +62,7 @@ $usr = Auth::guard('admin')->user();
                             <li><a href="#"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Failed To Deliver</a></li>
                             <li><a href="#"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Cancel</a></li>
                             <li><a href="#"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Scheduled</a></li>
+                            @endif
                         </ul>
                     </li>
                     <li class="treeview">

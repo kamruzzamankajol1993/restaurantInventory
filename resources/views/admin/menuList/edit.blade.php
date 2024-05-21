@@ -26,6 +26,7 @@ Update Menu
                 <div class="box-body">
                     <form class="custom-validation" action="{{ route('menuList.update',$menuList->id ) }}" method="post" enctype="multipart/form-data" id="form" data-parsley-validate="">
                         @csrf
+                        @method('PUT')
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">

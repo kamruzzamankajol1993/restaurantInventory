@@ -18,13 +18,19 @@
                     <span class="nav-text">Manage Order</span>
                 </a>
                 <ul aria-expanded="false">
+
+                    @if ($usr->can('posAdd') || $usr->can('posView') ||  $usr->can('posDelete') ||  $usr->can('posUpdate'))
                     <li><a href="#">POS</a></li>
+                    @endif
+
+                    @if ($usr->can('orderAdd') || $usr->can('orderView') ||  $usr->can('orderDelete') ||  $usr->can('orderUpdate'))
                     <li><a href="create_food_order.php">Order Process</a></li>
                     <li><a href="new_order.php">New Order List</a></li>
                     <li><a href="pending_order.php">Pending Order</a></li>
                     <li><a href="complete_order.php">Complete Order</a></li>
                     <li><a href="cancel_order.php">Cancel Order</a></li>
                     <li><a href="order_history.php">Order History</a></li>
+                    @endif
                     <li><a href="kitchen_dashboard.php">Kitchen Dashboard</a></li>
                     <li><a href="counter_dashboard.php">Counter Dashboard</a></li>
                 </ul>
@@ -193,7 +199,7 @@
 
 
 
-                    
+
 
                @if ($usr->can('systemInformationAdd') || $usr->can('systemInformationView') || $usr->can('systemInformationDelete') || $usr->can('systemInformationUpdate'))
                <li class="{{ Route::is('systemInformation.index') ? 'mm-active' : '' }}">

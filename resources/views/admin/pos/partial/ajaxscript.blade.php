@@ -132,3 +132,24 @@ $('[id^=singleItemDeletee]').on('click', function() {
 
 </script>
 <!-- end product add  script --->
+<!-- new code 20 may start ---->
+<script>
+
+    $(function() {
+
+    $('#extraDiscountAjax').on('keyup', function() {
+
+        var extraDisPrice = $(this).val();
+        var total = $('#totala').val();
+
+        var result = total - extraDisPrice;
+
+
+        $('#totala').val(result);
+        $('#t2a').html(result);
+
+    });
+    });
+    </script>
+
+    <!-- end new code 20 may end --->

@@ -113,25 +113,46 @@
 
         <tr>
             <td>Subtotal</td>
-            <td style="text-align:right">: {{ $totalFinalCostOne - $totalAddOnPrice  }}</td>
+            <td style="text-align:right">:
+
+                {{ $totalFinalCostOne - $totalAddOnPrice  }}
+
+                <input type="hidden" name="subTotal" value="{{ $totalFinalCostOne - $totalAddOnPrice  }}" id="subTotal"/>
+
+
+            </td>
         </tr>
 
         <tr>
             <td>Addon </td>
-            <td style="text-align:right">: {{ $totalAddOnPrice }}</td>
+            <td style="text-align:right">:
+
+                {{ $totalAddOnPrice }}
+                <input type="hidden" name="addOn" value="{{ $totalAddOnPrice  }}" id="addOn"/>
+
+            </td>
         </tr>
 
         <tr>
             <td>Product Discount</td>
-            <td style="text-align:right">: {{ $totalProductDiscount }}</td>
+            <td style="text-align:right">:
+
+                {{ $totalProductDiscount }}
+                <input type="hidden" name="discount" value="{{ $totalProductDiscount  }}" id="discount"/>
+
+            </td>
         </tr>
         <tr>
             <td>Extra Discount :</td>
-            <td style="text-align:right">  <input id="extraDiscountt" value="0" class="form-control" type="number"/></td>
+            <td style="text-align:right">  <input name="extraDiscount" id="extraDiscountAjax" value="0" class="form-control" type="number"/></td>
         </tr>
         <tr>
             <td>VAT/TAX:</td>
-            <td style="text-align:right">: {{ $totalProductTax }}</td>
+            <td style="text-align:right">:
+
+                {{ $totalProductTax }}
+                <input type="hidden" name="vatTAx" value="{{ $totalProductTax  }}" id="vatTax"/>
+            </td>
         </tr>
         <tr>
             <td>Delivery Charge :</td>
@@ -139,7 +160,14 @@
         </tr>
         <tr style="border-top: 1px solid black">
             <td>Total</td>
-            <td style="text-align:right">: {{ ($totalFinalCostOne + $totalProductTax ) - $totalProductDiscount  }}</td>
+            <td style="text-align:right">:
+
+                <span id="t2a">
+                {{ ($totalFinalCostOne + $totalProductTax ) - $totalProductDiscount  }}
+                </span>
+                <input type="hidden" name="total" value="{{ ($totalFinalCostOne + $totalProductTax ) - $totalProductDiscount  }}" id="totala"/>
+
+            </td>
         </tr>
     </table>
 </div>
@@ -150,7 +178,7 @@
     </button>
 </div> --}}
 <div class="col-lg-6 mt-4">
-    <button type="button"
+    <button type="submit"
             class="btn-block waves-effect waves-green btn mb-5 bg-gradient-primary">
         Send To Kitchen
     </button>

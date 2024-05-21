@@ -36,7 +36,7 @@ class DashBoardController extends Controller
     public function index(){
 
         if (is_null($this->user) || !$this->user->can('dashboard.view')) {
-           
+
             return redirect()->route('mainLogin');
         }
 
@@ -60,7 +60,7 @@ class DashBoardController extends Controller
 
 
 
-            return view('admin.dashboard.dashboardOne',compact(
+            return view('admin.dashboard.dashboard',compact(
                 'users',
             'count_admin'));
 

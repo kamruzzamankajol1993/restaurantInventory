@@ -78,6 +78,46 @@ class CustomerController extends Controller
     }
 
 
+    public function postData(Request $request){
+
+
+        try{
+            DB::beginTransaction();
+            // Create New User
+
+            $customers = new Customer();
+            $customers->address = $request->address;
+            $customers->type = $request->type;
+            $customers->status = 1;
+            $customers->name = $request->name;
+            $customers->reward_point = $request->reward_point;
+            $customers->phone_number = $request->phone;
+            $customers->email = $request->email;
+            $customers->admin_id = Auth::guard('admin')->user()->id;
+
+            $filePath = 'customerImage';
+            if ($request->hasfile('employee_image')) {
+
+
+                $file = $request->file('employee_image');
+                $customers->image =  CommonController::imageUpload($request,$file,$filePath);
+
+            }
+            $customers->save();
+
+            DB::commit();
+            return redirect()->back()->with('success','Created successfully!');
+
+           } catch (\Exception $e) {
+
+            DB::rollBack();
+            return redirect()->route('error_500');
+           }
+
+
+    }
+
+
     public function store(Request $request)
     {
 

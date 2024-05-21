@@ -228,7 +228,7 @@ All Order List
                                     <a href="javascript:void(0)" class="text-info me-10" data-bs-toggle="tooltip" data-bs-original-title="View">
                                         <i class="fa fa-eye"></i>
                                     </a>
-                                    <a href="{{ route('pos.show',$kitchenOrderLists->id) }}" class="text-info me-10" data-bs-toggle="tooltip" data-bs-original-title="Print">
+                                    <a href="{{ route('printInvoice',$kitchenOrderLists->id) }}" class="text-info me-10" data-bs-toggle="tooltip" data-bs-original-title="Print">
                                         <i class="fa fa-print"></i>
                                     </a>
                                 </td>

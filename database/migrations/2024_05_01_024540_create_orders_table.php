@@ -13,7 +13,22 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
+            $table->string('invoice_id');
+            $table->string('subtotal');
+            $table->string('addon')->nullable();
+            $table->string('discount')->nullable();
+            $table->string('extra_discount')->nullable();
+            $table->string('vat')->nullable();
+            $table->string('delivery_charge')->nullable();
+            $table->string('grand_total')->nullable();
+            $table->string('status')->nullable();
+            $table->string('order_type')->nullable();
+            $table->string('customer_id')->nullable();
+            $table->string('branch')->nullable();
+            $table->string('waiter_id')->nullable();
+            $table->string('admin_id')->nullable();
             $table->timestamps();
+
         });
     }
 

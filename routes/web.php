@@ -77,6 +77,12 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::resource('customer', CustomerController::class);
 
+    Route::controller(CustomerController::class)->group(function () {
+
+        Route::post('/postData', 'postData')->name('postData');
+
+    });
+
     Route::resource('productAddOn', ProductAddOnController::class);
     Route::resource('productAttribute', ProductAttributeController::class);
 
@@ -93,6 +99,11 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::controller(PosController::class)->group(function () {
 
+        Route::get('/allOrderList', 'allOrderList')->name('allOrderList');
+        Route::get('/printInvoice/{id}', 'printInvoice')->name('printInvoice');
+
+
+        Route::get('/orderStatusUpdate', 'orderStatusUpdate')->name('orderStatusUpdate');
 
         Route::get('/itemAddToCart', 'itemAddToCart')->name('itemAddToCart');
         Route::get('/itemUpdateToCart', 'itemUpdateToCart')->name('itemUpdateToCart');
