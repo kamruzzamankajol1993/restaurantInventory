@@ -23,6 +23,7 @@ use Illuminate\Support\Facades\Auth;
 use File;
 use Mail;
 use Image;
+use Mpdf\Mpdf;
 class PosController extends Controller
 {
     public $user;
@@ -342,6 +343,37 @@ if (is_null($this->user) || !$this->user->can('waiterDashboardAdd')) {
         $orderDetail = Order::where('id',$id)->first();
         $productDetail = OrderDetail::where('order_id',$id)->get();
         return view('admin.order.printInvoice',compact('orderDetail','productDetail'));
+    }
+    
+    
+    public function printPdf($id){
+
+        $orderDetail = Order::where('id',$id)->first();
+        $productDetail = OrderDetail::where('order_id',$id)->get();
+        
+        
+//         $pdf=PDF::loadView('admin.pos.printPdf',['orderDetail'=>$orderDetail,'productDetail'=>$productDetail],[], [
+//   'size' => '75mm 100mm'
+// ]);
+//       return $pdf->stream('Order_Receipt.pdf');
+       
+       
+       
+       $data = view('admin.pos.printPdf',compact('orderDetail','productDetail'));
+
+        $mpdf = new Mpdf(['mode' => 'utf-8', 'format' => [56,120]]);
+
+        $mpdf->WriteHTML($data);
+        $mpdf->Output();
+        die();
+    
+        
+        
+        
+        
+        
+        
+        
     }
 
 

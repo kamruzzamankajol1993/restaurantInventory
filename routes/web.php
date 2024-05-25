@@ -98,6 +98,9 @@ Route::group(['prefix' => 'admin'], function () {
 
 
     Route::controller(PosController::class)->group(function () {
+        
+        
+        Route::get('/printPdf/{id}', 'printPdf')->name('printPdf');
 
         Route::get('/allOrderList', 'allOrderList')->name('allOrderList');
         Route::get('/printInvoice/{id}', 'printInvoice')->name('printInvoice');
