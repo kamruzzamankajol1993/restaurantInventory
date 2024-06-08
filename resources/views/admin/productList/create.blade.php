@@ -31,6 +31,12 @@ Product Add
                             <label class="fw-700 fs-16 form-label">Product Name <span style="color:red;">*</span></label>
                             <input type="text" name="product_name" class="form-control" placeholder="Name" required>
                         </div>
+
+                        <div class="form-group">
+                            <label class="fw-700 fs-16 form-label">Product Name(Chinese) <span style="color:red;">*</span></label>
+                            <input type="text" name="chinese_name" class="form-control" placeholder="Name" required>
+                        </div>
+
                         <div class="form-group">
                             <label class="fw-700 fs-16 form-label">Short Description <span style="color:red;">*</span></label>
                             <textarea class="form-control" name="product_short_description" required id="" cols="30" rows="7"></textarea>

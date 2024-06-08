@@ -27,7 +27,7 @@
                     </div>
                 </div>
                 <div class="col-md-8 col-sm-12">
-                    <h2 class="box-title mt-0">{{ $productList->product_name }}</h2>
+                    <h2 class="box-title mt-0">{{ $productList->product_name }}({{ $productList->chinese_name }})</h2>
                     <div class="list-inline">
                         <a class="text-warning"><i class="mdi mdi-star"></i></a>
                         <a class="text-warning"><i class="mdi mdi-star"></i></a>

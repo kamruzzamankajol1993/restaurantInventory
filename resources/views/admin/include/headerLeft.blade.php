@@ -74,7 +74,12 @@ $usr = Auth::guard('admin')->user();
 					</span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="#"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>All</a></li>
+
+
+
+                            <li><a href="{{ route('tableOrder.create') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Add New Order</a></li>
+
+                            <li><a href="{{ route('tableOrder.index') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>All</a></li>
                             <li><a href="#"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Confirmed</a></li>
                             <li><a href="#"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Cooking</a></li>
                             <li><a href="#"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Ready For Server</a></li>
@@ -215,9 +220,45 @@ $usr = Auth::guard('admin')->user();
                     </li>
 
 
+                    <li class="header">Inventory Management</li>
 
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-file"><span class="path1"></span><span class="path2"></span></i>
+                            <span>Inventory</span>
+                            <span class="pull-right-container">
+					  <i class="fa fa-angle-right pull-right"></i>
+					</span>
+                        </a>
+                        <ul class="treeview-menu">
 
-                    <li class="header">System Management</li>
+                            @if ($usr->can('unitAdd') || $usr->can('unitView') || $usr->can('unitDelete') || $usr->can('unitUpdate'))
+                            <li class="{{ Route::is('unit.index') || Route::is('unit.edit') ? 'active' : '' }}">
+                                <a href="{{ route('unit.index') }}" class="{{ Route::is('unit.index') || Route::is('unit.edit') ? 'active' : '' }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Unit List</a>
+                            </li>
+                            @endif
+
+                            @if ($usr->can('vendorAdd') || $usr->can('vendorView') || $usr->can('vendorDelete') || $usr->can('vendorUpdate'))
+                            <li class="{{ Route::is('vendor.index') || Route::is('vendor.edit') ? 'active' : '' }}">
+                                <a href="{{ route('vendor.index') }}" class="{{ Route::is('vendor.index') || Route::is('vendor.edit') ? 'active' : '' }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Vendor List</a>
+                            </li>
+                            @endif
+
+                            @if ($usr->can('inventoryNameAdd') || $usr->can('inventoryNameView') || $usr->can('inventoryNameDelete') || $usr->can('inventoryNameUpdate'))
+                            <li class="{{ Route::is('inventoryName.index') || Route::is('inventoryName.edit') ? 'active' : '' }}">
+                                <a href="{{ route('inventoryName.index') }}" class="{{ Route::is('inventoryName.index') || Route::is('inventoryName.edit') ? 'active' : '' }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Inventory Name List</a>
+                            </li>
+                            @endif
+
+                    @if ($usr->can('inventoryAdd') || $usr->can('inventoryView') || $usr->can('inventoryDelete') || $usr->can('inventoryUpdate'))
+                    <li class="{{ Route::is('inventory.index') || Route::is('inventory.edit') ? 'active' : '' }}">
+                        <a href="{{ route('inventory.index') }}" class="{{ Route::is('inventory.index') || Route::is('inventory.edit') ? 'active' : '' }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Inventory List</a>
+                    </li>
+                    @endif
+                        </ul>
+                    </li>
+
+                    <li class="header">System Management</li>Name
 
                     <li class="treeview">
                         <a href="#">

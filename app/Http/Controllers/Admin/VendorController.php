@@ -4,17 +4,16 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
 use App\Models\Admin;
 use App\Models\Unit;
+use App\Models\InventoryName;
+use App\Models\Vendor;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use File;
 use Mail;
-
-class UnitController extends Controller
+use DB;
+class VendorController extends Controller
 {
     public $user;
 
@@ -30,19 +29,19 @@ class UnitController extends Controller
     public function index(){
 
 
-        if (is_null($this->user) || !$this->user->can('unitAdd')) {
+        if (is_null($this->user) || !$this->user->can('vendorAdd')) {
 
             return redirect()->route('mainLogin');
         }
 
         try{
 
-            \LogActivity::addToLog('Unit list ');
+            \LogActivity::addToLog('vendor list ');
 
 
-            $unitList = Unit::orderBy('id','desc')->get();
+            $vendorList = Vendor::orderBy('id','desc')->get();
 
-            return view('admin.unitList.index',compact('unitList'));
+            return view('admin.vendor.index',compact('vendorList'));
 
         } catch (\Exception $e) {
             return redirect()->route('error_500');
@@ -52,28 +51,29 @@ class UnitController extends Controller
 
     public function store(Request $request){
 
-        if (is_null($this->user) || !$this->user->can('unitAdd')) {
+        if (is_null($this->user) || !$this->user->can('vendorAdd')) {
 
             return redirect()->route('mainLogin');
         }
 
         $request->validate([
-            'unit_name' => 'required',
+            'name' => 'required',
+            'phone' => 'required',
           ]);
 
           try{
 
             DB::beginTransaction();
 
-           \LogActivity::addToLog('Unit store ');
+           \LogActivity::addToLog('vendor store ');
 
 
            $input = $request->all();
-           Unit::create($input);
+           Vendor::create($input);
 
            DB::commit();
 
-           return redirect()->route('unitList.index')->with('success','Added successfully!');
+           return redirect()->route('vendor.index')->with('success','Added successfully!');
 
         } catch (\Exception $e) {
 
@@ -88,7 +88,7 @@ class UnitController extends Controller
 
     public function update(Request $request,$id){
 
-        if (is_null($this->user) || !$this->user->can('unitUpdate')) {
+        if (is_null($this->user) || !$this->user->can('vendorUpdate')) {
 
             return redirect()->route('mainLogin');
         }
@@ -97,15 +97,15 @@ class UnitController extends Controller
 
             DB::beginTransaction();
 
-           \LogActivity::addToLog('Unit update ');
+           \LogActivity::addToLog('vendor update ');
 
-            $unit = Unit::findOrFail($id);
+            $vendor = Vendor::findOrFail($id);
 
             $input = $request->all();
-            $unit->fill($input)->save();
+            $vendor->fill($input)->save();
 
             DB::commit();
-            return redirect()->route('unitList.index')->with('success','Updated successfully!');
+            return redirect()->route('vendor.index')->with('success','Updated successfully!');
 
         } catch (\Exception $e) {
 
@@ -118,7 +118,7 @@ class UnitController extends Controller
 
     public function destroy($id){
 
-        if (is_null($this->user) || !$this->user->can('unitDelete')) {
+        if (is_null($this->user) || !$this->user->can('vendorDelete')) {
 
            return redirect()->route('mainLogin');
         }
@@ -126,12 +126,12 @@ class UnitController extends Controller
         try{
             DB::beginTransaction();
 
-           \LogActivity::addToLog('Unit delete ');
+           \LogActivity::addToLog('vendor delete ');
 
-            Unit::destroy($id);
+            Vendor::destroy($id);
             DB::commit();
 
-            return redirect()->route('unitList.index')->with('error','Deleted successfully!');
+            return redirect()->route('vendor.index')->with('error','Deleted successfully!');
 
         } catch (\Exception $e) {
 

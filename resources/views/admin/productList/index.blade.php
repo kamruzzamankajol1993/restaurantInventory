@@ -33,6 +33,7 @@ Product List
                             <tr>
                                 <th>SL</th>
                                 <th>Product Name</th>
+                                <th>Product Name(Chinese)</th>
                                 <th>Selling Price</th>
                                 <th>Total Sale</th>
                                 <th>Stock</th>
@@ -51,6 +52,11 @@ Product List
                                         <span>{{ $productLists->product_name }}</span>
                                     </div>
                                 </td>
+
+                                <td>
+                                    {{ $productLists->chinese_name }}
+                                </td>
+
                                 <td>
                                     {{ $productLists->default_price }} Taka
                                 </td>

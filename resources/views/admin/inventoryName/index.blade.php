@@ -1,7 +1,7 @@
 @extends('admin.master.master')
 
 @section('title')
-Unit List | {{ $ins_name }}
+InventoryName List | {{ $ins_name }}
 @endsection
 
 
@@ -20,16 +20,16 @@ Unit List | {{ $ins_name }}
 <div class="content-header">
     <div class="d-flex align-items-center">
         <div class="me-auto">
-            <h4 class="page-title">Unit Information </h4>
+            <h4 class="page-title">Inventory Name Information </h4>
         </div>
 
     </div>
     <div class="row">
 
-        @if (Auth::guard('admin')->user()->can('unitAdd'))
+        @if (Auth::guard('admin')->user()->can('inventoryNameAdd'))
         <div class="col-lg-12 col-md-12 col-sm-12">
             <div style="text-align: right;">
-                <button type="button" data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg"class="btn btn-primary btn-sm">Add New Unit<span class="btn-icon-end"><i class="fa fa-plus"></i></span></button>
+                <button type="button" data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg"class="btn btn-primary btn-sm">Add New Inventory Name<span class="btn-icon-end"><i class="fa fa-plus"></i></span></button>
             </div>
         </div>
         @endif
@@ -59,28 +59,28 @@ Unit List | {{ $ins_name }}
                             <thead>
                                 <tr>
                                     <th>Sl</th>
-                                    <th>Unit Name</th>
+                                    <th>Inventory Name</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($unitList as $key=>$unitLists)
+                                    @foreach($inventoryNameList as $key=>$inventoryNameLists)
                                 <tr>
                                     <td>{{ $key+1 }}</td>
 
-                                    <td>{{ $unitLists->unit_name }}</td>
+                                    <td>{{ $inventoryNameLists->name }}</td>
 
 
 
 
                                     <td>
-                                        @if (Auth::guard('admin')->user()->can('unitUpdate'))
-                                        <button type="button" data-bs-toggle="modal" data-bs-target=".bs-example-modal-lg{{ $unitLists->id }}"
+                                        @if (Auth::guard('admin')->user()->can('inventoryNameUpdate'))
+                                        <button type="button" data-bs-toggle="modal" data-bs-target=".bs-example-modal-lg{{ $inventoryNameLists->id }}"
                                         class="btn btn-primary shadow btn-xs sharp" >
                                         <i class="fa fa-pencil"></i></button>
 
                                           <!--  Large modal example -->
-                                          <div class="modal fade bs-example-modal-lg{{ $unitLists->id }}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                          <div class="modal fade bs-example-modal-lg{{ $inventoryNameLists->id }}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                                               <div class="modal-dialog modal-lg">
                                                   <div class="modal-content">
                                                       <div class="modal-header">
@@ -89,13 +89,13 @@ Unit List | {{ $ins_name }}
                                                           </button>
                                                       </div>
                                                       <div class="modal-body">
-                                                          <form  action="{{ route('unit.update',$unitLists->id ) }}" method="post" enctype="multipart/form-data" id="form" data-parsley-validate="">
+                                                          <form  action="{{ route('inventoryName.update',$inventoryNameLists->id ) }}" method="post" enctype="multipart/form-data" id="form" data-parsley-validate="">
                                                               @method('PUT')
                                                               @csrf
 
                                                               <div class="mb-3">
-                                                                <label class="form-label" for="">Unit Name<span style="color:red;">*</span></label>
-                                                                <input class="form-control" name="unit_name" value="{{ $unitLists->unit_name  }}"  type="text" placeholder="" required>
+                                                                <label class="form-label" for="">Inventory Name<span style="color:red;">*</span></label>
+                                                                <input class="form-control" name="name" value="{{ $inventoryNameLists->name  }}"  type="text" placeholder="" required>
                                                             </div>
 
 
@@ -110,10 +110,10 @@ Unit List | {{ $ins_name }}
 
     @endif
 
-                                @if (Auth::guard('admin')->user()->can('unitDelete'))
+                                @if (Auth::guard('admin')->user()->can('InventoryNameDelete'))
 
-    <button   type="button" class="btn btn-danger shadow btn-xs sharp" onclick="deleteTag({{ $unitLists->id}})" data-toggle="tooltip" title="Delete"><i class="fa fa-trash"></i></button>
-                  <form id="delete-form-{{ $unitLists->id }}" action="{{ route('unit.destroy',$unitLists->id) }}" method="POST" style="display: none;">
+    <button   type="button" class="btn btn-danger shadow btn-xs sharp" onclick="deleteTag({{ $inventoryNameLists->id}})" data-toggle="tooltip" title="Delete"><i class="fa fa-trash"></i></button>
+                  <form id="delete-form-{{ $inventoryNameLists->id }}" action="{{ route('inventoryName.destroy',$inventoryNameLists->id) }}" method="POST" style="display: none;">
                     @method('DELETE')
                                                   @csrf
 
@@ -140,17 +140,17 @@ Unit List | {{ $ins_name }}
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="myLargeModalLabel">Add New Unit</h4>
+                <h4 class="modal-title" id="myLargeModalLabel">Add New Inventory Name</h4>
                 <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form class="custom-validation"  action="{{ route('unit.store') }}" method="post" enctype="multipart/form-data" id="form" data-parsley-validate="">
+                <form class="custom-validation"  action="{{ route('inventoryName.store') }}" method="post" enctype="multipart/form-data" id="form" data-parsley-validate="">
                     @csrf
 
 
                     <div class="mb-3">
-                        <label class="form-label" for="">Unit Name<span style="color:red;">*</span></label>
-                        <input class="form-control" name="unit_name"  type="text" placeholder="" required>
+                        <label class="form-label" for="">Inventory Name<span style="color:red;">*</span></label>
+                        <input class="form-control" name="name"  type="text" placeholder="" required>
                     </div>
 
 

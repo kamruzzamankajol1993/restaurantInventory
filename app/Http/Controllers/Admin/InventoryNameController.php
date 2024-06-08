@@ -4,17 +4,16 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Admin;
 use App\Models\Unit;
+use App\Models\InventoryName;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use File;
 use Mail;
-
-class UnitController extends Controller
+class InventoryNameController extends Controller
 {
     public $user;
 
@@ -30,19 +29,19 @@ class UnitController extends Controller
     public function index(){
 
 
-        if (is_null($this->user) || !$this->user->can('unitAdd')) {
+        if (is_null($this->user) || !$this->user->can('inventoryNameAdd')) {
 
             return redirect()->route('mainLogin');
         }
 
         try{
 
-            \LogActivity::addToLog('Unit list ');
+            \LogActivity::addToLog('InventoryName list ');
 
 
-            $unitList = Unit::orderBy('id','desc')->get();
+            $inventoryNameList = InventoryName::orderBy('id','desc')->get();
 
-            return view('admin.unitList.index',compact('unitList'));
+            return view('admin.inventoryName.index',compact('inventoryNameList'));
 
         } catch (\Exception $e) {
             return redirect()->route('error_500');
@@ -52,28 +51,28 @@ class UnitController extends Controller
 
     public function store(Request $request){
 
-        if (is_null($this->user) || !$this->user->can('unitAdd')) {
+        if (is_null($this->user) || !$this->user->can('inventoryNameAdd')) {
 
             return redirect()->route('mainLogin');
         }
 
         $request->validate([
-            'unit_name' => 'required',
+            'name' => 'required',
           ]);
 
           try{
 
             DB::beginTransaction();
 
-           \LogActivity::addToLog('Unit store ');
+           \LogActivity::addToLog('InventoryName store ');
 
 
            $input = $request->all();
-           Unit::create($input);
+           InventoryName::create($input);
 
            DB::commit();
 
-           return redirect()->route('unitList.index')->with('success','Added successfully!');
+           return redirect()->route('inventoryName.index')->with('success','Added successfully!');
 
         } catch (\Exception $e) {
 
@@ -88,7 +87,7 @@ class UnitController extends Controller
 
     public function update(Request $request,$id){
 
-        if (is_null($this->user) || !$this->user->can('unitUpdate')) {
+        if (is_null($this->user) || !$this->user->can('inventoryNameUpdate')) {
 
             return redirect()->route('mainLogin');
         }
@@ -97,15 +96,15 @@ class UnitController extends Controller
 
             DB::beginTransaction();
 
-           \LogActivity::addToLog('Unit update ');
+           \LogActivity::addToLog('InventoryName update ');
 
-            $unit = Unit::findOrFail($id);
+            $InventoryName = InventoryName::findOrFail($id);
 
             $input = $request->all();
-            $unit->fill($input)->save();
+            $InventoryName->fill($input)->save();
 
             DB::commit();
-            return redirect()->route('unitList.index')->with('success','Updated successfully!');
+            return redirect()->route('inventoryName.index')->with('success','Updated successfully!');
 
         } catch (\Exception $e) {
 
@@ -118,7 +117,7 @@ class UnitController extends Controller
 
     public function destroy($id){
 
-        if (is_null($this->user) || !$this->user->can('unitDelete')) {
+        if (is_null($this->user) || !$this->user->can('InventoryNameDelete')) {
 
            return redirect()->route('mainLogin');
         }
@@ -126,12 +125,12 @@ class UnitController extends Controller
         try{
             DB::beginTransaction();
 
-           \LogActivity::addToLog('Unit delete ');
+           \LogActivity::addToLog('InventoryName delete ');
 
-            Unit::destroy($id);
+            InventoryName::destroy($id);
             DB::commit();
 
-            return redirect()->route('unitList.index')->with('error','Deleted successfully!');
+            return redirect()->route('inventoryName.index')->with('error','Deleted successfully!');
 
         } catch (\Exception $e) {
 

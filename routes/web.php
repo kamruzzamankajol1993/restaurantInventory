@@ -28,6 +28,10 @@ use App\Http\Controllers\Admin\ProductAttributeController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\MenuController;
 use App\Http\Controllers\Admin\PosController;
+use App\Http\Controllers\Admin\VendorController;
+use App\Http\Controllers\Admin\InventoryController;
+use App\Http\Controllers\Admin\InventoryNameController;
+use App\Http\Controllers\Admin\TableOrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -70,12 +74,32 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::group(['prefix' => 'admin'], function () {
 
-    Route::resource('pos', PosController::class);
+    Route::resource('tableOrder',TableOrderController::class);
+
+
+    Route::controller(TableOrderController::class)->group(function () {
+
+        Route::get('/addOrderToTable/{id}', 'addOrderToTable')->name('addOrderToTable');
+
+    });
+
+
+    Route::resource('pos',PosController::class);
+    Route::resource('unit',UnitController::class);
+    Route::resource('vendor',VendorController::class);
+    Route::resource('inventory', InventoryController::class);
+    Route::resource('inventoryName', InventoryNameController::class);
 
     Route::resource('menuList', MenuController::class);
     Route::resource('productList', ProductController::class);
 
     Route::resource('customer', CustomerController::class);
+
+    Route::controller(InventoryController::class)->group(function () {
+
+        Route::post('/quantityUpdate', 'quantityUpdate')->name('quantityUpdate');
+
+    });
 
     Route::controller(CustomerController::class)->group(function () {
 
@@ -91,15 +115,15 @@ Route::group(['prefix' => 'admin'], function () {
     Route::resource('foodList', FoodController::class);
     Route::resource('categoryList', CategoryController::class);
     Route::resource('subcategoryList', SubCategoryController::class);
-    Route::resource('unitList', UnitController::class);
+    // Route::resource('unitList', UnitController::class);
     Route::resource('expenseCategoryList',ExpenseCategoryController::class);
     Route::resource('leaveTypeList',LeaveTypeController::class);
     Route::resource('supplierList',SupplierController::class);
 
 
     Route::controller(PosController::class)->group(function () {
-        
-        
+
+
         Route::get('/printPdf/{id}', 'printPdf')->name('printPdf');
 
         Route::get('/allOrderList', 'allOrderList')->name('allOrderList');

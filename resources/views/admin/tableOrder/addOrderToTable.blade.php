@@ -98,7 +98,7 @@ $customerList = \App\Models\Customer::latest()->get();
                     ?>
                 </div>
                 <div class="card-body">
-                    <form class="custom-validation" action="{{ route('pos.store') }}" method="post" enctype="multipart/form-data" id="form" data-parsley-validate="">
+                    <form class="custom-validation" action="{{ route('tableOrder.store') }}" method="post" enctype="multipart/form-data" id="form" data-parsley-validate="">
                         @csrf
                         @include('flash_message')
                     <div class="row">
@@ -126,6 +126,8 @@ $customerList = \App\Models\Customer::latest()->get();
                                     <option value="Dhaka" selected>Dhaka</option>
                                 </select>
                             </div>
+                            <input name="tableId" value="{{ $tableId }}" class="form-control" type="hidden"/>
+
                         </div>
                         <div class="col-lg-12">
                             <div class="form-group">

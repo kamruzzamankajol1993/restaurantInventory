@@ -211,6 +211,7 @@ $filePath='ProductImage';
 
         $product= new Product();
         $product->product_name = $request->product_name;
+        $product->chinese_name = $request->chinese_name;
         $product->product_slug = Str::slug($request->product_name);
         $product->product_short_description	 = $request->product_short_description	;
         $product->category_id = $request->category_id;
@@ -308,6 +309,7 @@ $filePath='ProductImage';
 
         $product=Product::find($id);
         $product->product_name = $request->product_name;
+        $product->chinese_name = $request->chinese_name;
         $product->product_slug = Str::slug($request->product_name);
         $product->product_short_description	 = $request->product_short_description	;
         $product->category_id = $request->category_id;

@@ -16,7 +16,7 @@
                         <img height="200" src="{{ asset('/') }}{{ $productLists->product_image }}" alt="">
                     </div>
                     <div class="col-lg-7">
-                        <h1>{{ $productLists->product_name }}</h1>
+                        <h1>{{ $productLists->product_name }}({{ $productLists->chinese_name }})</h1>
                         <h5>{{ $productLists->default_price }} Taka</h5>
                     </div>
                     <div class="col-lg-12">

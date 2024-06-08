@@ -18,7 +18,7 @@
 
         @page  {
       size: 56mm 100mm;
-      margin: 3px;
+      margin: 2px;
     }
 
         table {
@@ -26,7 +26,7 @@
         }
 
         .first_table tr td {
-            width: 50%;
+            width: 100%;
         }
 
         .first_table tr td:nth-child(1) img {
@@ -36,7 +36,7 @@
 
         .first_table tr td:nth-child(2)
         {
-            text-align: right;
+            text-align: center;
         }
 
         .first_table tr td:nth-child(2) img {
@@ -126,13 +126,12 @@
 
             <table class="first_table">
         <tr>
-            <td>
-                <!--<img src="{{ asset('public/new_admin/assets/images/rqr.jpg') }}" height="50" alt="">-->
-            </td>
-            <td>
-                <img src="{{asset('/')}}{{$icon}}"  alt="">
-                <p style="font-weight: bold;">{{$ins_phone}}</p>
-                <h4>{{$ins_name}}</h4>
+            
+            <td style="text-align:center;">
+                <h2>Bali Arcade</h2>
+                <!--<img src="{{asset('/')}}{{$icon}}"  alt="">-->
+                <p style=""><span style="font-size:10px;">227 Nawab Sirajuddaula Rd, <br>Chattogram 4203 <br> PH-01735767416,01626716006</span></p>
+                <!--<h4>{{$ins_name}}</h4>-->
             </td>
         </tr>
     </table>
@@ -140,19 +139,19 @@
     <hr>
  @if($orderDetail->order_type == 'Order From Waiter')
   
- <table class="second_table">
+ <table class="second_table" style="font-size:10px;">
         <tr>
-            <td>Customer Name</td>
-            <td>:Walk in Customer</td>
+            <td style="font-size:10px;">Customer Name</td>
+            <td style="font-size:10px;">:Walk in Customer</td>
         </tr>
         <tr>
 
-            <td>Mobile Number</td>
-            <td>:N/A</td>
+            <td style="font-size:10px;">Mobile Number</td>
+            <td style="font-size:10px;">:N/A</td>
         </tr>
         <tr>
-            <td>Address</td>
-            <td>:N/A</td>
+            <td style="font-size:10px;">Address</td>
+            <td style="font-size:10px;">:N/A</td>
         </tr>
     </table>
 
@@ -170,36 +169,36 @@
                                 
                                 @if(!$invoice_detail_new)
                                 
-                                <table class="second_table">
+                                <table class="second_table" style="font-size:10px;">
         <tr>
-            <td>Customer Name</td>
-            <td>:N/A</td>
+            <td style="font-size:10px;">Customer Name</td>
+            <td style="font-size:10px;">:N/A</td>
         </tr>
         <tr>
 
-            <td>Mobile Number</td>
-            <td>:N/A</td>
+            <td style="font-size:10px;">Mobile Number</td>
+            <td style="font-size:10px;">:N/A</td>
         </tr>
         <tr>
-            <td>Address</td>
-            <td>:N/A</td>
+            <td style="font-size:10px;">Address</td>
+            <td style="font-size:10px;">:N/A</td>
         </tr>
     </table>
                                 
                                 @else
-    <table class="second_table">
+    <table class="second_table" style="font-size:10px;">
         <tr>
-            <td>Customer Name</td>
-            <td>:{{ $invoice_detail_new->name }}</td>
+            <td style="font-size:10px;">Customer Name</td>
+            <td style="font-size:10px;">:{{ $invoice_detail_new->name }}</td>
         </tr>
         <tr>
 
-            <td>Mobile Number</td>
-            <td>:{{ $invoice_detail_new->phone }}</td>
+            <td style="font-size:10px;">Mobile Number</td>
+            <td style="font-size:10px;">:{{ $invoice_detail_new->phone }}</td>
         </tr>
         <tr>
-            <td>Address</td>
-            <td>:{{ $invoice_detail_new->address }}</td>
+            <td style="font-size:10px;">Address</td>
+            <td style="font-size:10px;">:{{ $invoice_detail_new->address }}</td>
         </tr>
     </table>
     @endif
@@ -241,10 +240,7 @@
 
 
     <tr>
-    <td>
-                <h4><span style="font-size:8px;">Powered By ResNova Tech Limited</span>
-                </h4>
-            </td>
+   
     <td>
       <table class="inner-table">
         <tr>
