@@ -144,7 +144,7 @@ if (is_null($this->user) || !$this->user->can('waiterDashboardAdd')) {
 
             $productList = Product::orderBy('id','desc')->get();
 
-            return view('admin.pos.create',compact('menuList','productList','categoryList','subcategoryList','productAttributeList','productAddOnList'));
+            return view('admin.pos.newPos',compact('menuList','productList','categoryList','subcategoryList','productAttributeList','productAddOnList'));
 
         } catch (\Exception $e) {
             return redirect()->route('error_500');
@@ -344,21 +344,21 @@ if (is_null($this->user) || !$this->user->can('waiterDashboardAdd')) {
         $productDetail = OrderDetail::where('order_id',$id)->get();
         return view('admin.order.printInvoice',compact('orderDetail','productDetail'));
     }
-    
-    
+
+
     public function printPdf($id){
 
         $orderDetail = Order::where('id',$id)->first();
         $productDetail = OrderDetail::where('order_id',$id)->get();
-        
-        
+
+
 //         $pdf=PDF::loadView('admin.pos.printPdf',['orderDetail'=>$orderDetail,'productDetail'=>$productDetail],[], [
 //   'size' => '75mm 100mm'
 // ]);
 //       return $pdf->stream('Order_Receipt.pdf');
-       
-       
-       
+
+
+
        $data = view('admin.pos.printPdf',compact('orderDetail','productDetail'));
 
         $mpdf = new Mpdf(['mode' => 'utf-8', 'format' => [56,120]]);
@@ -366,14 +366,14 @@ if (is_null($this->user) || !$this->user->can('waiterDashboardAdd')) {
         $mpdf->WriteHTML($data);
         $mpdf->Output();
         die();
-    
-        
-        
-        
-        
-        
-        
-        
+
+
+
+
+
+
+
+
     }
 
 

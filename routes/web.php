@@ -32,7 +32,7 @@ use App\Http\Controllers\Admin\VendorController;
 use App\Http\Controllers\Admin\InventoryController;
 use App\Http\Controllers\Admin\InventoryNameController;
 use App\Http\Controllers\Admin\TableOrderController;
-
+use App\Http\Controllers\Admin\FoodTypeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -80,6 +80,16 @@ Route::group(['prefix' => 'admin'], function () {
     Route::controller(TableOrderController::class)->group(function () {
 
         Route::get('/addOrderToTable/{id}', 'addOrderToTable')->name('addOrderToTable');
+
+    });
+
+
+    Route::resource('foodTypeList',FoodTypeController::class);
+
+    Route::controller(FoodTypeController::class)->group(function () {
+
+        Route::get('/foodTypeStatusUpdate', 'foodTypeStatusUpdate')->name('foodTypeStatusUpdate');
+        Route::get('/foodTypePriorityStatusUpdate', 'foodTypePriorityStatusUpdate')->name('foodTypePriorityStatusUpdate');
 
     });
 

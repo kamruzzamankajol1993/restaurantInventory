@@ -108,6 +108,10 @@ $usr = Auth::guard('admin')->user();
                             <li class="{{ Route::is('subcategoryList.index') || Route::is('subcategoryList.edit') || Route::is('subcategoryList.create') ? 'active' : '' }}"><a href="{{ route('subcategoryList.index') }}" class="{{ Route::is('subcategoryList.index') || Route::is('subcategoryList.edit') || Route::is('subcategoryList.create') ? 'active' : '' }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Sub Category List</a></li>
                             @endif
 
+                            @if ($usr->can('foodTypeAdd') || $usr->can('foodTypeView') ||  $usr->can('foodTypeDelete') ||  $usr->can('foodTypeUpdate'))
+                            <li class="{{ Route::is('foodTypeList.index') || Route::is('foodTypeList.edit') || Route::is('foodTypeList.create') ? 'active' : '' }}"><a href="{{ route('foodTypeList.index') }}" class="{{ Route::is('foodTypeList.index') || Route::is('foodTypeList.edit') || Route::is('foodTypeList.create') ? 'active' : '' }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Food Type List</a></li>
+                            @endif
+
 
 
                         </ul>
