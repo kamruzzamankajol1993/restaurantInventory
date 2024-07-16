@@ -119,6 +119,16 @@ class SystemInformationController extends Controller
 
     }
 
+    public function updateTaxAndServiceCharge(Request $request,$id){
+
+        $systemInformation = SystemInformation::find($id);
+        $systemInformation->tax = $request->tax;
+        $systemInformation->service_charge = $request->service_charge;
+        $systemInformation->save();
+        return redirect()->back()->with('success','Updated Succesfully');
+
+    }
+
 
     public function update(Request $request,$id){
 

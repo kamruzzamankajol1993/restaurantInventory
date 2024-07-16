@@ -128,15 +128,26 @@ Product Update
                         <div class="col-lg-12 col-sm-12">
                             <div class="form-group">
                                 <label class="fw-700 fs-16 form-label">Type <span style="color:red;">*</span></label>
+                                {{-- <select name="main_type" class="form-control select2" required style="width: 100%;">
+                                    <option selected="selected">Select One</option>
+                                    <option>Vegetable</option>
+                                    <option>Non Vegetable</option>
+
+                                    <option value="">Select One</option>
+                                    <option value="Stater" {{ $product->main_type == 'Stater' ? 'selected':''  }}>Stater</option>
+                                    <option value="Desert" {{ $product->main_type == 'Desert' ? 'selected':''  }}>Desert</option>
+                                    <option value="MainCourse" {{ $product->main_type == 'MainCourse' ? 'selected':''  }}>MainCourse</option>
+                                </select> --}}
+
                                 <select name="main_type" class="form-control select2" required style="width: 100%;">
                                     {{-- <option selected="selected">Select One</option>
                                     <option>Vegetable</option>
                                     <option>Non Vegetable</option> --}}
 
                                     <option value="">Select One</option>
-                                    <option value="Stater" {{ $product->main_type == 'Stater' ? 'selected':''  }}>Stater</option>
-                                    <option value="Desert" {{ $product->main_type == 'Desert' ? 'selected':''  }}>Desert</option>
-                                    <option value="MainCourse" {{ $product->main_type == 'MainCourse' ? 'selected':''  }}>MainCourse</option>
+                                    @foreach($foodTypeList as $foodTypeLists)
+                                    <option value="{{ $foodTypeLists->id }}" {{ $product->main_type == $foodTypeLists->id  ? 'selected':''  }}>{{ $foodTypeLists->category_name }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
@@ -202,10 +213,10 @@ Product Update
                         <div class="col-lg-12 col-sm-12">
                             <div class="bootstrap-timepicker">
                                 <div class="form-group">
-                                    <label class="form-label">Approximate Time: <span style="color:red;">*</span></label>
+                                    <label class="form-label">Approximate Time(minute): <span style="color:red;">*</span></label>
 
                                     <div class="input-group">
-                                        <input type="text" value="{{ $product->approximate_time }}" required name="approximate_time" class="form-control ">
+                                        <input type="number" value="{{ $product->approximate_time }}" required name="approximate_time" class="form-control ">
 
                                         <div class="input-group-addon">
                                             <i class="fa fa-clock-o"></i>
@@ -318,7 +329,91 @@ Product Update
                 </div>
             </div>
         </div>
+<!-- inventory start --->
+<div class="col-md-12">
 
+
+    <div class="card mt-3">
+        <div class="card-header">
+            <h4 class="box-title text-info mb-0"><i class="fa fa-puzzle-piece me-15"></i> Product Inventory
+            </h4>
+        </div>
+        <div class="card-body pb-0">
+
+            <div class="mb-3 col-lg-12">
+                <table class="table table-light" id="dynamicAddRemove">
+                    <tr>
+                        <th>Name<span
+                            class="text-danger">*</span></th>
+                        <th>Quantity<span
+                            class="text-danger">*</span></th>
+                        <th></th>
+                    </tr>
+                    @if(count($assaignQuantity) == 0)
+                    <tr>
+                        <td>
+
+                            <select id="m0" name="inventory_id[]"
+                                   class="form-control inventoryId" required>
+                                   <option value="">--Select--</option>
+                                   @foreach($inventoryList as $inventoryLists)
+                                   <?php
+
+                                         $unitId = \App\Models\InventoryQuantity::where('inventory_id',$inventoryLists->id)->value('unit_id')
+                                         ?>
+                                   <option data-lid="0" data-unit="{{ \App\Models\Unit::where('id',$unitId)->value('unit_name') }}" data-mid="{{ $inventoryLists->id }}" data-quantity="{{ \App\Models\InventoryQuantity::where('inventory_id',$inventoryLists->id)->value('quantity') }}" value="{{ $inventoryLists->id }}">{{ \App\Models\InventoryName::where('id',$inventoryLists->name_id)->value('name') }}</option>
+                                   @endforeach
+                            </select>
+                            <div id="avq0"></div>
+                        </td>
+                        <td>
+                            <input type="text" data-qid="0" name="product_quantity[]"
+                                   class="form-control productQuantity" required/>
+                        </td>
+                        <td><button type="button" name="add" id="dynamic-ar" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i>
+                        </button></td>
+                    </tr>
+                    @else
+                    @foreach($assaignQuantity as $key=>$assaignQuantitys)
+                    <tr>
+                        <td>
+
+                            <select id="m0" name="inventory_id[]"
+                                   class="form-control inventoryId" required>
+                                   <option value="">--Select--</option>
+                                   @foreach($inventoryList as $inventoryLists)
+                                   <?php
+
+                                         $unitId = \App\Models\InventoryQuantity::where('inventory_id',$inventoryLists->id)->value('unit_id')
+                                         ?>
+                                   <option data-lid="0" data-unit="{{ \App\Models\Unit::where('id',$unitId)->value('unit_name') }}" data-mid="{{ $inventoryLists->id }}" data-quantity="{{ \App\Models\InventoryQuantity::where('inventory_id',$inventoryLists->id)->value('quantity') }}" value="{{ $inventoryLists->id }}" {{ $assaignQuantitys->inventory_id == $inventoryLists->id ? 'selected':'' }}>{{ \App\Models\InventoryName::where('id',$inventoryLists->name_id)->value('name') }}</option>
+                                   @endforeach
+                            </select>
+                            <div id="avq0"></div>
+                        </td>
+                        <td>
+                            <input type="text" value="{{ $assaignQuantitys->quantity }}" data-qid="0" name="product_quantity[]"
+                                   class="form-control productQuantity" required/>
+                        </td>
+                        @if($key == 0)
+                        <td><button type="button" name="add" id="dynamic-ar" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i>
+                        </button></td>
+                        @else
+<td><button type="button" class="btn btn-danger btn-sm remove-input-field"><i class="fa fa-trash"></i></button></td>
+                        @endif
+                    </tr>
+                    @endforeach
+                    @endif
+                </table>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<!-- inventory end -->
         <div class="col-lg-12 col-sm-12">
 
             <!-- code from 6 am start -->
@@ -455,6 +550,83 @@ Product Update
 
 @section('script')
 
+<script>
+
+    //priority status  code
+
+
+    $(document).on('change', '.inventoryId', function () {
+
+        var name_id = $(this).find(':selected').val();
+        var id =   $(this).find(':selected').data('mid');
+        var lid =   $(this).find(':selected').data('lid');
+        var unit =   $(this).find(':selected').data('unit');
+        var quantity =   $(this).find(':selected').data('quantity');
+
+        $('#avq'+lid).html('Available Quantity: '+ quantity + ' '+unit );
+
+
+        // $.ajax({
+        // url: "{{ route('getInventoryInfo') }}",
+        // method: 'get',
+        // data: {name_id:name_id,id:id,unit:unit,quantity:quantity},
+        // beforeSend: function(){
+        // $('#loader').show()
+        // },
+        // complete: function(){
+        // $('#loader').hide()
+        // },
+        // success: function(data) {
+
+        // alertify.set('notifier','position','top-center');
+        // alertify.success('Prioriry Updated SuccessFully');
+        // location.reload(true);
+
+
+        // }
+        // });
+
+    });
+    $(document).on('keyup', '.productQuantity', function () {
+        var id =   $(this).data('qid');
+        var quantity = $('#m'+id).find(':selected').data('quantity');
+
+        if( $(this).val() > quantity){
+
+            alertify.alert('Error', 'Quantity Not Available!', function(){ alertify.success('Ok'); });
+
+            $('#finalSubmitButton').hide();
+
+        }else{
+
+            $('#finalSubmitButton').show();
+
+        }
+
+        //alert(quantity);
+    });
+    </script>
+<script>
+    var i = 0;
+    $("#dynamic-ar").click(function () {
+        ++i;
+        $("#dynamicAddRemove").append('<tr>' +
+            '<td>' +
+            '<select id="m'+i+'" name="inventory_id[]" class="form-control inventoryId" required><option value="">--Select--</option>@foreach($inventoryList as $inventoryLists)<?php $unitId = \App\Models\InventoryQuantity::where('inventory_id',$inventoryLists->id)->value('unit_id')?><option data-lid="'+i+'" data-unit="{{ \App\Models\Unit::where('id',$unitId)->value('unit_name') }}" data-mid="{{ $inventoryLists->id }}" data-quantity="{{ \App\Models\InventoryQuantity::where('inventory_id',$inventoryLists->id)->value('quantity') }}" value="{{ $inventoryLists->id }}">{{ \App\Models\InventoryName::where('id',$inventoryLists->name_id)->value('name') }}</option>@endforeach</select><div id="avq'+i+'"></div>' +
+            '</td>' +
+            '<td>' +
+            '<input type="text" data-qid="'+i+'" name="product_quantity[]" class="form-control productQuantity" required/>' +
+            '</td>' +
+            '<td>' +
+            '<button type="button" class="btn btn-danger btn-sm remove-input-field"><i class="fa fa-trash"></i></button>' +
+            '</td>' +
+            '</tr>'
+        );
+    });
+    $(document).on('click', '.remove-input-field', function () {
+        $(this).parents('tr').remove();
+    });
+</script>
 <script>
     $("#stock_type").change(function(){
             if(this.value === 'daily' || this.value === 'fixed') {

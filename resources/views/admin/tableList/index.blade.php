@@ -53,6 +53,7 @@ Table List | {{ $ins_name }}
                             <tr>
                                 <th>Sl</th>
                                 <th>Table Name</th>
+                                <th>Sitting</th>
                                 <th>Waiter Name</th>
                                 <th>Action</th>
                             </tr>
@@ -63,7 +64,7 @@ Table List | {{ $ins_name }}
                                 <td>{{ $key+1 }}</td>
 
                                 <td>{{ $tableLists->name }}</td>
-
+                                <td>{{ $tableLists->sitting }}</td>
                                 <td>
 
 
@@ -106,6 +107,11 @@ Table List | {{ $ins_name }}
                                                             <input class="form-control" name="name" value="{{ $tableLists->name  }}"  type="text" placeholder="" required>
                                                         </div>
 
+                                                        <div class="mb-3">
+                                                            <label class="form-label" for="">Sitting<span style="color:red;">*</span></label>
+                                                            <input class="form-control" name="sitting" value="{{ $tableLists->sitting  }}"  type="text" placeholder="" required>
+                                                        </div>
+
                                                         <div class="mb-3 col-md-12">
                                                             <label class="form-label">Waiter Name <span style="color:red;">*</span></label>
                                                             <select id="inputState" name="admin_id" class="form-control ms-0 wide" required>
@@ -125,6 +131,9 @@ Table List | {{ $ins_name }}
 
 
 @endif
+@if($tableLists->id ==1)
+
+@else
 
                             @if (Auth::guard('admin')->user()->can('tableDelete'))
 
@@ -135,6 +144,7 @@ Table List | {{ $ins_name }}
 
                                           </form>
 
+                                          @endif
                                           @endif
 
                                 </td>
@@ -167,6 +177,11 @@ Table List | {{ $ins_name }}
                     <div class="mb-3">
                         <label class="form-label" for="">Table Name<span style="color:red;">*</span></label>
                         <input class="form-control" name="name"  type="text" placeholder="" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label" for="">Sitting<span style="color:red;">*</span></label>
+                        <input class="form-control" name="sitting"   type="text" placeholder="" required>
                     </div>
 
                     <div class="mb-3 col-md-12">

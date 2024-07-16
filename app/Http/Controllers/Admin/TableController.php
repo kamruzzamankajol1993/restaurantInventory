@@ -39,7 +39,7 @@ class TableController extends Controller
             \LogActivity::addToLog('Table list ');
 
             $waiterList = Admin::where('designation_list_id','=',4)->orderBy('id','desc')->get();
-            $tableList = Table::orderBy('id','desc')->get();
+            $tableList = Table::orderBy('id','asc')->get();
 
             return view('admin.tableList.index',compact('waiterList','tableList'));
 

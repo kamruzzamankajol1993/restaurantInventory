@@ -29,17 +29,17 @@ Product Add
 
                         <div class="form-group">
                             <label class="fw-700 fs-16 form-label">Product Name <span style="color:red;">*</span></label>
-                            <input type="text" name="product_name" class="form-control" placeholder="Name" required>
+                            <input type="text" name="product_name" class="form-control" placeholder="Name" >
                         </div>
 
                         <div class="form-group">
                             <label class="fw-700 fs-16 form-label">Product Name(Chinese) <span style="color:red;">*</span></label>
-                            <input type="text" name="chinese_name" class="form-control" placeholder="Name" required>
+                            <input type="text" name="chinese_name" class="form-control" placeholder="Name" >
                         </div>
 
                         <div class="form-group">
                             <label class="fw-700 fs-16 form-label">Short Description <span style="color:red;">*</span></label>
-                            <textarea class="form-control" name="product_short_description" required id="" cols="30" rows="7"></textarea>
+                            <textarea class="form-control" name="product_short_description"  id="" cols="30" rows="7"></textarea>
                         </div>
 
                 </div>
@@ -54,7 +54,7 @@ Product Add
                         <div class="mb-3">
                             <label class="form-label">Product Images <span style="color:red;">*</span></label>
                             <small class="text-danger"> * (Ratio 1:1)</small>
-                            <input name="product_image" required class="form-control" accept="image/*" type='file' id="imgInp">
+                            <input name="product_image"  class="form-control" accept="image/*" type='file' id="imgInp">
                         </div>
                     </div>
                 </div>
@@ -71,7 +71,7 @@ Product Add
                         <div class="col-lg-6 col-sm-12">
                             <div class="form-group">
                                 <label class="fw-700 fs-16 form-label">Category <span style="color:red;">*</span></label>
-                                <select name="category_id" required id="category_id" class="form-control select2" style="width: 100%;">
+                                <select name="category_id"  id="category_id" class="form-control select2" style="width: 100%;">
                                     <option value="">--please select --</option>
                                     @foreach($categoryList as $categoryLists)
                                     <option value="{{ $categoryLists->id }}">{{ $categoryLists->category_name }}</option>
@@ -91,8 +91,9 @@ Product Add
                         <div class="col-lg-6 col-sm-12">
                             <div class="form-group">
                                 <label class="fw-700 fs-16 form-label">Item Type <span style="color:red;">*</span> </label>
-                                <select name="item_type" class="form-control select2" required style="width: 100%;">
+                                <select name="item_type" class="form-control select2"  style="width: 100%;">
                                     <option value="">Select One</option>
+
                                     <option value="Set Menu">Set Menu</option>
                                     <option value="Single">Single</option>
                                 </select>
@@ -101,7 +102,7 @@ Product Add
                         <div class="col-lg-6 col-sm-12">
                             <div class="form-group">
                                 <label class="fw-700 fs-16 form-label">Product Type <span style="color:red;">*</span></label>
-                                <select name="product_type" class="form-control select2" required style="width: 100%;">
+                                <select name="product_type" class="form-control select2"  style="width: 100%;">
                                     {{-- <option selected="selected">Select One</option>
                                     <option>Vegetable</option>
                                     <option>Non Vegetable</option> --}}
@@ -119,15 +120,15 @@ Product Add
                         <div class="col-lg-12 col-sm-12">
                             <div class="form-group">
                                 <label class="fw-700 fs-16 form-label">Type <span style="color:red;">*</span></label>
-                                <select name="main_type" class="form-control select2" required style="width: 100%;">
+                                <select name="main_type" class="form-control select2"  style="width: 100%;">
                                     {{-- <option selected="selected">Select One</option>
                                     <option>Vegetable</option>
                                     <option>Non Vegetable</option> --}}
 
                                     <option value="">Select One</option>
-                                    <option value="Stater">Stater</option>
-                                    <option value="Desert">Desert</option>
-                                    <option value="MainCourse">MainCourse</option>
+                                    @foreach($foodTypeList as $foodTypeLists)
+                                    <option value="{{ $foodTypeLists->id }}">{{ $foodTypeLists->category_name }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
@@ -151,7 +152,7 @@ Product Add
                             <div class="form-group">
                                 <label class="fw-700 fs-16 form-label" for="">Turning visibility off will
                                     not show this product in the user app and website <span style="color:red;">*</span></label>
-                                <select class="form-control" required name="available_status" id="">
+                                <select class="form-control"  name="available_status" id="">
                                     <option value="Yes">Yes</option>
                                     <option value="No">No</option>
                                 </select>
@@ -163,7 +164,7 @@ Product Add
                                     <label class="form-label">Available Time: <span style="color:red;">*</span></label>
 
                                     <div class="input-group">
-                                        <input type="text" required name="available_time" class="form-control timepicker">
+                                        <input type="text"  name="available_time" class="form-control timepicker">
 
                                         <div class="input-group-addon">
                                             <i class="fa fa-clock-o"></i>
@@ -179,7 +180,7 @@ Product Add
                                     <label class="form-label">Available Till: <span style="color:red;">*</span></label>
 
                                     <div class="input-group">
-                                        <input type="text" required name="available_till" class="form-control timepicker">
+                                        <input type="text"  name="available_till" class="form-control timepicker">
 
                                         <div class="input-group-addon">
                                             <i class="fa fa-clock-o"></i>
@@ -193,10 +194,10 @@ Product Add
                         <div class="col-lg-12 col-sm-12">
                             <div class="bootstrap-timepicker">
                                 <div class="form-group">
-                                    <label class="form-label">Approximate Time: <span style="color:red;">*</span></label>
+                                    <label class="form-label">Approximate Time(minute): <span style="color:red;">*</span></label>
 
                                     <div class="input-group">
-                                        <input type="text" required name="approximate_time" class="form-control">
+                                        <input type="number"  name="approximate_time" class="form-control">
 
                                         <div class="input-group-addon">
                                             <i class="fa fa-clock-o"></i>
@@ -225,14 +226,14 @@ Product Add
                                 <label class="form-label">Default Price <span style="color:red;">*</span></label>
                                 <div class="input-group mb-3">
                                     <span class="input-group-text"><i class="ti-money"></i></span>
-                                    <input type="text" required name="default_price" class="form-control" placeholder="Price">
+                                    <input type="text"  name="default_price" class="form-control" placeholder="Price">
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-6 col-sm-12">
                             <div class="form-group">
                                 <label class="fw-700 fs-16 form-label">Discount Type <span style="color:red;">*</span></label>
-                                <select class="form-control" required name="discount_type" id="">
+                                <select class="form-control"  name="discount_type" id="">
                                     <option value="">--Select--</option>
                                     <option value="Percentage">Percentage</option>
                                     <option value="Amount">Amount</option>
@@ -242,13 +243,13 @@ Product Add
                         <div class="col-lg-6 col-sm-12">
                             <div class="form-group">
                                 <label class="fw-700 fs-16 form-label">Discount <span style="color:red;">*</span></label>
-                                <input type="number" required name="discount_price" class="form-control" placeholder="Ex: 5%">
+                                <input type="number"  name="discount_price" class="form-control" placeholder="Ex: 5%">
                             </div>
                         </div>
                         <div class="col-lg-6 col-sm-12">
                             <div class="form-group">
                                 <label class="fw-700 fs-16 form-label">Tax Type <span style="color:red;">*</span></label>
-                                <select class="form-control" required name="tax_type" id="">
+                                <select class="form-control"  name="tax_type" id="">
                                     <option value="">--Select--</option>
                                     <option value="Percentage">Percentage</option>
                                     <option value="Amount">Amount</option>
@@ -258,7 +259,7 @@ Product Add
                         <div class="col-lg-6 col-sm-12">
                             <div class="form-group">
                                 <label class="fw-700 fs-16 form-label">Tax Rate <span style="color:red;">*</span></label>
-                                <input type="number" required name="tax_rate" class="form-control" placeholder="Ex: 100 Taka">
+                                <input type="number"  name="tax_rate" class="form-control" placeholder="Ex: 100 Taka">
                             </div>
                         </div>
                     </div>
@@ -277,7 +278,7 @@ Product Add
                         <div class="col-lg-12">
                             <div class="form-group">
                                 <label class="fw-700 fs-16 form-label">Select Addons <span style="color:red;">*</span></label>
-                                <select name="product_add_on[]" required class="form-control select2" multiple="multiple"
+                                <select name="product_add_on[]"  class="form-control select2" multiple="multiple"
                                         data-placeholder="Select a Addons"
                                         style="width: 100%;">
                                         @foreach($productAddOnList as $productAddOnLists)
@@ -291,7 +292,7 @@ Product Add
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label class="fw-700 fs-16 form-label">Product Stock <span style="color:red;">*</span></label>
-                                <select class="form-control" required name="product_stock_type" id="stock_type">
+                                <select class="form-control"  name="product_stock_type" id="stock_type">
                                     <option value="fixed">Fixed</option>
                                     <option value="daily">Daily</option>
                                     <option value="Unlimited">Unlimited</option>
@@ -309,6 +310,59 @@ Product Add
                 </div>
             </div>
         </div>
+<!-- inventory start --->
+        <div class="col-md-12">
+
+
+            <div class="card mt-3">
+                <div class="card-header">
+                    <h4 class="box-title text-info mb-0"><i class="fa fa-puzzle-piece me-15"></i> Product Inventory
+                    </h4>
+                </div>
+                <div class="card-body pb-0">
+
+                    <div class="mb-3 col-lg-12">
+                        <table class="table table-light" id="dynamicAddRemove">
+                            <tr>
+                                <th>Name<span
+                                    class="text-danger">*</span></th>
+                                <th>Quantity<span
+                                    class="text-danger">*</span></th>
+                                <th></th>
+                            </tr>
+                            <tr>
+                                <td>
+
+                                    <select id="m0" name="inventory_id[]"
+                                           class="form-control inventoryId" >
+                                           <option value="">--Select--</option>
+                                           @foreach($inventoryList as $inventoryLists)
+                                           <?php
+
+                                                 $unitId = \App\Models\InventoryQuantity::where('inventory_id',$inventoryLists->id)->value('unit_id')
+                                                 ?>
+                                           <option data-lid="0" data-unit="{{ \App\Models\Unit::where('id',$unitId)->value('unit_name') }}" data-mid="{{ $inventoryLists->id }}" data-quantity="{{ \App\Models\InventoryQuantity::where('inventory_id',$inventoryLists->id)->value('quantity') }}" value="{{ $inventoryLists->id }}">{{ \App\Models\InventoryName::where('id',$inventoryLists->name_id)->value('name') }}</option>
+                                           @endforeach
+                                    </select>
+                                    <div id="avq0"></div>
+                                </td>
+                                <td>
+                                    <input type="text" data-qid="0" name="product_quantity[]"
+                                           class="form-control productQuantity" />
+                                </td>
+                                <td><button type="button" name="add" id="dynamic-ar" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i>
+                                </button></td>
+                            </tr>
+                        </table>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+<!-- inventory end -->
 
         <div class="col-lg-12 col-sm-12">
 
@@ -385,10 +439,10 @@ Product Add
                                     </div>
                                 </div>
                                 <div class="col-lg-1">
-                                    <label for="" class="fw-700 fs-16 form-label">Required?</label>
+                                    <label for="" class="fw-700 fs-16 form-label">?</label>
                                     <div class="checkbox checkbox-success">
                                         <input id="checkbox1" type="checkbox">
-                                        <label for="checkbox1"> Required </label>
+                                        <label for="checkbox1">  </label>
                                     </div>
                                 </div>
                                 <div class="col-lg-1">
@@ -432,14 +486,90 @@ Product Add
     </div>
 
     <div class="form-actions mt-10">
-        <button type="submit" class="btn btn-primary"> <i class="fa fa-check"></i> Save / Add</button>
+        <button type="submit" id="finalSubmitButton" class="btn btn-primary"> <i class="fa fa-check"></i> Save / Add</button>
     </div>
 </form>
 </section>
 @endsection
 
 @section('script')
+<script>
 
+    //priority status  code
+
+
+    $(document).on('change', '.inventoryId', function () {
+
+        var name_id = $(this).find(':selected').val();
+        var id =   $(this).find(':selected').data('mid');
+        var lid =   $(this).find(':selected').data('lid');
+        var unit =   $(this).find(':selected').data('unit');
+        var quantity =   $(this).find(':selected').data('quantity');
+
+        $('#avq'+lid).html('Available Quantity: '+ quantity + ' '+unit );
+
+
+        // $.ajax({
+        // url: "{{ route('getInventoryInfo') }}",
+        // method: 'get',
+        // data: {name_id:name_id,id:id,unit:unit,quantity:quantity},
+        // beforeSend: function(){
+        // $('#loader').show()
+        // },
+        // complete: function(){
+        // $('#loader').hide()
+        // },
+        // success: function(data) {
+
+        // alertify.set('notifier','position','top-center');
+        // alertify.success('Prioriry Updated SuccessFully');
+        // location.reload(true);
+
+
+        // }
+        // });
+
+    });
+    $(document).on('keyup', '.productQuantity', function () {
+        var id =   $(this).data('qid');
+        var quantity = $('#m'+id).find(':selected').data('quantity');
+
+        if( $(this).val() > quantity){
+
+            alertify.alert('Error', 'Quantity Not Available!', function(){ alertify.success('Ok'); });
+
+            $('#finalSubmitButton').hide();
+
+        }else{
+
+            $('#finalSubmitButton').show();
+
+        }
+
+        //alert(quantity);
+    });
+    </script>
+<script>
+    var i = 0;
+    $("#dynamic-ar").click(function () {
+        ++i;
+        $("#dynamicAddRemove").append('<tr>' +
+            '<td>' +
+            '<select id="m'+i+'" name="inventory_id[]" class="form-control inventoryId" ><option value="">--Select--</option>@foreach($inventoryList as $inventoryLists)<?php $unitId = \App\Models\InventoryQuantity::where('inventory_id',$inventoryLists->id)->value('unit_id')?><option data-lid="'+i+'" data-unit="{{ \App\Models\Unit::where('id',$unitId)->value('unit_name') }}" data-mid="{{ $inventoryLists->id }}" data-quantity="{{ \App\Models\InventoryQuantity::where('inventory_id',$inventoryLists->id)->value('quantity') }}" value="{{ $inventoryLists->id }}">{{ \App\Models\InventoryName::where('id',$inventoryLists->name_id)->value('name') }}</option>@endforeach</select><div id="avq'+i+'"></div>' +
+            '</td>' +
+            '<td>' +
+            '<input type="text" data-qid="'+i+'" name="product_quantity[]" class="form-control productQuantity" />' +
+            '</td>' +
+            '<td>' +
+            '<button type="button" class="btn btn-danger btn-sm remove-input-field"><i class="fa fa-trash"></i></button>' +
+            '</td>' +
+            '</tr>'
+        );
+    });
+    $(document).on('click', '.remove-input-field', function () {
+        $(this).parents('tr').remove();
+    });
+</script>
 <script>
     $("#stock_type").change(function(){
             if(this.value === 'daily' || this.value === 'fixed') {
@@ -498,7 +628,7 @@ Product Add
                         <div class="row g-2">
                             <div class="col-lg-3 col-md-6">
                                 <label for="" class="fw-700 fs-16 form-label">Name</label>
-                                <input required name=options[` + count + `][name] class="form-control" type="text"
+                                <input  name=options[` + count + `][name] class="form-control" type="text"
                                     onkeyup="new_option_name(this.value,` + count + `)">
                             </div>
 
@@ -535,8 +665,8 @@ Product Add
                                         <label class="d-md-block d-none">&nbsp;</label>
                                     <div class="d-flex align-items-center justify-content-between">
                                         <div class="checkbox checkbox-success">
-                                        <input id="options[` + count + `][required]" name="options[` + count + `][required]" type="checkbox">
-                                        <label for="options[` + count + `][required]" class="fw-700 fs-16 form-label">Required ?</label>
+                                        <input id="options[` + count + `][]" name="options[` + count + `][]" type="checkbox">
+                                        <label for="options[` + count + `][]" class="fw-700 fs-16 form-label"> ?</label>
                                     </div>
                                     <div>
                                         <button type="button" class="btn btn-danger btn-sm delete_input_button" onclick="removeOption(this)"title="Delete">
@@ -555,11 +685,11 @@ Product Add
                             <div class="row g-3 add_new_view_row_class mb-3">
                                 <div class="col-md-4 col-sm-6">
                                     <label for="" class="fw-700 fs-16 form-label">Option Name</label>
-                                    <input class="form-control" required type="text" name="options[` + count +`][values][0][label]" id="">
+                                    <input class="form-control"  type="text" name="options[` + count +`][values][0][label]" id="">
                                 </div>
                                 <div class="col-md-4 col-sm-6">
                                     <label for="" class="fw-700 fs-16 form-label">Additional Price</label>
-                                    <input class="form-control" required type="number" min="0" step="0.01" name="options[` + count + `][values][0][optionPrice]" id="">
+                                    <input class="form-control"  type="number" min="0" step="0.01" name="options[` + count + `][values][0][optionPrice]" id="">
                                 </div>
                             </div>
                         </div>
@@ -580,8 +710,8 @@ Product Add
     function show_min_max(data) {
         $('#min_max1_' + data).removeAttr("readonly");
         $('#min_max2_' + data).removeAttr("readonly");
-        // $('#min_max1_' + data).attr("required", "true");
-        // $('#min_max2_' + data).attr("required", "true");
+        // $('#min_max1_' + data).attr("", "true");
+        // $('#min_max2_' + data).attr("", "true");
     }
 
     function hide_min_max(data) {
@@ -589,8 +719,8 @@ Product Add
         $('#min_max2_' + data).val(null).trigger('change');
         $('#min_max1_' + data).attr("readonly", "true");
         $('#min_max2_' + data).attr("readonly", "true");
-        // $('#min_max1_' + data).attr("required", "false");
-        // $('#min_max2_' + data).attr("required", "false");
+        // $('#min_max1_' + data).attr("", "false");
+        // $('#min_max2_' + data).attr("", "false");
     }
 
     function new_option_name(value, data) {
@@ -617,11 +747,11 @@ Product Add
             <div class="row add_new_view_row_class mb-3 position-relative pt-3 pt-sm-0">
                 <div class="col-md-4 col-sm-5">
                     <label for="">Option_name</label>
-                    <input class="form-control" required type="text" name="options[` + count + `][values][` + countRow + `][label]" id="">
+                    <input class="form-control"  type="text" name="options[` + count + `][values][` + countRow + `][label]" id="">
                 </div>
                 <div class="col-md-4 col-sm-5">
                     <label for="">Additional_price</label>
-                    <input class="form-control"  required type="number" min="0" step="0.01" name="options[` + count + `][values][` + countRow + `][optionPrice]" id="">
+                    <input class="form-control"   type="number" min="0" step="0.01" name="options[` + count + `][values][` + countRow + `][optionPrice]" id="">
                 </div>
                 <div class="col-sm-2 max-sm-absolute">
                     <label class="d-none d-sm-block">&nbsp;</label>

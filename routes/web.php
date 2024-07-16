@@ -33,6 +33,7 @@ use App\Http\Controllers\Admin\InventoryController;
 use App\Http\Controllers\Admin\InventoryNameController;
 use App\Http\Controllers\Admin\TableOrderController;
 use App\Http\Controllers\Admin\FoodTypeController;
+use App\Http\Controllers\Admin\DiscountController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -80,6 +81,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::controller(TableOrderController::class)->group(function () {
 
         Route::get('/addOrderToTable/{id}', 'addOrderToTable')->name('addOrderToTable');
+        Route::get('/showOrderToTable', 'showOrderToTable')->name('showOrderToTable');
 
     });
 
@@ -94,6 +96,7 @@ Route::group(['prefix' => 'admin'], function () {
     });
 
 
+    Route::resource('discount',DiscountController::class);
     Route::resource('pos',PosController::class);
     Route::resource('unit',UnitController::class);
     Route::resource('vendor',VendorController::class);
@@ -133,6 +136,13 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::controller(PosController::class)->group(function () {
 
+        Route::get('/showDataOnModal', 'showDataOnModal')->name('showDataOnModal');
+        Route::post('/posTablePayment', 'posTablePayment')->name('posTablePayment');
+        Route::post('/newPosDataInsert', 'newPosDataInsert')->name('newPosDataInsert');
+
+
+Route::get('/printForKitchen/{id}', 'printForKitchen')->name('printForKitchen');
+Route::get('/printForPayment/{id}', 'printForPayment')->name('printForPayment');
 
         Route::get('/printPdf/{id}', 'printPdf')->name('printPdf');
 
@@ -158,7 +168,7 @@ Route::group(['prefix' => 'admin'], function () {
     });
 
     Route::controller(ProductController::class)->group(function () {
-
+        Route::get('/getInventoryInfo', 'getInventoryInfo')->name('getInventoryInfo');
         Route::get('/getSubCategoryId', 'getSubCategoryId')->name('getSubCategoryId');
         Route::get('/productStatusUpdate', 'productStatusUpdate')->name('productStatusUpdate');
     });
@@ -347,7 +357,9 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::resource('systemInformation', SystemInformationController::class);
 
+    Route::controller(SystemInformationController::class)->group(function () {
 
-
+        Route::put('/updateTaxAndServiceCharge/{id}', 'updateTaxAndServiceCharge')->name('updateTaxAndServiceCharge');
+    });
 
 });

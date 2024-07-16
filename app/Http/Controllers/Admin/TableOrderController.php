@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Admin;
 use App\Models\Order;
+use App\Models\FoodType;
 use App\Models\Table;
 use App\Models\OrderDetail;
 use App\Models\ProductAddOn;
@@ -26,6 +27,16 @@ use Mail;
 use Image;
 class TableOrderController extends Controller
 {
+
+
+    public function showOrderToTable(Request $request){
+
+        $tableId = $request->table_id;
+
+        return $data = view('admin.tableOrder.showOrderToTable',compact('tableId'))->render();
+
+
+    }
 
 
     public function index(){
@@ -47,9 +58,9 @@ class TableOrderController extends Controller
             \LogActivity::addToLog('Table list ');
 
             $waiterList = Admin::where('designation_list_id','=',4)->orderBy('id','desc')->get();
-            $tableList = Table::orderBy('id','desc')->get();
+            $tableList = Table::orderBy('id','asc')->get();
 
-            return view('admin.tableOrder.create',compact('waiterList','tableList'));
+            return view('admin.pos.newPostable',compact('waiterList','tableList'));
 
         } catch (\Exception $e) {
             return redirect()->route('error_500');
@@ -64,7 +75,7 @@ class TableOrderController extends Controller
             \LogActivity::addToLog('Table list ');
 
             $tableId=$id;
-
+            $foodTypeList = FoodType::orderBy('id','asc')->get();
             $waiterList = Admin::where('designation_list_id','=',4)->orderBy('id','desc')->get();
             $tableList = Table::orderBy('id','desc')->get();
 
@@ -76,7 +87,7 @@ class TableOrderController extends Controller
 
             $productList = Product::orderBy('id','desc')->get();
 
-            return view('admin.tableOrder.addOrderToTable',compact('tableId','waiterList','tableList','menuList','productList','categoryList','subcategoryList','productAttributeList','productAddOnList'));
+            return view('admin.pos.newPos',compact('foodTypeList','tableId','waiterList','tableList','menuList','productList','categoryList','subcategoryList','productAttributeList','productAddOnList'));
 
 
         } catch (\Exception $e) {

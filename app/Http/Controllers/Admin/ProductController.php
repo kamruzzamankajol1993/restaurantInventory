@@ -13,7 +13,10 @@ use App\Models\ProductVariation;
 use App\Models\ProductVariationList;
 use App\Models\SubCategory;
 use App\Models\Category;
+use App\Models\FoodType;
+use App\Models\Inventory;
 use App\Models\Product;
+use App\Models\AssaignQuantiy;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use File;
@@ -49,11 +52,11 @@ class ProductController extends Controller
             $subcategoryList = SubCategory::orderBy('id','asc')->get();
             $productAttributeList = ProductAttribute::orderBy('id','desc')->get();
             $productAddOnList = ProductAddOn::orderBy('id','desc')->get();
-
-
+            $foodTypeList = FoodType::orderBy('id','asc')->get();
+            $inventoryList = Inventory::orderBy('id','asc')->get();
             $productList = Product::orderBy('id','desc')->get();
 
-            return view('admin.productList.index',compact('productList','categoryList','subcategoryList','productAttributeList','productAddOnList'));
+            return view('admin.productList.index',compact('inventoryList','foodTypeList','productList','categoryList','subcategoryList','productAttributeList','productAddOnList'));
 
         } catch (\Exception $e) {
             return redirect()->route('error_500');
@@ -100,17 +103,17 @@ class ProductController extends Controller
         try{
 
             \LogActivity::addToLog('Product View');
-
+            $assaignQuantity = AssaignQuantiy::where('product_id',$id)->latest()->get();
 
             $categoryList = Category::orderBy('id','asc')->get();
             $subcategoryList = SubCategory::orderBy('id','asc')->get();
             $productAttributeList = ProductAttribute::orderBy('id','desc')->get();
             $productAddOnList = ProductAddOn::orderBy('id','desc')->get();
-
-
+            $inventoryList = Inventory::orderBy('id','asc')->get();
+            $foodTypeList = FoodType::orderBy('id','asc')->get();
             $product = Product::find($id);
 
-            return view('admin.productList.edit',compact('product','categoryList','subcategoryList','productAttributeList','productAddOnList'));
+            return view('admin.productList.edit',compact('foodTypeList','inventoryList','assaignQuantity','product','categoryList','subcategoryList','productAttributeList','productAddOnList'));
 
         } catch (\Exception $e) {
             return redirect()->route('error_500');
@@ -130,13 +133,14 @@ class ProductController extends Controller
 
             \LogActivity::addToLog('Product Add');
 
-
+$foodTypeList = FoodType::orderBy('id','asc')->get();
+            $inventoryList = Inventory::orderBy('id','asc')->get();
             $categoryList = Category::orderBy('id','asc')->get();
             $subcategoryList = SubCategory::orderBy('id','asc')->get();
             $productAttributeList = ProductAttribute::orderBy('id','desc')->get();
             $productAddOnList = ProductAddOn::orderBy('id','desc')->get();
 
-            return view('admin.productList.create',compact('categoryList','subcategoryList','productAttributeList','productAddOnList'));
+            return view('admin.productList.create',compact('inventoryList','foodTypeList','categoryList','subcategoryList','productAttributeList','productAddOnList'));
 
         } catch (\Exception $e) {
             return redirect()->route('error_500');
@@ -162,7 +166,7 @@ class ProductController extends Controller
         }
 
 
-
+//dd($request->all());
         if ($request['discount_type'] == 'Percentage') {
             $dis = ($request['default_price'] / 100) * $request['discount_price'];
         } else {
@@ -174,7 +178,7 @@ class ProductController extends Controller
 $filePath='ProductImage';
         $addOn = $request->has('product_add_on') ? json_encode($request->product_add_on) : json_encode([]);
 
-        //dd($request->all());
+
 
 
         $variations = [];
@@ -238,6 +242,33 @@ $filePath='ProductImage';
 
         $product->save();
 
+        if (isset($request->inventory_id)) {
+
+            $input = $request->all();
+
+            $divisionName = $input['inventory_id'];
+
+
+
+            foreach($divisionName as $key => $divisionName){
+                $form= new AssaignQuantiy();
+                $form->product_id=$product->id;
+                $form->inventory_id=$input['inventory_id'][$key];
+
+
+                if(empty($input['product_quantity'][$key])){
+
+
+                }else{
+
+                    $form->quantity=$input['product_quantity'][$key];
+                }
+
+                $form->save();
+            }
+
+        }
+
         DB::commit();
 
         return redirect()->route('productList.index')->with('success','Added successfully!');
@@ -245,7 +276,9 @@ $filePath='ProductImage';
     } catch (\Exception $e) {
 
         DB::rollBack();
-        return redirect()->route('error_500');
+       // return redirect()->route('error_500');
+       
+       return $e;
 
         }
 
@@ -335,6 +368,33 @@ $filePath='ProductImage';
            }
 
         $product->save();
+
+        if (isset($request->inventory_id)) {
+
+            $input = $request->all();
+
+            $divisionName = $input['inventory_id'];
+
+            AssaignQuantiy::where('product_id',$product->id)->delete();
+
+            foreach($divisionName as $key => $divisionName){
+                $form= new AssaignQuantiy();
+                $form->product_id=$product->id;
+                $form->inventory_id=$input['inventory_id'][$key];
+
+
+                if(empty($input['product_quantity'][$key])){
+
+
+                }else{
+
+                    $form->quantity=$input['product_quantity'][$key];
+                }
+
+                $form->save();
+            }
+
+        }
 
         DB::commit();
 

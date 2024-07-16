@@ -112,6 +112,8 @@ Product List
 
 @section('script')
 
+
+
 <script>
 $(document).on('change', '.available_status', function () {
 

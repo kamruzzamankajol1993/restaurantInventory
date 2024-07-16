@@ -34,18 +34,14 @@ class VendorController extends Controller
             return redirect()->route('mainLogin');
         }
 
-        try{
-
-            \LogActivity::addToLog('vendor list ');
+       
 
 
             $vendorList = Vendor::orderBy('id','desc')->get();
 
             return view('admin.vendor.index',compact('vendorList'));
 
-        } catch (\Exception $e) {
-            return redirect()->route('error_500');
-        }
+
     }
 
 

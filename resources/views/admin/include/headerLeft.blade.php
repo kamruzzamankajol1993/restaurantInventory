@@ -33,7 +33,7 @@ $usr = Auth::guard('admin')->user();
                             @endif
                         </ul>
                     </li>
-
+ @if ($usr->can('orderAdd') || $usr->can('orderView') ||  $usr->can('orderDelete') ||  $usr->can('orderUpdate'))
                     <li class="header">Order Management</li>
 
                     <li class="treeview">
@@ -65,6 +65,7 @@ $usr = Auth::guard('admin')->user();
                             @endif
                         </ul>
                     </li>
+                    @endif
                     <li class="treeview">
                         <a href="#">
                             <i class="icon-Cardboard-vr"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
@@ -76,9 +77,10 @@ $usr = Auth::guard('admin')->user();
                         <ul class="treeview-menu">
 
 
-
+@if ($usr->can('tableOrderNew'))
                             <li><a href="{{ route('tableOrder.create') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Add New Order</a></li>
-
+@endif
+   @if ($usr->can('waiterDashboardAdd'))
                             <li><a href="{{ route('tableOrder.index') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>All</a></li>
                             <li><a href="#"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Confirmed</a></li>
                             <li><a href="#"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Cooking</a></li>
@@ -86,9 +88,10 @@ $usr = Auth::guard('admin')->user();
                             <li><a href="#"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Complete</a></li>
                             <li><a href="#"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Cancel</a></li>
                             <li><a href="#"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>On Table</a></li>
+                            @endif
                         </ul>
                     </li>
-
+   @if ($usr->can('categoryAdd') || $usr->can('categoryView') ||  $usr->can('categoryDelete') ||  $usr->can('categoryUpdate'))
                     <li class="header">Product Management</li>
 
                     <li class="treeview">
@@ -116,6 +119,8 @@ $usr = Auth::guard('admin')->user();
 
                         </ul>
                     </li>
+                    @endif
+                        @if ($usr->can('productAttributeAdd') || $usr->can('productAttributeView') ||  $usr->can('productAttributeDelete') ||  $usr->can('productAttributeUpdate'))
                     <li class="treeview">
                         <a href="#">
                             <i class="icon-Menu"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
@@ -143,8 +148,14 @@ $usr = Auth::guard('admin')->user();
 
                         </ul>
                     </li>
+                    @endif
+                    @if ($usr->can('discountAdd') || $usr->can('discountView') || $usr->can('discountDelete') || $usr->can('discountUpdate'))
 
+                    <li class="header">Discount, Tax and Service Charge</li>
+                    <li class="{{ Route::is('discount.index') || Route::is('discount.edit') || Route::is('discount.create') ? 'active' : '' }}"><a href="{{ route('discount.index') }}" class="{{ Route::is('discount.index') || Route::is('discount.edit') || Route::is('discount.create') ? 'active' : '' }}"><i class="fa fa-file"><span class="path1"></span><span class="path2"></span></i>Discount List</a></li>
+                    @endif
 
+ @if ($usr->can('tableAdd') || $usr->can('tableView') ||  $usr->can('tableDelete') ||  $usr->can('tableUpdate'))
                     <li class="header">Qr Code  Management</li>
 
 
@@ -168,7 +179,9 @@ $usr = Auth::guard('admin')->user();
 
                         </ul>
                     </li>
+                    @endif
 
+   @if ($usr->can('designationAdd') || $usr->can('designationView') ||  $usr->can('designationDelete') ||  $usr->can('designationUpdate'))
                     <li class="header">User Management</li>
 
                     @if ($usr->can('designationAdd') || $usr->can('designationView') ||  $usr->can('designationDelete') ||  $usr->can('designationUpdate'))
@@ -222,8 +235,9 @@ $usr = Auth::guard('admin')->user();
 
                         </ul>
                     </li>
+                    @endif
 
-
+   @if ($usr->can('unitAdd') || $usr->can('unitView') || $usr->can('unitDelete') || $usr->can('unitUpdate'))
                     <li class="header">Inventory Management</li>
 
                     <li class="treeview">
@@ -261,8 +275,9 @@ $usr = Auth::guard('admin')->user();
                     @endif
                         </ul>
                     </li>
-
-                    <li class="header">System Management</li>Name
+                    @endif
+ @if ($usr->can('systemInformationAdd') || $usr->can('systemInformationView') || $usr->can('systemInformationDelete') || $usr->can('systemInformationUpdate'))
+                    <li class="header">System Management</li>
 
                     <li class="treeview">
                         <a href="#">
@@ -298,21 +313,24 @@ $usr = Auth::guard('admin')->user();
 
                         </ul>
                     </li>
+                    @endif
 
                 </ul>
 
                 <div class="sidebar-widgets">
+                        @if ($usr->can('menuListAdd') || $usr->can('menuListView') ||  $usr->can('menuListDelete') ||  $usr->can('menuListUpdate'))
                     <div class="mx-25 mb-30 pb-20 side-bx bg-primary bg-food-dark rounded20">
                         <div class="text-center">
                             <img src="{{ asset('/') }}public/admin/assets/images/res-menu.png" class="sideimg" alt="">
                             <h3 class="title-bx">Add Menu</h3>
-                            @if ($usr->can('menuListAdd') || $usr->can('menuListView') ||  $usr->can('menuListDelete') ||  $usr->can('menuListUpdate'))
+
                             <a href="{{ route('menuList.index') }}" class="text-white py-10 fs-16 mb-0">
                                 Manage Your food and beverages menu</i>
                             </a>
-                            @endif
+
                         </div>
                     </div>
+                     @endif
                     <div class="copyright text-start m-25">
                         <p><strong class="d-block">{{ $ins_name }}</strong> © 2024 All Rights Reserved</p>
                     </div>

@@ -1,287 +1,249 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <title>Invoice</title>
-   <style>
+    <style>
         body {
-            color: #333639;
-            font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+            padding: 0;
+            font-family: 'PT Sans', sans-serif;
+            height: 100%;
+            width: 2.8in;
         }
 
-        /* .body_size
-        {
-            width: 75mm;
-            height: 100mm;
-            padding: 3px;
-        } */
-
-        @page  {
-      size: 56mm 100mm;
-      margin: 2px;
-    }
+        @page {
+            size: 2.8in 11in;
+            margin-top: 0cm;
+            margin-left: 0cm;
+            margin-right: 0cm;
+        }
 
         table {
             width: 100%;
         }
 
-        .first_table tr td {
+        tr {
             width: 100%;
+
         }
 
-        .first_table tr td:nth-child(1) img {
-            height:70px;
-            width:450px;
+        h1 {
+            text-align: center;
+            vertical-align: middle;
         }
 
-        .first_table tr td:nth-child(2)
+        #logo {
+            width: 60%;
+            text-align: center;
+            -webkit-align-content: center;
+            align-content: center;
+            padding: 5px;
+            margin: 2px;
+            display: block;
+            margin: 0 auto;
+        }
+
+        #logo img
         {
+            height: 60px;
+            width: 60px;
+        }
+
+        header {
+            width: 100%;
+            text-align: center;
+            -webkit-align-content: center;
+            align-content: center;
+            vertical-align: middle;
+        }
+
+        .items thead {
             text-align: center;
         }
 
-        .first_table tr td:nth-child(2) img {
-           
+        .center-align {
+            text-align: center;
         }
 
-        .first_table tr td:nth-child(2) p {
-            font-size:8px;
-            padding:0;
-            margin:0;
-        }
-        .first_table tr td:nth-child(2) h4 {
-            font-size:12px;
-            padding:0;
-            margin:0;
-        }
-
-        hr{
-            margin-bottom: 0;
-            margin-top:0;
-        }
-
-        .second_table tr td {
-            font-size: 13px;
-            vertical-align: top;
-        }
-
-        .second_table tr td:nth-child(1) {
-            width: 40%;
-        }
-        .second_table tr td p{
-            margin: 0;
-            padding: 2px;
-        }
-
-        .second_table tr td:nth-child(2)
-        {
-            font-weight: bold;
-            width: 60%;
-        }
-
-        .third_table {
-            border-collapse: collapse;
-            margin-top: 5px;
-            font-size: 10px;
-        }
-        .third_table th {
-            padding: 2px;
-            text-align: left;
-            background-color: #F8F9FA;
-            border: 1px solid #e9ecef;
-        }
-
-        .third_table tr th:nth-child(2)
-        {
-            width: 40px;
-        }
-
-        .third_table td {
-            border: 1px solid #e9ecef;
-            padding: 4px;
-        }
-
-        .forth_table
-        {
+        .bill-details td {
             font-size: 12px;
-            vertical-align: top;
-        }
-        .forth_table tr td:nth-child(1)
-        {
-            width: 40%;
-        }
-        .forth_table tr td:nth-child(2)
-        {
-            width: 60%;
         }
 
-        .inner-table tr td:nth-child(1)
-        {
-            width: 65%;
+        .receipt {
+            font-size: medium;
+        }
+
+        .items .heading {
+            font-size: 12.5px;
+            text-transform: uppercase;
+            border-top:1px solid black;
+            margin-bottom: 4px;
+            border-bottom: 1px solid black;
+            vertical-align: middle;
+        }
+
+        .items thead tr th:first-child,
+        .items tbody tr td:first-child {
+            width: 47%;
+            min-width: 47%;
+            max-width: 47%;
+            word-break: break-all;
+            text-align: left;
+        }
+
+        .items td {
+            font-size: 12px;
+            text-align: right;
+            vertical-align: bottom;
+        }
+
+        .price::before {
+            content: "\20B9";
+            font-family: Arial;
+            text-align: right;
+        }
+
+        .sum-up {
+            text-align: right !important;
+        }
+        .total {
+            font-size: 13px;
+            border-top:1px dashed black !important;
+            border-bottom:1px dashed black !important;
+        }
+        .total.text, .total.price {
+            text-align: right;
+        }
+        .total.price::before {
+            content: "\20B9";
+        }
+        .line {
+            border-top:1px solid black !important;
+        }
+        .heading.rate {
+            width: 20%;
+        }
+        .heading.amount {
+            width: 25%;
+        }
+        .heading.qty {
+            width: 5%
+        }
+        p {
+            padding: 1px;
+            margin: 0;
+        }
+        section, footer {
+            font-size: 12px;
         }
     </style>
 </head>
+
 <body>
-
-
-
-            <table class="first_table">
-        <tr>
-            
-            <td style="text-align:center;">
-                <h2>Bali Arcade</h2>
-                <!--<img src="{{asset('/')}}{{$icon}}"  alt="">-->
-                <p style=""><span style="font-size:10px;">227 Nawab Sirajuddaula Rd, <br>Chattogram 4203 <br> PH-01735767416,01626716006</span></p>
-                <!--<h4>{{$ins_name}}</h4>-->
-            </td>
-        </tr>
-    </table>
-
-    <hr>
- @if($orderDetail->order_type == 'Order From Waiter')
-  
- <table class="second_table" style="font-size:10px;">
-        <tr>
-            <td style="font-size:10px;">Customer Name</td>
-            <td style="font-size:10px;">:Walk in Customer</td>
-        </tr>
-        <tr>
-
-            <td style="font-size:10px;">Mobile Number</td>
-            <td style="font-size:10px;">:N/A</td>
-        </tr>
-        <tr>
-            <td style="font-size:10px;">Address</td>
-            <td style="font-size:10px;">:N/A</td>
-        </tr>
-    </table>
-
- @else
- 
- <?php
-
-
-
-        $invoice_detail_new = DB::table('ship_addresses')
-        ->where('order_id', $orderDetail->id )->first();
-
-
-                                ?>
-                                
-                                @if(!$invoice_detail_new)
-                                
-                                <table class="second_table" style="font-size:10px;">
-        <tr>
-            <td style="font-size:10px;">Customer Name</td>
-            <td style="font-size:10px;">:N/A</td>
-        </tr>
-        <tr>
-
-            <td style="font-size:10px;">Mobile Number</td>
-            <td style="font-size:10px;">:N/A</td>
-        </tr>
-        <tr>
-            <td style="font-size:10px;">Address</td>
-            <td style="font-size:10px;">:N/A</td>
-        </tr>
-    </table>
-                                
-                                @else
-    <table class="second_table" style="font-size:10px;">
-        <tr>
-            <td style="font-size:10px;">Customer Name</td>
-            <td style="font-size:10px;">:{{ $invoice_detail_new->name }}</td>
-        </tr>
-        <tr>
-
-            <td style="font-size:10px;">Mobile Number</td>
-            <td style="font-size:10px;">:{{ $invoice_detail_new->phone }}</td>
-        </tr>
-        <tr>
-            <td style="font-size:10px;">Address</td>
-            <td style="font-size:10px;">:{{ $invoice_detail_new->address }}</td>
-        </tr>
-    </table>
-    @endif
-    @endif
-
-
-
-<table class="third_table">
-
-    <thead>
-    <tr>
-       <th style="width:5%">#</th>
-                <th style="width:55%">Item</th>
-                <th style="width:15%">Rate</th>
-                <th style="width:5%">Q.T</th>
-                <th style="width:20%">Amount</th>
-    </tr>
-    </thead>
+<header>
+    <div id="logo" class="media">
+        <img src="{{ asset('/') }}public/logo.jfif" alt="">
+    </div>
+</header>
+<p style="font-size:12px;">Invoice Number : {{$orderDetail->invoice_id}}</p>
+<table class="bill-details">
     <tbody>
-        @foreach ($productDetail as $key => $productDetails)
-       
-                              
-        <tr>
-                            <td>{{ $key+1 }}</td>
-                            <td>{{ $productDetails->product_name }}</td>
-                            <td>{{ $productDetails->prodcut_price }}</td>
-                            <td>{{ $productDetails->product_quantity }}</td>
+    <tr>
+        <td>Date : <span>{{ date('d-m-y', strtotime($orderDetail->created_at)) }}</span></td>
+        <td>Time : <span>{{ date('h:i:s', strtotime($orderDetail->created_at)) }}</span></td>
+    </tr>
+    <tr>
+        <td>Table #: <span>   <?php
 
-                            <td>{{ $productDetails->prodcut_price*$productDetails->product_quantity }}</td>
-                        </tr>
+                                    $table = DB::table('tables')->where('id',$orderDetail->table_id)->value('name');
 
 
-        @endforeach
+                                        ?>
 
+                                        {{ $table  }}
+
+                                        </span></td>
+        <td></td>
+    </tr>
+    <tr>
+        <th class="center-align" colspan="2"><span class="receipt">Original Receipt</span></th>
+    </tr>
     </tbody>
 </table>
 
-<table class="forth_table">
+<table class="items">
+    <thead>
+    <tr>
+        <th class="heading name">Item</th>
+        <th class="heading qty" style="width:30px;">Qty</th>
+        <th class="heading rate">Rate</th>
+        <th class="heading amount">Amount</th>
+    </tr>
+    </thead>
 
+    <tbody>
+
+        <?php
+
+                                                $totalPrice = 0;
+
+                                                ?>
+
+        @foreach($productDetail as $key=>$productDetails)
+    <tr>
+        <td>{{$productDetails->product_name}}</td>
+        <td>{{$productDetails->product_quantity}}</td>
+        <td class="price">{{$productDetails->prodcut_price}}</td>
+        <td class="price">{{$productDetails->prodcut_price*$productDetails->product_quantity}}</td>
+    </tr>
+
+     <?php
+
+                                                $totalPrice = $totalPrice + ($productDetails->prodcut_price*$productDetails->product_quantity);
+
+
+                                                ?>
+    @endforeach
 
     <tr>
-   
-    <td>
-      <table class="inner-table">
-        <tr>
-          <td>Sub Total</td>
-          <td>{{ $orderDetail->subtotal }}</td>
-        </tr>
-        <tr>
-          <td>Addon Price</td>
-          <td>{{ $orderDetail->addon }}</td>
-        </tr>
-        <tr>
-            <td>Discount</td>
-            <td>{{ $orderDetail->discount }}</td>
-          </tr>
-          
-          <tr>
-            <td>E.Discount</td>
-            <td>{{ $orderDetail->extra_discount }}</td>
-          </tr>
-          
-          <tr>
-          <td>Tax</td>
-          <td>{{ $orderDetail->vat }}</td>
-        </tr>
-        
-        <tr>
-          <td>S.Charge</td>
-          <td>0</td>
-        </tr>
-          
-        <tr style="font-weight:bold">
-          <td>Total</td>
-          <td>{{ $orderDetail->grand_total }}</td>
-        </tr>
+        <td colspan="3" class="sum-up line">Subtotal</td>
+        <td class="line price">{{$totalPrice}}</td>
+    </tr>
 
+    <tr>
+        <td colspan="3" class="sum-up">Service Charge</td>
+        <td class="price">{{ $orderDetail->delivery_charge }}</td>
+    </tr>
 
+    <tr>
+        <td colspan="3" class="sum-up">Tax</td>
+        <td class="price">{{ $orderDetail->vat }}</td>
+    </tr>
+    @if(empty($orderDetail->extra_discount ))
 
-      </table>
-    </td>
-  </tr>
+    @else
+    <tr>
+        <td colspan="3" class="sum-up">Discount</td>
+        <td class="price">{{ $orderDetail->extra_discount }}</td>
+    </tr>
+    @endif
+    <tr>
+        <th colspan="3" class="total text">Total</th>
+        <th class="total price">{{$orderDetail->grand_total }}</th>
+    </tr>
+    </tbody>
 </table>
-
+<section>
+    <p>
+        Paid by : <span>{{ $orderDetail->payment_type }}</span>
+    </p>
+    <p style="text-align:center">
+        Thank you for your visit!
+    </p>
+</section>
+<footer style="text-align:center">
+    <p>Technology Partner Upgrade U Initiative</p>
+</footer>
 </body>
+
 </html>

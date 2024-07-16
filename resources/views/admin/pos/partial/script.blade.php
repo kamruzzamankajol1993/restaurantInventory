@@ -254,6 +254,8 @@ var addOnLabelList= $('.addonData'+result+':checked').map(function (idx, ele) {
 }).get();
 
 
+//alert(addOnLabelList);
+
 var extraDiscount = $('#extraDiscount').val();
 
 
@@ -263,14 +265,16 @@ var extraDiscount = $('#extraDiscount').val();
         method: 'get',
         data: {extraDiscount:extraDiscount,addOnLabelList:addOnLabelList,varationLabelList:varationLabelList,total_final_variation_price:total_final_variation_price,result:result,quantity:quantity,cartTotalAmount:cartTotalAmount,final_addOn_price:final_addOn_price,final_variation_price:final_variation_price},
         beforeSend: function(){
-        $('#loader').show()
+        $('.ajax-loader').show()
         },
         complete: function(){
-        $('#loader').hide()
+        $('.ajax-loader').hide()
         },
         success: function(data) {
 
             $('.modal').modal('hide');
+
+            $('#hidem').hide();
 
         alertify.set('notifier','position','top-center');
         alertify.success('Item Added To Cart SuccessFully');
@@ -304,10 +308,10 @@ $('[id^=updateCartQuantity]').on('keyup', function() {
         method: 'get',
         data: {extraDiscount:extraDiscount,result:result,quantity:quantity},
         beforeSend: function(){
-        $('#loader').show()
+        $('.ajax-loader').show()
         },
         complete: function(){
-        $('#loader').hide()
+        $('.ajax-loader').hide()
         },
         success: function(data) {
 
@@ -342,10 +346,10 @@ $('#clearAllCartData').on('click', function() {
         method: 'get',
         data: {result:result},
         beforeSend: function(){
-        $('#loader').show()
+        $('.ajax-loader').show()
         },
         complete: function(){
-        $('#loader').hide()
+        $('.ajax-loader').hide()
         },
         success: function(data) {
 
@@ -386,10 +390,10 @@ $('[id^=singleItemDelete]').on('click', function() {
         method: 'get',
         data: {extraDiscount:extraDiscount,result:result},
         beforeSend: function(){
-        $('#loader').show()
+        $('.ajax-loader').show()
         },
         complete: function(){
-        $('#loader').hide()
+        $('.ajax-loader').hide()
         },
         success: function(data) {
 
@@ -417,8 +421,65 @@ $('[id^=singleItemDelete]').on('click', function() {
 
 </script>
 <!-- end product add  script --->
+<script>
+    $(function() {
+  $('.btn-plusone,.btn-minusone').on('click', function() {
+    var $qty = $('.quantityResultone').val(),
+      currentVal = parseInt($qty),
+      isAdd = $(this).hasClass('btn-plusone');
+    !isNaN(currentVal) && $('.quantityResultone').val(
+      isAdd ? ++currentVal : (currentVal > 1 ? --currentVal : currentVal)
+    );
+  });
+});
+</script>
+<script>
+$(function() {
+    $('[id^=btn-plusone]').on('click', function() {
 
-<!-- new code 20 may start ---->
+              var main_id = $(this).attr('id');
+              var result = main_id.slice(11);
+              var quantity = $('#updateCartQuantity'+result).val();
+
+
+
+
+              var price = $('.pPriceAjaxm'+result).val();
+              var result= (parseInt(price)*parseInt(quantity));
+              $('#updateCartQuantity'+result).val(quantity);
+              $('#t2s').html(parseInt(price)*parseInt(quantity));
+
+              $('#subTotal').val(parseInt(price)*parseInt(quantity));
+              $('#total').val(result);
+              $('#t2').html(result);
+
+
+    });
+  });
+
+
+  $(function() {
+    $('[id^=btn-minusone]').on('click', function() {
+
+              var main_id = $(this).attr('id');
+              var result = main_id.slice(12);
+              var quantity = $('#updateCartQuantity'+result).val();
+
+
+              var price = $('.pPriceAjaxm'+result).val();
+              var result= (parseInt(price)*parseInt(quantity));
+
+              $('#t2s').html(parseInt(price)*parseInt(quantity));
+              $('#updateCartQuantity'+result).val(quantity);
+              $('#subTotal').val(parseInt(price)*parseInt(quantity));
+              $('#total').val(result);
+              $('#t2').html(result);
+
+    });
+  });
+</script>
+
+
 <script>
 
 $(function() {
@@ -456,3 +517,32 @@ $(function() {
     });
     });
     </script>
+
+<script>
+$(document).on('click', '[id^=searchProduct]', function () {
+
+    //alert(12);
+    var main_id = $(this).attr('id');
+    var get_id_from_main = main_id.slice(13);
+
+    $.ajax({
+url: "{{ route('showDataOnModal') }}",
+method: 'get',
+data: {get_id_from_main:get_id_from_main},
+beforeSend: function(){
+    $('.ajax-loader').show()
+},
+complete: function(){
+    $('.ajax-loader').hide()
+},
+success: function(data) {
+
+    $("#productSearchModal").modal('show');
+
+    $('#newSearchResult').html('');
+    $('#newSearchResult').html(data);
+}
+});
+
+});
+</script>

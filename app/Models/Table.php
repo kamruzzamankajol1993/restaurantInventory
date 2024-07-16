@@ -11,5 +11,5 @@ class Table extends Model
 
     protected $table = "tables";
 
-    protected $fillable = ['name','table_slug','admin_id'];
+    protected $fillable = ['name','table_slug','admin_id','sitting'];
 }

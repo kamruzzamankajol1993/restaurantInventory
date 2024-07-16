@@ -73,7 +73,7 @@ class UnitController extends Controller
 
            DB::commit();
 
-           return redirect()->route('unitList.index')->with('success','Added successfully!');
+           return redirect()->route('unit.index')->with('success','Added successfully!');
 
         } catch (\Exception $e) {
 
@@ -105,7 +105,7 @@ class UnitController extends Controller
             $unit->fill($input)->save();
 
             DB::commit();
-            return redirect()->route('unitList.index')->with('success','Updated successfully!');
+            return redirect()->route('unit.index')->with('success','Updated successfully!');
 
         } catch (\Exception $e) {
 
@@ -131,7 +131,7 @@ class UnitController extends Controller
             Unit::destroy($id);
             DB::commit();
 
-            return redirect()->route('unitList.index')->with('error','Deleted successfully!');
+            return redirect()->route('unit.index')->with('error','Deleted successfully!');
 
         } catch (\Exception $e) {
 

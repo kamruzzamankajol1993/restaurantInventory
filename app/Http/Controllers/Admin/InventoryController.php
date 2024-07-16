@@ -114,6 +114,8 @@ class InventoryController extends Controller
             'expire_date' => 'required',
           ]);
 
+          
+
           try{
             DB::beginTransaction();
             // Create New User
